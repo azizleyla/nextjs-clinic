@@ -2,7 +2,6 @@ import React from "react";
 import { FaPhoneAlt } from "react-icons/fa";
 import { IoMdMail } from "react-icons/io";
 import { IoLocationSharp } from "react-icons/io5";
-import "@/styles/layout.scss";
 import { RiInstagramLine } from "react-icons/ri";
 import { SlSocialTwitter } from "react-icons/sl";
 import { ImFacebook } from "react-icons/im";
