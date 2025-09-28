@@ -1,0 +1,90 @@
+$primary: #1976d2;
+$secondary: #fff;
+$error: #d32f2f;
+
+.button {
+  font-weight: 600;
+  border-radius: 5px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.5s ease;
+  border: 2px solid var(--white-color);
+  &.small {
+    font-size: 0.75rem;
+    padding: 0.25rem 0.75rem;
+  }
+
+  &.medium {
+    font-size: var(--font-md);
+    padding: 12px 18px;
+  }
+
+  &.large {
+    font-size: var(--font-lg);
+    padding: 20px 45px;
+  }
+
+  &.contained {
+    color: var(--white-color);
+
+    &.primary {
+      background-color: var(--primary-color);
+      color: var(--white-color);
+
+      &:hover {
+        background-color: darken($primary, 8%);
+      }
+    }
+
+    &.secondary {
+      background-color: $secondary;
+      color: var(--primary-color);
+
+      &:hover {
+        color: var(--white-color);
+        background-color: transparent;
+      }
+    }
+
+    &.error {
+      background-color: $error;
+
+      &:hover {
+        background-color: darken($error, 8%);
+      }
+    }
+  }
+
+  &.outlined {
+    background: transparent;
+
+    &.primary {
+      color: $primary;
+      &:hover {
+        background-color: var(--white-color);
+      }
+    }
+
+    &.secondary {
+      color: $secondary;
+      &:hover {
+        color: var(--primary-color);
+        background-color: var(--white-color);
+      }
+    }
+
+    &.error {
+      color: $error;
+      &:hover {
+        background-color: rgba($error, 0.1);
+      }
+    }
+  }
+
+  &.disabled {
+    opacity: 0.5;
+    pointer-events: none;
+  }
+}

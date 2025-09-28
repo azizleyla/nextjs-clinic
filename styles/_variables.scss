@@ -1,0 +1,100 @@
+/* Colors */
+$color-primary: #0046c0;
+$color-primary-1: #4a6f8a;
+$color-primary-2: #344c5d;
+$color-secondary: #facc15;
+$color-accent: #10b981;
+$color-text: #1f2937;
+$color-background: #f3f4f6;
+$color-white: #ffffff;
+
+/* Fonts */
+$font-base: "Poppins", sans-serif;
+$font-heading: "Poppins", sans-serif;
+
+/* Font Weights */
+$fw-light: 300;
+$fw-regular: 400;
+$fw-medium: 500;
+$fw-semibold: 600;
+$fw-bold: 700;
+
+/* Font Sizes */
+$fs-xxs: 0.775rem;
+$fs-xs: 0.875rem;
+$fs-sm: 0.975rem;
+$fs-md: 1rem;
+$fs-lg: 1.125rem;
+$fs-xl: 1.25rem;
+$fs-2xl: 1.5rem;
+$fs-3xl: 1.875rem;
+$fs-4xl: 2.25rem;
+
+/* Breakpoints */
+$bp-sm: 576px;
+$bp-md: 768px;
+$bp-lg: 992px;
+$bp-xl: 1200px;
+$bp-xxl: 1400px;
+
+/* Border Radius */
+$radius-sm: 4px;
+$radius-md: 8px;
+$radius-lg: 16px;
+
+/* Shadows */
+$shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
+$shadow-md: 0 4px 6px rgba(0, 0, 0, 0.1);
+$shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.15);
+
+:root {
+  /* Colors */
+  --primary-color: #{$color-primary};
+  --primary-color-1: #{$color-primary-1};
+  --secondary-color: #{$color-secondary};
+  --accent-color: #{$color-accent};
+  --text-color: #{$color-text};
+  --background-color: #{$color-background};
+  --white-color: #{$color-white};
+
+  /* Fonts */
+  --font-base: #{$font-base};
+  --font-heading: #{$font-heading};
+
+  /* Font Sizes */
+  --fs-xs: #{$fs-xs};
+  --fs-sm: #{$fs-sm};
+  --fs-md: #{$fs-md};
+  --fs-lg: #{$fs-lg};
+  --fs-xl: #{$fs-xl};
+  --fs-2xl: #{$fs-2xl};
+  --fs-3xl: #{$fs-3xl};
+  --fs-4xl: #{$fs-4xl};
+
+  /* Font Weights */
+  --fw-light: #{$fw-light};
+  --fw-regular: #{$fw-regular};
+  --fw-medium: #{$fw-medium};
+  --fw-semibold: #{$fw-semibold};
+  --fw-bold: #{$fw-bold};
+
+  /* Breakpoints */
+  --bp-sm: #{$bp-sm};
+  --bp-md: #{$bp-md};
+  --bp-lg: #{$bp-lg};
+  --bp-xl: #{$bp-xl};
+  --bp-xxl: #{$bp-xxl};
+
+  /* Border Radius */
+  --radius-sm: #{$radius-sm};
+  --radius-md: #{$radius-md};
+  --radius-lg: #{$radius-lg};
+
+  /* Shadows */
+  --shadow-sm: #{$shadow-sm};
+  --shadow-md: #{$shadow-md};
+  --shadow-lg: #{$shadow-lg};
+
+  /* Bootstrap border color */
+  --bs-border-color: #708fae;
+}
