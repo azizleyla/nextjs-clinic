@@ -15,9 +15,6 @@ const geist = Geist({
 export const metadata = {
   title: "Elmed Hospital",
   description: "Etibarlı səhiyyə platforması",
-  verification: {
-    google: "googleef352e823eea92f7", 
-  },
 };
 
 export default function RootLayout({ children }) {
