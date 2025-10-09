@@ -1,6 +1,4 @@
-import { MetadataRoute } from 'next'
-import { doctors } from '../constants/doctors'
-import { blogPosts } from '../constants/blogs'
+
 import { services } from '../constants/services'
 
 export default function sitemap() {
@@ -20,7 +18,7 @@ export default function sitemap() {
 
     const dynamicServices = services.map(service => ({
         url: `${baseUrl}/services/${service.id}`,
-        lastModified: new Date(service.updatedAt),
+        lastModified: service.updatedAt ? new Date(service.updatedAt) : new Date(),
         changeFrequency: 'weekly',
         priority: 0.8,
     }))
