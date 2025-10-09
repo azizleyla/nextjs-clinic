@@ -26,5 +26,5 @@ export default function sitemap() {
     }))
 
 
-    return [...staticPages, ...dynamicDoctorPages, ...dynamicBlogPages,...dynamicServices]
+    return [...staticPages, ...dynamicServices]
 }
