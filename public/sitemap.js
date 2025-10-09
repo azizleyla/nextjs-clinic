@@ -1,7 +1,7 @@
 import { MetadataRoute } from 'next'
-import { doctors } from './constants/doctors'
-import { blogPosts } from './constants/blogs'
-import { services } from './constants/services'
+import { doctors } from '../constants/doctors'
+import { blogPosts } from '../constants/blogs'
+import { services } from '../constants/services'
 
 export default function sitemap() {
     const baseUrl = 'https://disin-clinic.vercel.app'
