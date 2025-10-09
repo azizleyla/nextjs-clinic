@@ -1,5 +1,5 @@
 import React from "react";
-import Button from "../../ui/components/button";
+import Button from "../../ui/common/button";
 import { FaRegCheckCircle } from "react-icons/fa";
 
 const AboutSection = () => {

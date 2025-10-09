@@ -1,72 +1,45 @@
-import Banner from "@/components/ui/components/banner";
-import Image from "next/image";
+import { Banner } from "@/components";
 import React from "react";
+import { services } from "@/constants/services"; // services array-ində id, title, description, image
+
+export async function generateMetadata({ params }) {
+  const { id } = params;
+
+  // xidməti tap
+  const service = services.find((s) => s.id == id);
+
+  return {
+    title: `Elmed Hospital | ${service.title}`,
+    description: service.description,
+    keywords: service.keywords || [
+      "Elmed Hospital",
+      "Tibbi xidmətlər",
+      service.title,
+    ],
+    robots: { index: true, follow: true },
+  };
+}
 
 const ServiceDetails = async ({ params }) => {
-  const { id } = await params;
+  const { id } = params;
+  const service = services.find((s) => s.id == id);
+
+  if (!service) return <div>Xidmət tapılmadı</div>;
+
   return (
     <>
-      <Banner title="Nevrologiya" />
+      <Banner title={service.title} />
       <section>
         <div className="container">
           <div className="flex flex-col gap-1 lg:flex-row justify-center items-start">
             <div className="text-secondary mt-1 w-full service-detail__content lg:w-1/2 flex-none">
-              <p>
-                <span>
-                  <span>
-                    Urologiya – tibbin kişi və qadın sidik-ifrazat
-                    sisteminin xəstəlikləri ilə məşğul olan sahəsidir.
-                    Urologiya sahəsində kişilərdə və qadınlarda
-                    böyrəklərin, sidik
-                  </span>
-                  <span>
-                    axarlarının, sidik kisəsinin, urethra və kişilərdə
-                    prostat və cinsiyyət orqanlarının xəstəlikləri
-                    daxildir.
-                  </span>
-                </span>
-              </p>
-              <p>
-                <span>
-                  Urologiya şöbəsində aşağıdakı xəstəliklərin müayinə və
-                  müalicəsi həyata keçirilir:
-                </span>
-              </p>
-              <p>
-                <span>
-                  Sidik yolları iltihabı xəstəlikləri (uretrit, sistit,
-                  piyelonefrit, qlomerulonetrit, prostatit )
-                </span>
-              </p>
-              <p>
-                <span>
-                  Böyrək daşlarının cərrahi və medikamentoz müalicəsi
-                </span>
-              </p>
-              <p>
-                <span>
-                  Nevrozlar (nevrasteniya, isteriya, sayrışan hallar);
-                </span>
-              </p>
-              <p>
-                <span>Qorxu və həyəcan halları;</span>
-              </p>
-              <p>
-                <span>Beyin-damar xəstəlikləri;</span>
-              </p>
-              <p>
-                <span>
-                  Doğru və düzgün müalicə üsulunun seçilməsi üçün
-                  klinikamızda Beyin KT, MRT, boyun damarlarının doppleri
-                  kimi müayinə üsulları da həyata keçirilir.
-                </span>
-              </p>
+              <p>{service.description}</p>
             </div>
             <div className="w-full lg:w-1/2 flex-none">
               <img
-                alt=""
+                alt={service.title}
                 className="rounded-md h-[400px] w-full object-contain"
-                src="https://admin.westhospital.az/uploads/images/departments/photo--1666870697.webp"
+                src={`/images/${service?.image}`}
               />
             </div>
           </div>

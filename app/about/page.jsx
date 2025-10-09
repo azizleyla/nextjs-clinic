@@ -1,24 +1,63 @@
-import AboutSection from "@/components/sections/about/AboutSection";
-import Counter from "@/components/sections/counter/Counter";
-import DoctorsSection from "@/components/sections/doctors/DoctorsSection";
-import Services from "@/components/sections/services/ServicesSection";
-import Banner from "@/components/ui/components/banner";
-import dynamic from "next/dynamic";
+import {
+  AboutSection,
+  Banner,
+  Counter,
+  DoctorsSection,
+  ServicesSection,
+} from "@/components";
 import React from "react";
 
-const About = () => {
+export const metadata = {
+  title: "Elmed Hospital | Haqqımızda",
+  description:
+    "Elmed Hospital haqqında daha çox məlumat əldə edin. Bizim missiyamız, dəyərlərimiz və təcrübəli həkimlərimizlə tanış olun.",
+  keywords: [
+    "Elmed Hospital",
+    "Haqqımızda",
+    "Tibbi xidmətlər",
+    "Həkimlər",
+    "Qəbula yazıl",
+  ],
+  robots: {
+    index: true,
+    follow: true,
+  },
+  openGraph: {
+    title: "Elmed Hospital – Haqqımızda",
+    description:
+      "Elmed Hospital-in missiyası, dəyərləri və təcrübəli həkimləri ilə tanış olun.",
+    url: "https://disin-clinic.vercel.app/about",
+    siteName: "Elmed Hospital",
+    images: [
+      {
+        url: "https://disin-clinic.vercel.app/images/logo.png",
+        width: 800,
+        height: 600,
+        alt: "Elmed Hospital Haqqımızda",
+      },
+    ],
+    locale: "az_AZ",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Elmed Hospital – Haqqımızda",
+    description:
+      "Missiyamız, dəyərlərimiz və təcrübəli həkimlərimizlə tanış olun. Elmed Hospital sizin üçün buradadır.",
+    images: ["https://disin-clinic.vercel.app/images/logo.png"],
+  },
+};
+
+export default async function About() {
   return (
     <div>
       <Banner title="Haqqımızda" />
       <div className="container">
         <AboutSection />
       </div>
-
       <Counter />
-      <Services />
+      <ServicesSection />
       <DoctorsSection />
     </div>
   );
-};
-
-export default About;
+}

@@ -1,14 +1,12 @@
 "use client";
 import dynamic from "next/dynamic";
-
 const Select = dynamic(() => import("react-select"), { ssr: false });
-import DoctorItem from "@/components/ui/components/doctor/DoctorItem";
 import { categoryOptions } from "@/constants/categories";
 import React from "react";
 import { BsBuildingFill } from "react-icons/bs";
-import { FaSearch, FaUser } from "react-icons/fa";
 import { IoSearch } from "react-icons/io5";
 import { FaUserDoctor } from "react-icons/fa6";
+import { DoctorItem } from "@/components";
 
 const DoctorsList = ({ doctors }) => {
   const handleChange = (option) => {
@@ -17,7 +15,7 @@ const DoctorsList = ({ doctors }) => {
 
   return (
     <div className="container">
-      <div className="pt-10 ml-auto mr-auto gap-5 rounded-md -mt-16 bg-white max-w-[970px] pb-8 flex flex-col md:flex-row px-16 justify-between shadow-custom-gray">
+      <div className="pt-7 lg:pt-10 ml-auto mr-auto gap-5 rounded-md -mt-16 bg-white max-w-[970px] pb-8 flex flex-col md:flex-row px-6 lg:px-16 justify-between shadow-custom-gray">
         <div className="w-full flex-none md:w-1/2">
           <form className="w-full lg:w-10/12">
             <div className="relative  flex gap-4 items-center ">
@@ -25,7 +23,7 @@ const DoctorsList = ({ doctors }) => {
               <div className="flex flex-col w-full">
                 <label className=" text-secondary  mb-1">Axtar</label>
                 <input
-                  className="placeholder:text-[#212529] focus:outline-none font-semibold border-b border-[#ccd9f2] pb-3"
+                  className="w-full placeholder:text-[#212529] focus:outline-none font-semibold border-b border-[#ccd9f2] pb-3"
                   placeholder="Həkim adı"
                   type="text"
                 />

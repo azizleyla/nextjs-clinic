@@ -1,6 +1,6 @@
 "use client";
 
-import SectionTitle from "@/components/ui/components/title/SectionTitle";
+import SectionTitle from "@/components/ui/shared/title/SectionTitle";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Swiper as SwiperCore } from "swiper";
 import { Navigation, Autoplay } from "swiper/modules";

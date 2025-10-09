@@ -9,6 +9,7 @@
     "lint": "eslint"
   },
   "dependencies": {
+    "@react-google-maps/api": "^2.20.7",
     "@tailwindcss/line-clamp": "^0.4.4",
     "axios": "^1.12.1",
     "next": "^15.5.2",

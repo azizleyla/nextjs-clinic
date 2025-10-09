@@ -1,10 +1,8 @@
-import Button from "@/components/ui/components/button";
-import SectionTitle from "@/components/ui/components/title/SectionTitle";
+import Button from "@/components/ui/common/button";
+import SectionTitle from "@/components/ui/shared/title/SectionTitle";
 import { blogPosts } from "@/constants/blogs";
 import Link from "next/link";
 import React from "react";
-import { FaRegCalendarAlt } from "react-icons/fa";
-import { FaLongArrowAltRight } from "react-icons/fa";
 import BlogItem from "./BlogItem";
 
 const BlogsSection = () => {

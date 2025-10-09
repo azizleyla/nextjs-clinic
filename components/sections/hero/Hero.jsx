@@ -5,7 +5,7 @@ import "swiper/css/bundle";
 import { Swiper as SwiperCore } from "swiper";
 import { Navigation, Pagination, Autoplay } from "swiper/modules";
 import Image from "next/image";
-import Button from "../../ui/components/button";
+import Button from "../../ui/common/button";
 SwiperCore.use([Navigation, Pagination]);
 
 export default function Hero() {
@@ -40,9 +40,17 @@ export default function Hero() {
                     texnologiyalardan istifadə edirik.
                   </p>
                   <div className="flex gap-5 my-10">
-                    <Button variant="secondary" label="Qəbula yazıl" />
+                    <Button
+                      variant="secondary"
+                      href="/contact"
+                      label="Qəbula yazıl"
+                    />
 
-                    <Button label="Ətraflı bax" variant="outline" />
+                    <Button
+                      label="Ətraflı bax"
+                      href="/about"
+                      variant="outline"
+                    />
                   </div>
                 </div>
                 <div className="hero-slide__img flex lg:block">
@@ -79,9 +87,17 @@ export default function Hero() {
                     texnologiyalardan istifadə edirik.
                   </p>
                   <div className="flex gap-5 my-10">
-                    <Button variant="secondary" label="Görüş təyin edin" />
+                    <Button
+                      href="/contact"
+                      variant="secondary"
+                      label="Qəbula yazıl"
+                    />
 
-                    <Button label="Ətraflı bax" variant="outline" />
+                    <Button
+                      label="Ətraflı bax"
+                      href="/about"
+                      variant="outline"
+                    />
                   </div>
                 </div>
                 <div className="hero-slide__img flex lg:block">
@@ -117,8 +133,16 @@ export default function Hero() {
                     texnologiyalardan istifadə edirik.
                   </p>
                   <div className="flex gap-5 my-10">
-                    <Button variant="secondary" label="Görüş təyin edin" />
-                    <Button label="Ətraflı bax" variant="outline" />
+                    <Button
+                      href="/contact"
+                      variant="secondary"
+                      label="Qəbula yazıl"
+                    />
+                    <Button
+                      href="/about"
+                      label="Ətraflı bax"
+                      variant="outline"
+                    />
                   </div>
                 </div>
                 <div className="hero-slide__img flex lg:block">

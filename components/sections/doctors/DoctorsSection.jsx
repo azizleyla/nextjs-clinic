@@ -1,13 +1,14 @@
 "use client";
 
-import Button from "@/components/ui/components/button";
-import DoctorItem from "@/components/ui/components/doctor/DoctorItem";
-import SectionTitle from "@/components/ui/components/title/SectionTitle";
+import Button from "@/components/ui/common/button";
+import DoctorItem from "@/components/ui/shared/doctor/DoctorItem";
+import SectionTitle from "@/components/ui/shared/title/SectionTitle";
 import { doctors } from "@/constants/doctors";
 import React from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 
-const DoctorsSection = () => {
+const DoctorsSection = ({ data }) => {
+  console.log("D", data);
   return (
     <section className="doctors">
       <div className="container">

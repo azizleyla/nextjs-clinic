@@ -8,6 +8,8 @@ export const blogPosts = [
             "Bel ağrısı poliklinikaya müraciətlərin ən çox rast gəlinən səbəblərindən biridir. Xəstələrin böyük əksəriyyəti bu problemi “səhv oturma”, “qəfil hərəkət” və ya “ağır yük qaldırma” ilə əlaqələndirir. Amma yaxşı xəbər odur ki, bu ağrıların qarşısını almaq mümkündür.",
         date: "Yan 03, 2022",
         link: "/blog/1",
+        updatedAt: new Date().toISOString(),
+
     },
     {
         id: 2,
@@ -17,6 +19,8 @@ export const blogPosts = [
             "FibroScan – qaraciyərin vəziyyətini qiymətləndirmək üçün nəzərdə tutulmuş, tam ağrısız və invaziv olmayan (biopsiyasız) bir müayinə üsuludur. Bu texnologiya qaraciyər toxumasının sərtliyini və piylənmə dərəcəsini ölçərək, fibroz və steatoz səviyyələrini müəyyən edir",
         date: "Fev 10, 2022",
         link: "/blog/2",
+        updatedAt: new Date().toISOString(),
+
     },
     {
         id: 3,
@@ -26,6 +30,8 @@ export const blogPosts = [
             "İmmunitet sistemi bədənin infeksiyalara və digər xəstəliklərə qarşı müdafiə qalasıdır. Yorğunluq, tez-tez xəstələnmək, yaraların gec sağalması və allergik reaksiyalar kimi əlamətlər zəif immunitetin göstəricisi ola bilər. Bəs bu vəziyyəti necə aşkar etmək olar?",
         date: "Okt 10, 2022",
         link: "/blog/3",
+        updatedAt: new Date().toISOString(),
+
     },
     {
         id: 4,
@@ -35,6 +41,8 @@ export const blogPosts = [
             "İmmunitet sistemi bədənin infeksiyalara və digər xəstəliklərə qarşı müdafiə qalasıdır. Yorğunluq, tez-tez xəstələnmək, yaraların gec sağalması və allergik reaksiyalar kimi əlamətlər zəif immunitetin göstəricisi ola bilər. Bəs bu vəziyyəti necə aşkar etmək olar?",
         date: "Okt 10, 2022",
         link: "/blog/3",
+        updatedAt: new Date().toISOString(),
+
     },
     {
         id: 5,
@@ -44,6 +52,8 @@ export const blogPosts = [
             "İmmunitet sistemi bədənin infeksiyalara və digər xəstəliklərə qarşı müdafiə qalasıdır. Yorğunluq, tez-tez xəstələnmək, yaraların gec sağalması və allergik reaksiyalar kimi əlamətlər zəif immunitetin göstəricisi ola bilər. Bəs bu vəziyyəti necə aşkar etmək olar?",
         date: "Okt 10, 2022",
         link: "/blog/3",
+        updatedAt: new Date().toISOString(),
+
     },
     {
         id: 6,
@@ -53,5 +63,7 @@ export const blogPosts = [
             "İmmunitet sistemi bədənin infeksiyalara və digər xəstəliklərə qarşı müdafiə qalasıdır. Yorğunluq, tez-tez xəstələnmək, yaraların gec sağalması və allergik reaksiyalar kimi əlamətlər zəif immunitetin göstəricisi ola bilər. Bəs bu vəziyyəti necə aşkar etmək olar?",
         date: "Okt 10, 2022",
         link: "/blog/3",
+        updatedAt: new Date().toISOString(),
+
     },
 ];

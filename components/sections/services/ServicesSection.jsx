@@ -1,6 +1,6 @@
 import React from "react";
 import { services } from "@/constants/services";
-import SectionTitle from "@/components/ui/components/title/SectionTitle";
+import SectionTitle from "@/components/ui/shared/title/SectionTitle";
 import Link from "next/link";
 
 const Services = () => {

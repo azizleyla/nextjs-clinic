@@ -14,7 +14,10 @@ export const services = [
         id: 1,
         icon: PiHeartbeat,
         title: "Kardiologiya",
-        description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod",
+        description: "Kardiologiya şöbəsində ürək sit amet, consectetur adipiscing elit, sed do eiusmod",
+        image: "/urolog.webp",
+        updatedAt: new Date().toISOString(),
+
 
 
     },
@@ -22,6 +25,8 @@ export const services = [
         id: 2,
         icon: LuBrain,
         title: "Nevrologiya",
+        image: "/urolog.webp",
+        updatedAt: new Date().toISOString(),
         description: "Nevrologiya şöbəsində nevroloji xəstəliklər müayinə və müalicə olunur. Nevroloji xəstəliklərin dəqiq diaqnostikası aparılır.",
 
     },
@@ -29,6 +34,8 @@ export const services = [
         id: 3,
         icon: IoEyeOutline,
         title: "Oftalmologiya",
+        updatedAt: new Date().toISOString(),
+        image: "/urolog.webp",
         description: "Oftalmologiya göz xəstəliklərinin erkən mərhələlərdə aşkar edilməsi, müalicələri həyata keçirilir.",
 
     },
@@ -36,6 +43,7 @@ export const services = [
         id: 4,
         icon: FaUserDoctor,
         title: "Endokrinologiya",
+        updatedAt: new Date().toISOString(),
         description: "Endokrinoloji xəstəliklərin müayinə və müalicəsi, fəsadlaşmalarının diaqnostika və profilaktikası həyata keçirilir.",
 
     },
@@ -43,6 +51,8 @@ export const services = [
         id: 5,
         icon: TbDental,
         title: "Stomatologiya",
+        updatedAt: new Date().toISOString(),
+
         description: "Dişlərin, diş ətinin, diş-çənə sisteminin, ağız boşluğu toxumalarının, profilaktikası və müalicəsi ilə məşgul olan tibb sahəsidir.",
 
     },
@@ -50,6 +60,7 @@ export const services = [
         id: 6,
         icon: TbMassage,
         title: "Fizioterapiya",
+
         description: "Zədə, azalma göstərən funksional hərəkətləri geri qazandırma məqsədli edilən elektrik cərəyanı xəstələrin müalicəsinə verilən addır.",
 
     },
@@ -57,12 +68,15 @@ export const services = [
         id: 7,
         icon: LuAmbulance,
         title: "Təcili yardım",
+        updatedAt: new Date().toISOString(),
+
         description: "Təcili tibbi yardım şöbəmiz müasir avadanlıqlarla təchiz olunmuşdur, diaqnostik-müalicəvi prosedurlar operativ və keyfiyyətlə həyata keçirilir.",
 
     },
     {
         id: 8,
         icon: PiHospitalLight,
+        updatedAt: new Date().toISOString(),
         title: "Reanimasiya",
         description: "Reanimasiyada süni tənəffüs aparatına ehtiyacı olan və xüsusi baxım tələb olunan xəstələr yatırılır.",
 
