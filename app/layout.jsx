@@ -11,7 +11,6 @@ const geist = Geist({
   variable: "--font-heading",
 });
 
-// app/layout.tsx
 export const metadata = {
   title: "Elmed Hospital",
   description: "Etibarlı səhiyyə platforması",
