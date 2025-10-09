@@ -28,11 +28,11 @@ export const metadata = {
     title: "Elmed Hospital – Etibarlı səhiyyə platforması",
     description:
       "Peşəkar həkimlər, etibarlı tibbi xidmətlər və sağlamlıq mövzularında bloqlar – hamısı Elmed Hospital-də.",
-    url: "https://disin-clinic.vercel.app/",
+    url: "https://elmed-clinic.vercel.app/",
     siteName: "Elmed Hospital",
     images: [
       {
-        url: "https://disin-clinic.vercel.app/images/logo.png",
+        url: "https://elmed-clinic.vercel.app/images/logo.png",
         width: 1200,
         height: 630,
         alt: "Elmed Hospital Ana Səhifə",
@@ -46,7 +46,7 @@ export const metadata = {
     title: "Elmed Hospital – Etibarlı səhiyyə platforması",
     description:
       "Peşəkar həkimlər və etibarlı tibbi xidmətlərlə sağlamlığınızı qoruyun. Elmed Hospital sizin üçün buradadır.",
-    images: ["https://disin-clinic.vercel.app/images/logo.png"],
+    images: ["https://elmed-clinic.vercel.app/images/logo.png"],
   },
 };
 

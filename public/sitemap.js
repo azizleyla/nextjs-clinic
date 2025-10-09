@@ -4,7 +4,7 @@ import { blogPosts } from '../constants/blogs'
 import { services } from '../constants/services'
 
 export default function sitemap() {
-    const baseUrl = 'https://disin-clinic.vercel.app'
+    const baseUrl = 'https://elmed-clinic.vercel.app'
 
     // Statik səhifələr
     const staticPages = [

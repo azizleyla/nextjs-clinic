@@ -21,11 +21,11 @@ export const metadata = {
     title: "Elmed Hospital – Həkimlərimiz",
     description:
       "Təcrübəli və peşəkar həkimlərimizlə tanış olun və tibbi xidmətlərimiz haqqında məlumat əldə edin.",
-    url: "https://disin-clinic.vercel.app/doctors",
+    url: "https://elmed-clinic.vercel.app/doctors",
     siteName: "Elmed Hospital",
     images: [
       {
-        url: "https://disin-clinic.vercel.app/images/ddoctor1.jpg", // public/images/ içində yerləşdir
+        url: "https://elmed-clinic.vercel.app/images/doctor1.jpg", // public/images/ içində yerləşdir
         width: 1200,
         height: 630,
         alt: "Elmed Hospital Həkimlərimiz",
@@ -39,7 +39,7 @@ export const metadata = {
     title: "Elmed Hospital – Həkimlərimiz",
     description:
       "Elmed Hospital həkimləri ilə tanış olun. Təcrübəli və peşəkar həkimlərimiz sizin sağlamlığınız üçün buradadır.",
-    images: ["https://disin-clinic.vercel.app/images/doctor1.jpg"],
+    images: ["https://elmed-clinic.vercel.app/images/doctor1.jpg"],
   },
 };
 

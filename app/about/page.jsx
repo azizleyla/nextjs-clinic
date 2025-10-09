@@ -26,11 +26,11 @@ export const metadata = {
     title: "Elmed Hospital – Haqqımızda",
     description:
       "Elmed Hospital-in missiyası, dəyərləri və təcrübəli həkimləri ilə tanış olun.",
-    url: "https://disin-clinic.vercel.app/about",
+    url: "https://elmed-clinic.vercel.app/about",
     siteName: "Elmed Hospital",
     images: [
       {
-        url: "https://disin-clinic.vercel.app/images/logo.png",
+        url: "https://elmed-clinic.vercel.app/images/logo.png",
         width: 800,
         height: 600,
         alt: "Elmed Hospital Haqqımızda",
@@ -44,7 +44,7 @@ export const metadata = {
     title: "Elmed Hospital – Haqqımızda",
     description:
       "Missiyamız, dəyərlərimiz və təcrübəli həkimlərimizlə tanış olun. Elmed Hospital sizin üçün buradadır.",
-    images: ["https://disin-clinic.vercel.app/images/logo.png"],
+    images: ["https://elmed-clinic.vercel.app/images/logo.png"],
   },
 };
 

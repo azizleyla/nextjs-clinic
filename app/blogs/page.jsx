@@ -6,10 +6,7 @@ export const metadata = {
   title: "Elmed Hospital | Bloqlar",
   description:
     "Elmed Hospital bloqları ilə tibbi məsləhətlər, sağlamlıq xəbərləri və faydalı məlumatlarla tanış olun.",
-  keywords: [
-    "Elmed Hospital",
-    "Bloqlar",
-  ],
+  keywords: ["Elmed Hospital", "Bloqlar"],
   robots: {
     index: true,
     follow: true,
@@ -18,11 +15,11 @@ export const metadata = {
     title: "Elmed Hospital – Bloqlar",
     description:
       "Tibbi məsləhətlər, sağlamlıq xəbərləri və faydalı bloqlar Elmed Hospital-də.",
-    url: "https://disin-clinic.vercel.app/blogs",
+    url: "https://elmed-clinic.vercel.app/blogs",
     siteName: "Elmed Hospital",
     images: [
       {
-        url: "https://disin-clinic.vercel.app/images/blog1.jpg", 
+        url: "https://elmed-clinic.vercel.app/images/blog1.jpg",
         width: 1200,
         height: 630,
         alt: "Elmed Hospital Bloqlar",
@@ -36,7 +33,7 @@ export const metadata = {
     title: "Elmed Hospital – Bloqlar",
     description:
       "Elmed Hospital bloqları ilə tibbi məsləhətlər, sağlamlıq xəbərləri və faydalı məlumatlarla tanış olun.",
-    images: ["https://disin-clinic.vercel.app/images/blog1.jpg"],
+    images: ["https://elmed-clinic.vercel.app/images/blog1.jpg"],
   },
 };
 
