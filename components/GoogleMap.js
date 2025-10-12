@@ -14,18 +14,25 @@ const defaultCenter = {
     lng: 49.8671,
 };
 
-
 const MapContainer = ({ selectedBranch }) => {
-    // InfoWindow-un offset dəyərini tutmaq üçün state istifadə edirik
+    const [activeMarker, setActiveMarker] = useState(null);
     const [infoWindowOffset, setInfoWindowOffset] = useState(null);
 
-    // Xəritə yükləndikdə çağırılır
     const onMapLoad = (map) => {
-        // Xəritə yükləndikdən sonra google obyektinin mövcud olduğundan əmin oluruq
+        // Bounds yaratmaq üçün bütün filialları istifadə edirik
+        const bounds = new window.google.maps.LatLngBounds();
+        branches.forEach(({ lat, lng }) => bounds.extend({ lat, lng }));
+        map.fitBounds(bounds);
+
+        // InfoWindow offset-i təyin edirik
         if (window.google) {
-            // Sola (-150) və bir qədər yuxarı (-50) offset dəyərini təyin edirik
-            setInfoWindowOffset(new window.google.maps.Size(-150, -50));
+            setInfoWindowOffset(new window.google.maps.Size(0, -40)); // markerin üstündə açılması üçün
         }
+    };
+
+    const handleMarkerClick = (id) => {
+        if (id === activeMarker) return;
+        setActiveMarker(id);
     };
 
     return (
@@ -34,58 +41,48 @@ const MapContainer = ({ selectedBranch }) => {
                 mapContainerStyle={containerStyle}
                 center={selectedBranch ? { lat: selectedBranch.lat, lng: selectedBranch.lng } : defaultCenter}
                 zoom={selectedBranch ? 12 : 8}
-                options={{
-                    mapTypeControl: false,
-                }}
+                options={{ mapTypeControl: false }}
                 mapTypeId="roadmap"
-                onLoad={onMapLoad} // Xəritə yükləndikdə onMapLoad çağırılır
+                onLoad={onMapLoad}
+                onClick={() => setActiveMarker(null)}
             >
-                {/* Bütün filialların markerləri */}
-                {!selectedBranch &&
-                    branches.map((b) => (
-                        <Marker key={b.id} position={{ lat: b.lat, lng: b.lng }} />
-                    ))}
 
-                {/* Seçilmiş Filial Markeri */}
-                {selectedBranch && (
+                {branches.map((b) => (
                     <Marker
-                        animation={window.google?.maps.Animation.DROP}
-                        position={{ lat: selectedBranch.lat, lng: selectedBranch.lng }}
-                    />
-                )}
-                <div>
-                    {/* InfoWindow - Yalnız seçilmiş filial varsa VƏ offset dəyəri mövcuddursa göstər */}
-                    {selectedBranch && infoWindowOffset && (
-                        <InfoWindow
-                            // State-də təyin edilmiş ofseti istifadə edirik
-                            pixelOffset={infoWindowOffset}
-                            options={{ disableAutoPan: true }}
-                            position={{ lat: selectedBranch.lat, lng: selectedBranch.lng }}
-                        >
-                            <div className="p-2 info custom-infowindow-content">
-                                <h3 className="font-semibold mb-1 text-sx">{selectedBranch.name}</h3>
-                                <p className="text-xs mb-2">{selectedBranch.address}</p>
-                                <p className="text-xs">{selectedBranch.rating} ⭐ ({selectedBranch.reviews} rəylər)</p>
-                                {/* Daha böyük xəritəyə baxın linki */}
-                                <a
-                                    href={selectedBranch?.mapLink}
-                                    target="_blank"
-                                    className="text-primary font-medium text-xs my-2 inline-block"
-                                >
-                                    Daha böyük xəritəyə baxın
-                                </a>
-                                {/* İstiqamətləri əldə edin linki */}
-                                <a
-                                    href={selectedBranch?.directionsLink}
-                                    target="_blank"
-                                    className="text-primary font-medium text-xs  ml-2"
-                                >
-                                    İstiqamətlər
-                                </a>
-                            </div>
-                        </InfoWindow>
-                    )}
-                </div>
+                        key={b.id}
+                        position={{ lat: b.lat, lng: b.lng }}
+                        onClick={() => handleMarkerClick(b.id)}
+                    >
+                        {selectedBranch && infoWindowOffset && (
+                            <InfoWindow
+                                position={{ lat: b.lat, lng: b.lng }}
+                                pixelOffset={infoWindowOffset}
+                                options={{ disableAutoPan: true }}
+                                onCloseClick={() => setActiveMarker(null)}
+                            >
+                                <div className="p-2 info custom-infowindow-content">
+                                    <h3 className="font-semibold mb-1 text-sx">{b.name}</h3>
+                                    <p className="text-xs mb-2">{b.address}</p>
+                                    <p className="text-xs">{b.rating} ⭐ ({b.reviews} rəylər)</p>
+                                    <a
+                                        href={b?.mapLink}
+                                        target="_blank"
+                                        className="text-primary font-medium text-xs my-2 inline-block"
+                                    >
+                                        Daha böyük xəritəyə baxın
+                                    </a>
+                                    <a
+                                        href={b?.directionsLink}
+                                        target="_blank"
+                                        className="text-primary font-medium text-xs ml-2"
+                                    >
+                                        İstiqamətlər
+                                    </a>
+                                </div>
+                            </InfoWindow>
+                        )}
+                    </Marker>
+                ))}
             </GoogleMap>
         </LoadScript>
     )

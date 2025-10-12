@@ -7,6 +7,7 @@ import {
   Partners,
   ServicesSection,
 } from "@/components";
+import DoctorsSectionWrapper from "@/components/sections/doctors/DoctorsSectionWrapper";
 
 export const metadata = {
   title: "Elmed Hospital | Ana səhifə",
@@ -57,7 +58,7 @@ export default async function Home() {
       <Counter isHome={true} />
       <AboutSection />
       <ServicesSection />
-      <DoctorsSection />
+      <DoctorsSectionWrapper />
       <BlogsSection />
       <Partners />
     </>

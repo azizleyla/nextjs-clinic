@@ -11,8 +11,6 @@ import { FaRegEnvelope } from "react-icons/fa";
 import { branches } from "@/constants/branches";
 import MapContainer from "@/components/GoogleMap";
 
-
-
 const Contact = () => {
   const [selectedBranch, setSelectedBranch] = useState(null);
 
@@ -33,7 +31,7 @@ const Contact = () => {
               müalicə üçün ilk addımı indi atın.
             </p>
           </div>
-          <div className="shadow-custom-gray max-w-3xl mx-auto my-16 py-5 rounded-md">
+          <div className="shadow-custom-gray max-w-3xl mx-auto my-16 p-5 rounded-md">
             <form className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6 contact-form">
               <div className="col-span-1">
                 <label>Ad</label>
@@ -84,7 +82,7 @@ const Contact = () => {
               </div>
             </form>
           </div>
-          <div className="flex flex-col lg:flex-row gap-4 border">
+          <div className="flex relative flex-col lg:flex-row gap-4 border">
             <MapContainer selectedBranch={selectedBranch} />
             <div className="w-full lg:w-2/5 flex-shrink-0 flex overflow-hidden overflow-y-scroll max-h-[400px] flex-col gap-1">
               {branches?.map((item) => (
@@ -105,10 +103,6 @@ const Contact = () => {
                       <li className="text-secondary flex items-center gap-2 text-sm">
                         <TiPhoneOutline />
                         {item.phone}
-                      </li>
-                      <li className="text-secondary flex items-center gap-2 text-sm">
-                        <FaRegEnvelope />
-                        {item?.mail}
                       </li>
                     </ul>
                   </div>

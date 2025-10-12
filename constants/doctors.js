@@ -5,6 +5,32 @@ export const doctors = [
         specialty: "Ümumi cərrah",
         img: "images/doctor1.jpg",
         updatedAt: new Date().toISOString(),
+        experience: [
+            { years: "2013-2023-cü il", place: "Mərkəzi Gömrük Hospitalı", position: "Anesteziya və ICU üzrə mütəxəssis" },
+            { years: "2000-2009-cu il", place: "Tibb Mərkəzi", position: "Baş həkim" },
+            { years: "2009-2013-cü il", place: "Şahzadə Abdulrahman Al-Sudairy Mərkəzi Xəstəxanası", position: "Anesteziya və ICU üzrə mütəxəssis" },
+            { years: "", place: "Baku Medical Plaza Mərkəz filialı", position: "Baş həkim" },
+        ],
+        education: [
+            {
+                years: "2004 - 2010",
+                place: "İstanbul Universiteti İstanbul Tibb Fakültəsi",
+            },
+            {
+                years: "2011 - 2015",
+                place:
+                    "İstanbul Universiteti İstanbul Tibb Fakültesi İç Xəstəlikləri Uzmanlığı",
+            },
+            {
+                years: "2013 - 2014",
+                place: "Cleveland Clinic Endokrinologiya Kafedrası Elmi işçi",
+            },
+            {
+                years: "2016 - 2019",
+                place:
+                    "Bezmi Aləm Vakıf Universiteti Tibbi Onkologiya Yan Dal Uzmanlığı",
+            },
+        ],
 
     },
     {
