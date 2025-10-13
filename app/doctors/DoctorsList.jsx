@@ -1,7 +1,7 @@
 "use client";
 import dynamic from "next/dynamic";
 const Select = dynamic(() => import("react-select"), { ssr: false });
-import { categoryOptions } from "@/constants/categories";
+import { categoryOptions } from "@/utils/constants/categories";
 import React from "react";
 import { BsBuildingFill } from "react-icons/bs";
 import { IoSearch } from "react-icons/io5";

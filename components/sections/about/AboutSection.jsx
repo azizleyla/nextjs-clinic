@@ -50,7 +50,7 @@ const AboutSection = () => {
               </li>
             </ul>
             <Button
-              size="md"
+              href="/about"
               variant="primary"
               className="self-start"
               label="Daha Ətraflı"

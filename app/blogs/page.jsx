@@ -1,5 +1,5 @@
 import { Banner, BlogItem, Button } from "@/components";
-import { blogPosts } from "@/constants/blogs";
+import { blogPosts } from "@/utils/constants/blogs";
 import React from "react";
 
 export const metadata = {

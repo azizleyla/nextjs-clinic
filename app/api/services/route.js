@@ -1,4 +1,4 @@
-import { services } from "@/constants/services";
+import { services } from "@/utils/constants/services";
 
 export async function GET() {
     return new Response(JSON.stringify(services), {

@@ -1,6 +1,6 @@
 import { Banner } from "@/components";
 import React from "react";
-import { services } from "@/constants/services"; // services array-ində id, title, description, image
+import { services } from "@/utils/constants/services"; // services array-ində id, title, description, image
 
 export async function generateMetadata({ params }) {
   const { id } = params;

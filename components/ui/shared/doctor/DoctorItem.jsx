@@ -1,11 +1,13 @@
+import { generateSlug } from "@/utils/slug";
 import Link from "next/link";
 import React from "react";
 import { FaFacebook, FaInstagram } from "react-icons/fa";
 
 const DoctorItem = ({ doctor, index }) => {
+  const title = generateSlug(doctor?.name);
   return (
     <Link
-      href={`/doctors/${doctor.id}`}
+      href={`/doctors/${title}/${doctor?.id}`}
       key={doctor.id}
       className={`bg-white transition-all duration-400 ease-linear box-border group cursor-pointer shadow-[0_0_20px_0_#ddd] text-center rounded-xl`}
     >

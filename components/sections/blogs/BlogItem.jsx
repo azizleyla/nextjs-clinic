@@ -1,12 +1,14 @@
+import { generateSlug } from "@/utils/slug";
 import Link from "next/link";
 import React from "react";
-import { FaLongArrowAltRight, FaRegCalendarAlt } from "react-icons/fa";
-import { MdArrowRightAlt } from "react-icons/md";
+import { FaRegCalendarAlt } from "react-icons/fa";
 import { HiOutlineArrowLongRight } from "react-icons/hi2";
 
 const BlogItem = ({ post }) => {
+  const slug = generateSlug(post.title);
+
   return (
-    <Link href={post.link}>
+    <Link href={`/blogs/${slug}/${post.id}`}>
       <div className="rounded-lg h-full cursor-pointer group shadow-custom-gray bg-white">
         <div className="overflow-hidden">
           <img

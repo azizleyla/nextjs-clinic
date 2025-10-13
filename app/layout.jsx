@@ -4,6 +4,7 @@ import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 import { Footer, Navbar, Topbar } from "@/components";
+import ScrollToTop from "@/components/ui/shared/ScrollToTop";
 
 const geist = Geist({
   subsets: ["latin"],
@@ -22,6 +23,7 @@ export default function RootLayout({ children }) {
       <body>
         <Topbar />
         <Navbar />
+        <ScrollToTop />
         <main>{children}</main>
         <Footer />
       </body>

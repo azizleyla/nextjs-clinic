@@ -1,6 +1,6 @@
 "use client";
 import dynamic from "next/dynamic";
-import { categoryOptions } from "@/constants/categories";
+import { categoryOptions } from "@/utils/constants/categories";
 import React, { useEffect, useRef, useState } from "react";
 import { Button } from "@/components";
 import PageWithLoading from "@/components/PageWithLoading";
@@ -8,7 +8,7 @@ import { IoLocationOutline } from "react-icons/io5";
 const Select = dynamic(() => import("react-select"), { ssr: false });
 import { TiPhoneOutline } from "react-icons/ti";
 import { FaRegEnvelope } from "react-icons/fa";
-import { branches } from "@/constants/branches";
+import { branches } from "@/utils/constants/branches";
 import MapContainer from "@/components/GoogleMap";
 
 const Contact = () => {

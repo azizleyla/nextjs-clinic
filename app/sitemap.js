@@ -1,5 +1,5 @@
 
-import { services } from '../constants/services'
+import { services } from '../utils/constants/services'
 
 export default function sitemap() {
     const baseUrl = 'https://elmed-clinic.vercel.app'

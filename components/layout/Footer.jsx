@@ -66,19 +66,19 @@ const Footer = () => {
                 <Link href="/">Əsas səhifə</Link>
               </li>
               <li>
-                <Link href="/">Haqqımızda</Link>
+                <Link href="/about">Haqqımızda</Link>
               </li>
               <li>
-                <Link href="/">Həkimlərimiz</Link>
+                <Link href="/doctors">Həkimlərimiz</Link>
               </li>
               <li>
-                <Link href="/">Bloq</Link>
+                <Link href="/blogs">Bloq</Link>
               </li>
               <li>
-                <Link href="/">Şöbələr</Link>
+                <Link href="/services">Şöbələr</Link>
               </li>
               <li>
-                <Link href="/">Bizimlə əlaqə</Link>
+                <Link href="/contact">Bizimlə əlaqə</Link>
               </li>
             </ul>
           </div>

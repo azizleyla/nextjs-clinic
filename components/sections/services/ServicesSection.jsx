@@ -1,5 +1,5 @@
 import React from "react";
-import { services } from "@/constants/services";
+import { services } from "@/utils/constants/services";
 import SectionTitle from "@/components/ui/shared/title/SectionTitle";
 import Link from "next/link";
 
@@ -15,7 +15,7 @@ const Services = () => {
               <Link
                 href={`/services/${service.id}`}
                 key={index}
-                className="flex shadow-custom-gray py-5 px-3 gap-3 flex-col items-center text-center cursor-pointer"
+                className="flex md:hover:-translate-y-2 transition-all duration-300 shadow-custom-gray py-5 px-3 gap-3 flex-col items-center text-center cursor-pointer"
               >
                 <Icon className="text-primary" fontSize="50px" />
                 <h3 className="font-medium text-md">{service.title}</h3>

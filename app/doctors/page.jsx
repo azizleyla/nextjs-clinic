@@ -1,6 +1,6 @@
 import React from "react";
 import DoctorsList from "./DoctorsList";
-import { doctors } from "@/constants/doctors";
+import { doctors } from "@/utils/constants/doctors";
 import { Banner } from "@/components";
 
 export const metadata = {

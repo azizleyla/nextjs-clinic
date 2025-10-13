@@ -1,4 +1,4 @@
-import { blogPosts } from "@/constants/blogs";
+import { blogPosts } from "@/utils/constants/blogs";
 
 export async function GET() {
     return new Response(JSON.stringify(blogPosts), {

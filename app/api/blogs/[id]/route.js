@@ -1,19 +1,19 @@
-import { doctors } from "@/utils/constants/doctors";
+import { blogPosts } from "@/utils/constants/blogs";
 
 export async function GET(request, { params }) {
     const { id } = params;
 
-    const doctor = doctors.find((doc) => String(doc.id) === String(id));
+    const blog = blogPosts.find((bl) => String(bl.id) === String(id));
 
-    if (!doctor) {
+    if (!blog) {
         return new Response(
-            JSON.stringify({ message: "Doctor not found" }),
+            JSON.stringify({ message: "Blog not found" }),
             { status: 404, headers: { "Content-Type": "application/json" } }
         );
     }
 
     return new Response(
-        JSON.stringify(doctor),
+        JSON.stringify(blog),
         { status: 200, headers: { "Content-Type": "application/json" } }
     );
 }

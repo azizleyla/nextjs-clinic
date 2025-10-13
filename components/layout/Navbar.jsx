@@ -1,19 +1,27 @@
 "use client";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import { FiSearch } from "react-icons/fi";
 import { IoMenu } from "react-icons/io5";
 import Link from "next/link";
 import { IoClose } from "react-icons/io5";
 import { MdArrowDropDown } from "react-icons/md";
-import { menuItems } from "@/constants/menuItem";
+import { menuItems } from "@/utils/constants/menuItem";
+import { usePathname } from "next/navigation";
 
 const Navbar = () => {
   const [isShowMenu, setIsShowMenu] = useState(false);
+  const pathname = usePathname();
 
   const handleOpenMenu = () => {
     setIsShowMenu(!isShowMenu);
   };
+  //close menu
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+
+    setIsShowMenu(false);
+  }, [pathname]);
 
   return (
     <div className="container">

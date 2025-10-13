@@ -6,7 +6,7 @@ import { RiGraduationCapLine } from "react-icons/ri";
 import { BsBriefcase } from "react-icons/bs";
 import { BsFillTelephoneFill } from "react-icons/bs";
 import { FaMapMarkerAlt } from "react-icons/fa";
-import { doctors } from "@/constants/doctors";
+import { doctors } from "@/utils/constants/doctors";
 
 const DoctorDetail = async ({ params }) => {
   const { id } = params;
@@ -26,7 +26,7 @@ const DoctorDetail = async ({ params }) => {
                   src={`/${doctor?.img}`}
                 />
               </div>
-              <div className="py-3 px-10">
+              <div className="py-3 px-4 lg:px-10">
                 <h3 className="text-primary mt-2 mb-6 text-2xl font-semibold">
                   {doctor?.name}{" "}
                   {doctor?.specialty && `(${doctor.specialty})`}
@@ -64,7 +64,7 @@ const DoctorDetail = async ({ params }) => {
               </div>
             </div>
           </div>
-          <div className="w-full lg:w-7/12 shadow-custom-gray rounded-xl p-10">
+          <div className="w-full lg:w-7/12 shadow-custom-gray rounded-xl p-4 lg:p-10">
             <h4 className="text-primary flex items-center gap-2 text-md mb-2 font-semibold">
               <RiGraduationCapLine className="text-primary" />
               Təhsil

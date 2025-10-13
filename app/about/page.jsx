@@ -5,6 +5,8 @@ import {
   DoctorsSection,
   ServicesSection,
 } from "@/components";
+import PageWithLoading from "@/components/PageWithLoading";
+import DoctorsSectionWrapper from "@/components/sections/doctors/DoctorsSectionWrapper";
 import React from "react";
 
 export const metadata = {
@@ -50,14 +52,14 @@ export const metadata = {
 
 export default async function About() {
   return (
-    <div>
+    <PageWithLoading>
       <Banner title="Haqqımızda" />
       <div className="container">
         <AboutSection />
       </div>
       <Counter />
       <ServicesSection />
-      <DoctorsSection />
-    </div>
+      <DoctorsSectionWrapper />
+    </PageWithLoading>
   );
 }

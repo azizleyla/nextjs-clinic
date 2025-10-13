@@ -1,6 +1,6 @@
 "use client"
 import Loading from '@/app/loading'
-import { branches } from '@/constants/branches';
+import { branches } from '@/utils/constants/branches';
 import { GoogleMap, LoadScript, Marker, InfoWindow } from '@react-google-maps/api'
 import React, { useState } from 'react'
 
