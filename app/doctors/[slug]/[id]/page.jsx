@@ -6,6 +6,7 @@ import { BsBriefcase } from "react-icons/bs";
 import { BsFillTelephoneFill } from "react-icons/bs";
 import { FaMapMarkerAlt } from "react-icons/fa";
 import Image from "next/image";
+import { supabase } from "@/lib/supabaseClient";
 
 const DoctorDetail = async ({ params }) => {
   const resolvedParams = await params;
