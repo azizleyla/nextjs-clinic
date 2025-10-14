@@ -13,16 +13,18 @@ export async function BlogDetail({ params }) {
     <>
       <Banner title="Blog detail" />
       <div className="container ">
-        <div className="flex flex-col gap-4 pt-32 lg:flex-row">
+        <div className="flex flex-col gap-6  pt-32 lg:flex-row">
           <div className="w-full lg:w-8/12">
-            <div>
+            <div className="relative  h-[500px] w-full">
               <Image
-                width="700"
-                height="500"
+                fill
+                className="rounded-sm"
                 alt={blog.title}
-                src={`${blog?.image}`}
+                src={blog?.image}
+                style={{ objectFit: "cover" }} // şəkil div-i doldursun, kənarları kəsilə bilər
               />
             </div>
+
             <h2 className="font-bold text-2xl lg:text-3xl my-4">
               {blog?.title}
             </h2>

@@ -3,7 +3,7 @@
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css/bundle";
 import { Swiper as SwiperCore } from "swiper";
-import { Navigation, Pagination, Autoplay } from "swiper/modules";
+import { Navigation, Pagination } from "swiper/modules";
 import Image from "next/image";
 import Button from "../../ui/common/button";
 SwiperCore.use([Navigation, Pagination]);
@@ -66,12 +66,14 @@ export default function Hero() {
         </SwiperSlide>
 
         <SwiperSlide className="hero-slide">
-          <div
-            style={{
-              backgroundImage: "url('/images/home-slider-bg.jpg')",
-            }}
-            className="relative lg:h-[730px]  bg-cover bg-center text-center h-full text-white flex items-center lg:py-0 md:py-32 py-20"
-          >
+          <div className="relative lg:h-[730px] h-full text-white flex items-center lg:py-0 md:py-32 py-20 text-center">
+            <Image
+              src="/images/home-slider-bg.jpg"
+              alt="Hero Banner"
+              fill
+              className="object-cover"
+              priority
+            />
             <div className="absolute top-0 right-0 w-full h-full bg-primary opacity-80" />
             <div className="container">
               <div className="relative flex flex-col text-center items-center lg:text-left lg:items-start">

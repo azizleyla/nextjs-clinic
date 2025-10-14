@@ -3,14 +3,16 @@
 import Button from "@/components/ui/common/button";
 import DoctorItem from "@/components/ui/shared/doctor/DoctorItem";
 import SectionTitle from "@/components/ui/shared/title/SectionTitle";
-
-import React from "react";
+import React, { useEffect } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 
 const DoctorsSection = ({ doctors, isReleatedDoctor = false }) => {
   const title = isReleatedDoctor
     ? "Digər şöbə həkimlərimiz"
     : "Həkimlərimiz";
+
+
+
   return (
     <section className="doctors">
       <div className="container">
@@ -25,10 +27,9 @@ const DoctorsSection = ({ doctors, isReleatedDoctor = false }) => {
             1024: { slidesPerView: 3 },
           }}
           navigation
-          loop={true}
         >
           {doctors?.map((doctor, index) => (
-            <SwiperSlide>
+            <SwiperSlide key={doctor?.id}>
               <DoctorItem doctor={doctor} index={index} />
             </SwiperSlide>
           ))}

@@ -2,7 +2,6 @@ import {
   AboutSection,
   BlogsSection,
   Counter,
-  DoctorsSection,
   Hero,
   Partners,
   ServicesSection,
@@ -60,7 +59,7 @@ export default async function Home() {
       <ServicesSection />
       <DoctorsSectionWrapper />
       <BlogsSection />
-      <Partners />
+      <Partners /> 
     </>
   );
 }

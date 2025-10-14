@@ -1,19 +1,41 @@
-import { doctors } from "@/utils/constants/doctors";
+import { supabase } from '@/lib/supabaseClient';
+import { NextResponse } from 'next/server';
 
-export async function GET(request, { params }) {
+export async function GET(req, { params }) {
     const { id } = params;
 
-    const doctor = doctors.find((doc) => String(doc.id) === String(id));
+    const { data, error } = await supabase
+        .from("doctors")
+        .select("*")
+        .eq("id", Number(id))
+        .single();
 
-    if (!doctor) {
-        return new Response(
-            JSON.stringify({ message: "Doctor not found" }),
-            { status: 404, headers: { "Content-Type": "application/json" } }
-        );
-    }
+    if (error)
+        return NextResponse.json({ error: error.message }, { status: 500 });
 
-    return new Response(
-        JSON.stringify(doctor),
-        { status: 200, headers: { "Content-Type": "application/json" } }
-    );
+    return NextResponse.json(data);
+}
+
+// PUT → update doctor
+export async function PUT(req, { params }) {
+    const { id } = params;
+    const body = await req.json();
+
+    const { data, error } = await supabase
+        .from('doctors')
+        .update(body)
+        .eq('id', Number(id))
+        .select()
+        .single()
+
+    if (error) return NextResponse.json({ error: error.message }, { status: 500 });
+    return NextResponse.json(data);
+}
+
+// DELETE → silmək
+export async function DELETE(req, { params }) {
+    const { id } = params;
+    const { data, error } = await supabase.from('doctors').delete().eq('id', Number(id));
+    if (error) return NextResponse.json({ error: error.message }, { status: 500 });
+    return NextResponse.json({ message: 'Deleted successfully', data });
 }

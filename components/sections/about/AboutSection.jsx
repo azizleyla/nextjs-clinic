@@ -1,21 +1,24 @@
 import React from "react";
 import Button from "../../ui/common/button";
 import { FaRegCheckCircle } from "react-icons/fa";
+import Image from "next/image";
 
 const AboutSection = () => {
   return (
     <section>
       <div className="container">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-          <div className="relative">
+          <div className="relative h-[450px]">
             <div className="hidden lg:block absolute -top-3 -left-3 w-[430px] h-[375px] bg-primary rounded-lg -z-10 animate-a-one"></div>
 
             {/* After element */}
             <div className="hidden  lg:block absolute -bottom-3 -right-3 w-[430px] h-[375px] bg-primary rounded-lg -z-10 animate-a-two"></div>
 
-            <img
+            <Image
+              fill
+              alt="haqqimizda"
               className="w-full relative rounded-md lg:animate-a-seven"
-              src="https://disin-react.hibootstrap.com/images/about1.jpg"
+              src="/images/about1.jpg"
             />
           </div>
           <div className="flex flex-col gap-5">

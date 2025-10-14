@@ -2,7 +2,7 @@ import { blogPosts } from "@/utils/constants/blogs";
 
 export async function GET(request, { params }) {
     const { id } = params;
-
+    
     const blog = blogPosts.find((bl) => String(bl.id) === String(id));
 
     if (!blog) {

@@ -52,14 +52,14 @@ export const metadata = {
 
 export default async function About() {
   return (
-    <PageWithLoading>
+    <>
       <Banner title="Haqqımızda" />
       <div className="container">
         <AboutSection />
       </div>
       <Counter />
       <ServicesSection />
-      <DoctorsSectionWrapper />
-    </PageWithLoading>
+      {/* <DoctorsSectionWrapper /> */}
+    </>
   );
 }
