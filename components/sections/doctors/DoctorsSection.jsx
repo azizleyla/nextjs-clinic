@@ -11,8 +11,6 @@ const DoctorsSection = ({ doctors, isReleatedDoctor = false }) => {
     ? "Digər şöbə həkimlərimiz"
     : "Həkimlərimiz";
 
-
-
   return (
     <section className="doctors">
       <div className="container">

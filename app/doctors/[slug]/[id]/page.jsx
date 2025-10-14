@@ -11,15 +11,15 @@ import { supabase } from "@/lib/supabaseClient";
 const DoctorDetail = async ({ params }) => {
   const resolvedParams = await params;
   const { slug, id } = resolvedParams;
-   // const doctor = await apiClient.get(`/api/doctors/${id}`); 
-   // const doctors = await apiClient.get(`/api/doctors`);
-    const { data: doctor, error } = await supabase
-    .from('doctors')
-    .select('*')
-    .eq('id', Number(id))
-    .single(); 
+   const doctor = await apiClient.get(`/api/doctors/${id}`); 
+   const doctors = await apiClient.get(`/api/doctors`);
+    // const { data: doctor, error } = await supabase
+    // .from('doctors')
+    // .select('*')
+    // .eq('id', Number(id))
+    // .single(); 
 
-    const { data: doctors } = await supabase.from('doctors').select('*');
+    // const { data: doctors } = await supabase.from('doctors').select('*');
 
   return (
     <>

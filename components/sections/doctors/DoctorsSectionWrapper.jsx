@@ -1,13 +1,12 @@
 import { DoctorsSection } from "@/components";
 import { apiClient } from "@/lib/apiClient";
-import { supabase } from "@/lib/supabaseClient";
 import { doctors } from "@/utils/constants/doctors";
 import React from "react";
 
 export async function DoctorsSectionWrapper() {
-  const { data: doctors } = await supabase.from("doctors").select("*");
+  const data = await apiClient.get("/api/doctors");
 
-  return <DoctorsSection doctors={doctors} />;
+  return <DoctorsSection doctors={data} />;
 }
 
 export default DoctorsSectionWrapper;
