@@ -5,7 +5,6 @@ import { apiClient } from "@/lib/apiClient";
 import { PiBrain, PiHeartbeat, PiHospitalLight } from "react-icons/pi";
 import { IoEyeOutline } from "react-icons/io5";
 import { FaUserDoctor } from "react-icons/fa6";
-import { supabase } from "@/lib/supabaseClient";
 
 const iconsMap = {
   PiHeartbeat,
@@ -16,8 +15,7 @@ const iconsMap = {
 };
 
 export default async function Services() {
-  const { data: services } = await supabase.from("services").select("*");
-
+  const services = await apiClient.get("/api/services");
   return (
     <section>
       <div className="container">

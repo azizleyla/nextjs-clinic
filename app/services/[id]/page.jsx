@@ -24,12 +24,7 @@ export async function generateMetadata({ params }) {
 
 const ServiceDetails = async ({ params }) => {
   const { id } = params;
-  // const service = await apiClient.get(`/api/services/${id}`);
-  const { data: service } = await supabase
-    .from("services")
-    .select("*")
-    .eq("id", Number(id))
-    .single();
+  const service = await apiClient.get(`/api/services/${id}`);
 
   return (
     <>
