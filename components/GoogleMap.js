@@ -1,6 +1,5 @@
 "use client"
 import Loading from '@/app/loading'
-import { branches } from '@/utils/constants/branches';
 import { GoogleMap, LoadScript, Marker, InfoWindow } from '@react-google-maps/api'
 import React, { useState } from 'react'
 
@@ -14,14 +13,14 @@ const defaultCenter = {
     lng: 49.8671,
 };
 
-const MapContainer = ({ selectedBranch }) => {
+const MapContainer = ({ selectedBranch, branches }) => {
     const [activeMarker, setActiveMarker] = useState(null);
     const [infoWindowOffset, setInfoWindowOffset] = useState(null);
 
     const onMapLoad = (map) => {
         // Bounds yaratmaq üçün bütün filialları istifadə edirik
         const bounds = new window.google.maps.LatLngBounds();
-        branches.forEach(({ lat, lng }) => bounds.extend({ lat, lng }));
+        branches.forEach(({ latitude, longitude }) => bounds.extend({ latitude, longitude }));
         map.fitBounds(bounds);
 
         // InfoWindow offset-i təyin edirik
@@ -39,8 +38,8 @@ const MapContainer = ({ selectedBranch }) => {
         <LoadScript googleMapsApiKey={process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY} loadingElement={<Loading />}>
             <GoogleMap
                 mapContainerStyle={containerStyle}
-                center={selectedBranch ? { lat: selectedBranch.lat, lng: selectedBranch.lng } : defaultCenter}
-                zoom={selectedBranch ? 12 : 8}
+                center={selectedBranch ? { lat: selectedBranch.latitude, lng: selectedBranch.longitude } : defaultCenter}
+                zoom={selectedBranch ? 15 : 8}
                 options={{ mapTypeControl: false }}
                 mapTypeId="roadmap"
                 onLoad={onMapLoad}
@@ -50,12 +49,12 @@ const MapContainer = ({ selectedBranch }) => {
                 {branches.map((b) => (
                     <Marker
                         key={b.id}
-                        position={{ lat: b.lat, lng: b.lng }}
+                        position={{ lat: b.latitude, lng: b.longitude }}
                         onClick={() => handleMarkerClick(b.id)}
                     >
                         {selectedBranch && infoWindowOffset && (
                             <InfoWindow
-                                position={{ lat: b.lat, lng: b.lng }}
+                                position={{ lat: b.latitude, lng: b.longitude }}
                                 pixelOffset={infoWindowOffset}
                                 options={{ disableAutoPan: true }}
                                 onCloseClick={() => setActiveMarker(null)}

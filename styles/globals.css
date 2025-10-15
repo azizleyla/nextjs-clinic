@@ -97,6 +97,12 @@ section .all_btn-container {
     .service-detail__content p {
         @apply mb-2
     }
+
+    .service-detail__content ul {
+        list-style-type: disc;
+        margin-left: 40px;
+        margin-bottom: 20px;
+    }
 }
 
 @layer components {

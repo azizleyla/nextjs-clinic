@@ -1,7 +1,7 @@
 import React from "react";
 import DoctorsList from "./DoctorsList";
-import { doctors } from "@/utils/constants/doctors";
 import { Banner } from "@/components";
+import { apiClient } from "@/lib/apiClient";
 
 export const metadata = {
   title: "Elmed Hospital | Həkimlərimiz",
@@ -44,6 +44,7 @@ export const metadata = {
 };
 
 export default async function DoctorsPage() {
+  const doctors = await apiClient.get('/api/doctors')
   return (
     <div>
       <Banner title="Həkimlərimiz" />

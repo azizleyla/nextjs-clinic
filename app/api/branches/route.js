@@ -1,9 +1,10 @@
 import { supabase } from "@/lib/supabaseClient";
 import { NextResponse } from "next/server";
 
+
 export async function GET() {
     try {
-        const { data, error } = await supabase.from('services').select('*');
+        const { data, error } = await supabase.from('branches').select('*');
         if (error) throw error;
         return NextResponse.json(data);
     } catch (err) {
@@ -12,12 +13,14 @@ export async function GET() {
     }
 }
 
+
 export async function POST(req) {
     try {
         const body = await req.json();
 
+        // Supabase insert + returning
         const { data, error } = await supabase
-            .from('services')
+            .from('branches')
             .insert([body])
             .select();
 

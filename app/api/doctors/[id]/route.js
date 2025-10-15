@@ -6,7 +6,10 @@ export async function GET(req, { params }) {
 
     const { data, error } = await supabase
         .from("doctors")
-        .select("*")
+        .select(`
+      *,
+      branch:branches(*)  
+    `)
         .eq("id", Number(id))
         .single();
 
@@ -15,6 +18,7 @@ export async function GET(req, { params }) {
 
     return NextResponse.json(data);
 }
+
 
 // PUT → update doctor
 export async function PUT(req, { params }) {
