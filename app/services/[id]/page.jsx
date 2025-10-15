@@ -2,6 +2,7 @@ import { Banner } from "@/components";
 import React from "react";
 import { services } from "@/utils/constants/services"; // services array-ində id, title, description, image
 import { apiClient } from "@/lib/apiClient";
+import { supabase } from "@/lib/supabaseClient";
 
 export async function generateMetadata({ params }) {
   const { id } = params;
@@ -23,9 +24,12 @@ export async function generateMetadata({ params }) {
 
 const ServiceDetails = async ({ params }) => {
   const { id } = params;
-  const service = await apiClient.get(`/api/services/${id}`);
-
-  console.log(service);
+  // const service = await apiClient.get(`/api/services/${id}`);
+  const { data: service } = await supabase
+    .from("services")
+    .select("*")
+    .eq("id", Number(id))
+    .single();
 
   return (
     <>
