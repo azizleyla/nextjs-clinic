@@ -12,6 +12,7 @@ export default function sitemap() {
         { url: `${baseUrl}/blogs`, changeFrequency: 'weekly', priority: 0.9 },
     ]
 
+
     // Dinamik səhifələr (mock data, real project-də API və DB istifadə olunur)
 
     // const dynamicServices = services.map(service => ({

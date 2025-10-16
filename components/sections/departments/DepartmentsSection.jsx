@@ -16,10 +16,7 @@ const iconsMap = {
 };
 
 export default async function Departments() {
-  // const departments = await apiClient.get("/api/departments");
-  const { data: departments, error } = await supabase
-    .from("departments")
-    .select("*");
+  const departments = await apiClient.get("/api/departments");
 
   return (
     <section>

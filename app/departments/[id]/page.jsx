@@ -5,12 +5,7 @@ import { apiClient } from "@/lib/apiClient";
 export async function generateMetadata({ params }) {
   const { id } = params;
 
-  const { data: department } = await supabase
-    .from("departments")
-    .select("*")
-    .eq("id", Number(id))
-    .single();
-  // xidməti tap
+  const department = await apiClient.get(`/api/departments/${id}`);
 
   return {
     title: `Elmed Hospital | ${department.title}`,
@@ -27,12 +22,7 @@ export async function generateMetadata({ params }) {
 const DepartmentDetail = async ({ params }) => {
   const { id } = params;
 
-  const { data: department, error } = await supabase
-    .from("departments")
-    .select("*")
-    .eq("id", Number(id))
-    .single();
-  // const department = await apiClient.get(`/api/departments/${id}`);
+  const department = await apiClient.get(`/api/departments/${id}`);
 
   return (
     <>
