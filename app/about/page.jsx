@@ -2,8 +2,8 @@ import {
   AboutSection,
   Banner,
   Counter,
+  DepartmentsSection,
   DoctorsSection,
-  ServicesSection,
 } from "@/components";
 import PageWithLoading from "@/components/PageWithLoading";
 import DoctorsSectionWrapper from "@/components/sections/doctors/DoctorsSectionWrapper";
@@ -58,8 +58,8 @@ export default async function About() {
         <AboutSection />
       </div>
       <Counter />
-      <ServicesSection />
-      {/* <DoctorsSectionWrapper /> */}
+      <DepartmentsSection />
+      <DoctorsSectionWrapper />
     </>
   );
 }

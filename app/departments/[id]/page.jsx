@@ -1,30 +1,38 @@
 import { Banner } from "@/components";
 import React from "react";
-import { services } from "@/utils/constants/services"; // services array-ində id, title, description, image
 import { apiClient } from "@/lib/apiClient";
-import { supabase } from "@/lib/supabaseClient";
 
 export async function generateMetadata({ params }) {
   const { id } = params;
 
+  const { data: department } = await supabase
+    .from("departments")
+    .select("*")
+    .eq("id", Number(id))
+    .single();
   // xidməti tap
-  const service = services.find((s) => s.id == id);
 
   return {
-    title: `Elmed Hospital | ${service.title}`,
-    description: service.description,
-    keywords: service.keywords || [
+    title: `Elmed Hospital | ${department.title}`,
+    description: department.description,
+    keywords: department?.keywords || [
       "Elmed Hospital",
       "Tibbi xidmətlər",
-      service.title,
+      department.title,
     ],
     robots: { index: true, follow: true },
   };
 }
 
-const ServiceDetails = async ({ params }) => {
+const DepartmentDetail = async ({ params }) => {
   const { id } = params;
-  const service = await apiClient.get(`/api/services/${id}`);
+
+  const { data: department, error } = await supabase
+    .from("departments")
+    .select("*")
+    .eq("id", Number(id))
+    .single();
+  // const department = await apiClient.get(`/api/departments/${id}`);
 
   return (
     <>
@@ -33,13 +41,15 @@ const ServiceDetails = async ({ params }) => {
         <div className="container">
           <div className="flex flex-col gap-1 lg:flex-row justify-center items-start">
             <div className="text-secondary mt-1 w-full service-detail__content lg:w-1/2 flex-none">
-              <div dangerouslySetInnerHTML={{ __html: service.content }} />
+              <div
+                dangerouslySetInnerHTML={{ __html: department.content }}
+              />
             </div>
             <div className="w-full lg:w-1/2 flex-none">
               <img
-                alt={service.title}
+                alt={department.title}
                 className="rounded-md h-[400px] w-full object-contain"
-                src={`/images/${service?.img_url}`}
+                src={`/images/${department?.img_url}`}
               />
             </div>
           </div>
@@ -49,4 +59,4 @@ const ServiceDetails = async ({ params }) => {
   );
 };
 
-export default ServiceDetails;
+export default DepartmentDetail;

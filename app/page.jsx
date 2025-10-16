@@ -4,7 +4,7 @@ import {
   Counter,
   Hero,
   Partners,
-  ServicesSection,
+  DepartmentsSection,
 } from "@/components";
 import DoctorsSectionWrapper from "@/components/sections/doctors/DoctorsSectionWrapper";
 
@@ -56,7 +56,7 @@ export default async function Home() {
       <Hero />
       <Counter isHome={true} />
       <AboutSection />
-      <ServicesSection />
+      <DepartmentsSection />
       <DoctorsSectionWrapper />
       <BlogsSection />
       <Partners /> 

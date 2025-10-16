@@ -42,23 +42,6 @@ const DoctorDetail = async ({ params }) => {
                     {doctor?.branch?.short_name}
                   </li>
                 </ul>
-                <h3 className="text-md mt-2 text-secondary font-semibold">
-                  İş saatları
-                </h3>
-                <ul className="text-secondary my-3 text-sm font-medium">
-                  <li className="border-t flex justify-between py-3 border-[#eee]">
-                    Monday <span>9:00 AM - 8:00 PM</span>
-                  </li>
-                  <li className="border-t py-3 flex justify-between border-[#eee]">
-                    Tuesday <span>9:00 AM - 8:00 PM</span>
-                  </li>
-                  <li className="border-t flex justify-between py-3 border-[#eee]">
-                    Wednesday <span>9:00 AM - 8:00 PM</span>
-                  </li>
-                  <li className="border-t flex justify-between py-3 border-[#eee]">
-                    Sunday <span>9:00 AM - 8:00 PM</span>
-                  </li>
-                </ul>
               </div>
             </div>
           </div>
@@ -66,7 +49,7 @@ const DoctorDetail = async ({ params }) => {
             <h3 className="text-secondary mt-2 mb-6 text-2xl font-semibold">
               {doctor?.name} {doctor?.specialty && `(${doctor.specialty})`}
             </h3>
-            {doctor?.educaiton?.length > 0 && (
+            {doctor?.education?.length > 0 && (
               <>
                 <h4 className="text-secondary flex items-center gap-2 text-md mb-2 font-semibold">
                   <RiGraduationCapLine className="text-secondary text-lg" />

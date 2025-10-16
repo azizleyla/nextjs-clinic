@@ -75,7 +75,7 @@ const Footer = () => {
                 <Link href="/blogs">Bloq</Link>
               </li>
               <li>
-                <Link href="/services">Şöbələr</Link>
+                <Link href="/departments">Şöbələr</Link>
               </li>
               <li>
                 <Link href="/contact">Bizimlə əlaqə</Link>

@@ -6,7 +6,7 @@ export async function GET(req, { params }) {
         const { id } = params;
 
         const { data, error } = await supabase
-            .from("services")
+            .from("departments")
             .select("*")
             .eq("id", Number(id))
             .single();

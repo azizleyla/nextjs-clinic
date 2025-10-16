@@ -7,6 +7,7 @@ const Button = ({
   size = "md",
   className = "",
   href,
+  onClick
 }) => {
   const sizeClasses = {
     sm: "px-3 py-1 text-sm",
@@ -35,7 +36,7 @@ const Button = ({
   }
 
   return (
-    <button type="button" className={classes}>
+    <button onClick={onClick} type="button" className={classes}>
       {label}
     </button>
   );

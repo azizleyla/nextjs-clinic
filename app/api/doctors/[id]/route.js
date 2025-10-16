@@ -7,11 +7,13 @@ export async function GET(req, { params }) {
     const { data, error } = await supabase
         .from("doctors")
         .select(`
-      *,
-      branch:branches(*)  
-    `)
+    *,
+    branch:branches(*),
+    department:departments(title)
+  `)
         .eq("id", Number(id))
         .single();
+
 
     if (error)
         return NextResponse.json({ error: error.message }, { status: 500 });

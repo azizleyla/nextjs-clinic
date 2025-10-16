@@ -3,7 +3,7 @@ import { NextResponse } from "next/server";
 
 export async function GET() {
     try {
-        const { data, error } = await supabase.from('services').select('*');
+        const { data, error } = await supabase.from('departments').select('*');
         if (error) throw error;
         return NextResponse.json(data);
     } catch (err) {
@@ -17,7 +17,7 @@ export async function POST(req) {
         const body = await req.json();
 
         const { data, error } = await supabase
-            .from('services')
+            .from('departments')
             .insert([body])
             .select();
 

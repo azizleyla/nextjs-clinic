@@ -3,7 +3,7 @@ export const menuItems = [
     { title: "Haqqımızda", href: "/about" },
     {
         title: "Şöbələr",
-        href: "/services",
+        href: "/departments",
         children: [
             { title: "Ümumi cərrahiyə", href: "" },
             { title: "Kardiologiya", href: "" },
