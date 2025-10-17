@@ -19,6 +19,7 @@ const DoctorsSection = ({ doctors, isReleatedDoctor = false }) => {
         <Swiper
           className="overflow-visible"
           spaceBetween={30}
+          watchOverflow={true}
           breakpoints={{
             0: { slidesPerView: 1 },
             576: { slidesPerView: 2 },

@@ -8,14 +8,15 @@ const AboutSection = () => {
     <section>
       <div className="container">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-          <div className="relative h-[450px]">
-            <div className="hidden lg:block absolute -top-3 -left-3 w-[430px] h-[375px] bg-primary rounded-lg -z-10 animate-a-one"></div>
+          <div className="relative h-[350px] md:h-[550px] lg:h-[450px]">
+            <div className="hidden lg:block absolute top-4 -left-3 w-[430px] h-[375px] bg-primary rounded-lg -z-10 animate-a-one"></div>
 
             {/* After element */}
-            <div className="hidden  lg:block absolute -bottom-3 -right-3 w-[430px] h-[375px] bg-primary rounded-lg -z-10 animate-a-two"></div>
+            <div className="hidden  lg:block absolute bottom-4 -right-3 w-[430px] h-[375px] bg-primary rounded-lg -z-10 animate-a-two"></div>
 
             <Image
               fill
+              objectFit="contain"
               alt="haqqimizda"
               className="w-full relative rounded-md lg:animate-a-seven"
               src="/images/about1.jpg"

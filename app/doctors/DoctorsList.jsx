@@ -29,11 +29,8 @@ const DoctorsList = ({ doctors }) => {
 
   useEffect(() => {
     async function fetchData() {
-      const { data: deps, error } = await supabase
-        .from("departments")
-        .select("*");
+      const deps = await apiClient.get("/api/departments");
 
-      // const deps = await apiClient.get("/api/departments");
       const brs = await apiClient.get("/api/branches");
       setDepartments(deps || []);
       setBranches(brs || []);

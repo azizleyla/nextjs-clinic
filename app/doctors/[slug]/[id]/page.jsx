@@ -12,6 +12,13 @@ const DoctorDetail = async ({ params }) => {
   const doctor = await apiClient.get(`/api/doctors/${id}`);
   const doctors = await apiClient.get(`/api/doctors`);
   console.log(doctor, "d");
+  const releatedDoctors = doctors.filter(
+    (item) =>
+      item.department_id === doctor.department_id && item.id !== doctor.id,
+  );
+
+  console.log(doctor.departament_id);
+  console.log(releatedDoctors);
   return (
     <>
       <Banner title={`${doctor?.name} (${doctor?.specialty})`} />
@@ -89,7 +96,7 @@ const DoctorDetail = async ({ params }) => {
           </div>
         </div>
       </div>
-      <DoctorsSection doctors={doctors} isReleatedDoctor={true} />
+      <DoctorsSection doctors={releatedDoctors} isReleatedDoctor={true} />
     </>
   );
 };

@@ -7,7 +7,7 @@ export default function sitemap() {
         { url: baseUrl, changeFrequency: 'weekly', priority: 1 },
         { url: `${baseUrl}/about`, changeFrequency: 'monthly', priority: 0.9 },
         { url: `${baseUrl}/contact`, changeFrequency: 'monthly', priority: 0.8 },
-        { url: `${baseUrl}/departments`, changeFrequency: 'weekly', priority: 0.9 },
+        { url: `${baseUrl}/departments`, changeFrequency: 'monthly', priority: 0.9 },
         { url: `${baseUrl}/doctors`, changeFrequency: 'weekly', priority: 0.9 },
         { url: `${baseUrl}/blogs`, changeFrequency: 'weekly', priority: 0.9 },
     ]
