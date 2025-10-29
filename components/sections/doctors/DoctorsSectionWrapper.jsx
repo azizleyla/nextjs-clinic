@@ -1,7 +1,7 @@
 import { DoctorsSection } from "@/components";
 import { apiClient } from "@/lib/apiClient";
 import { doctors } from "@/utils/constants/doctors";
-import React from "react";
+import React, { Suspense } from "react";
 
 export async function DoctorsSectionWrapper() {
   const data = await apiClient.get("/api/doctors");

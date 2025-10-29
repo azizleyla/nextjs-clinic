@@ -23,7 +23,7 @@ const DoctorsList = ({ doctors }) => {
     value: null,
     label: "Filiallar",
   });
-  const [visibleCount, setVisibleCount] = useState(2);
+  const [visibleCount, setVisibleCount] = useState(4);
   const [departments, setDepartments] = useState([]);
   const [branches, setBranches] = useState([]);
 
@@ -70,13 +70,13 @@ const DoctorsList = ({ doctors }) => {
         .includes(debouncedSearch.toLowerCase());
       return matchesDep && matchesSearch && matchesBranch;
     });
-  }, [allDoctors, debouncedSearch, selectedDep, selectedBranch]);
+  }, [debouncedSearch, selectedDep, selectedBranch]);
 
   const handleLoadMore = () => {
     setVisibleCount((prev) => prev + 2);
   };
   useEffect(() => {
-    setVisibleCount(2);
+    setVisibleCount(4);
   }, [selectedDep, searchQuery]);
 
   return (

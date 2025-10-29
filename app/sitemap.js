@@ -13,15 +13,5 @@ export default function sitemap() {
     ]
 
 
-    // Dinamik səhifələr (mock data, real project-də API və DB istifadə olunur)
-
-    // const dynamicServices = services.map(service => ({
-    //     url: `${baseUrl}/services/${service.id}`,
-    //     lastModified: service.updatedAt ? new Date(service.updatedAt) : new Date(),
-    //     changeFrequency: 'weekly',
-    //     priority: 0.8,
-    // }))
-
-
     return [...staticPages]
 }

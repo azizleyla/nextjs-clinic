@@ -12,6 +12,8 @@ const DoctorDetail = async ({ params }) => {
   const doctor = await apiClient.get(`/api/doctors/${id}`);
   const doctors = await apiClient.get(`/api/doctors`);
   console.log(doctor, "d");
+
+ //useMemo 
   const releatedDoctors = doctors.filter(
     (item) =>
       item.department_id === doctor.department_id && item.id !== doctor.id,

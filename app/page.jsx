@@ -7,6 +7,8 @@ import {
   DepartmentsSection,
 } from "@/components";
 import DoctorsSectionWrapper from "@/components/sections/doctors/DoctorsSectionWrapper";
+import ListSkeletonWrapper from "@/components/ui/shared/ListSkeletonWrapper";
+import { Suspense } from "react";
 
 export const metadata = {
   title: "Elmed Hospital | Ana səhifə",
@@ -56,10 +58,18 @@ export default async function Home() {
       <Hero />
       <Counter isHome={true} />
       <AboutSection />
-      <DepartmentsSection />
-      <DoctorsSectionWrapper />
+      <Suspense
+        fallback={<ListSkeletonWrapper title="Şöbələr" count={6} />}
+      >
+        <DepartmentsSection />
+      </Suspense>
+      <Suspense
+        fallback={<ListSkeletonWrapper title="Həkimlər" count={3} />}
+      >
+        <DoctorsSectionWrapper />
+      </Suspense>
       <BlogsSection />
-      <Partners /> 
+      <Partners />
     </>
   );
 }

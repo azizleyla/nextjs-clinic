@@ -1,7 +1,11 @@
-import React from "react";
-import DoctorsList from "./DoctorsList";
+// app/doctors/page.jsx (GÜNCELLENMİŞ)
+
+import React, { Suspense } from "react"; // Suspense'i import edin
 import { Banner } from "@/components";
-import { apiClient } from "@/lib/apiClient";
+// import { apiClient } from "@/lib/apiClient"; // Veri çekmeyi taşıdık, artık bu import'a gerek yok
+// import CardSkeleton from "@/components/ui/shared/CardSkeleton"; // Skeleton'ı DoctorsPageContent'e taşıdık
+import CardSkeleton from "@/components/ui/shared/CardSkeleton";
+import DoctorsPageContent from "./DoctorsPageContent";
 
 export const metadata = {
   title: "Elmed Hospital | Həkimlərimiz",
@@ -43,12 +47,23 @@ export const metadata = {
   },
 };
 
-export default async function DoctorsPage() {
-  const doctors = await apiClient.get('/api/doctors')
+export default function DoctorsPage() {
+  const DoctorsSkeletonFallback = (
+    <div className="container py-10">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+        {Array.from({ length: 4 }).map((_, i) => (
+          <CardSkeleton key={i} />
+        ))}
+      </div>
+    </div>
+  );
+
   return (
     <div>
       <Banner title="Həkimlərimiz" />
-      <DoctorsList doctors={doctors} />
+      <Suspense fallback={DoctorsSkeletonFallback}>
+        <DoctorsPageContent />
+      </Suspense>
     </div>
   );
 }
