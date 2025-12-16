@@ -1,0 +1,130 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+section {
+    @apply mt-20;
+}
+
+
+
+
+.hero .swiper-button-next, .hero .swiper-button-prev {
+    width: 55px;
+    height: 55px;
+}
+
+.swiper-button-prev,
+.swiper-button-next {
+    border-radius: 50% !important;
+    background-color: #2459b8 !important;
+    display: flex !important;
+    justify-content: center;
+    align-items: center;
+}
+
+.hero .swiper-button-prev svg,
+.hero .swiper-button-next svg {
+    width: 14px !important;
+    color: white !important;
+}
+
+@media (max-width: 768px) {
+
+    .hero .swiper-button-prev,
+    .hero .swiper-button-next {
+        display: none !important;
+    }
+}
+
+.doctors .swiper-button-next, .doctors .swiper-button-prev {
+    width: 40px;
+    height: 40px;
+    margin-top: -50px !important;
+}
+
+.partners .swiper-button-next, .partners .swiper-button-prev {
+    width: 30px;
+    background-color: #fff !important;
+    height: 30px;
+    border: 1px solid #eee;
+    box-shadow: 0 0 25px 0 hsla(0, 0%, 87%, 0.749);
+}
+
+.partners .swiper-button-prev svg, .partners .swiper-button-next svg {
+    color: #2459b8;
+    width: 10px;
+}
+
+.partners .swiper-horizontal .swiper-button-prev {
+    left: 0;
+}
+
+.partners .swiper-horizontal .swiper-button-next {
+    right: 0;
+}
+
+.partners .swiper-wrapper {
+    transition-timing-function: linear !important;
+
+}
+
+
+.doctors .swiper-button-prev svg, .doctors .swiper-button-next svg {
+    width: 10px;
+    color: white;
+}
+
+.doctors .swiper, .partners .swiper {
+    padding: 10px !important;
+}
+
+section .all_btn-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 50px;
+}
+
+@layer components {
+    .footer__links li {
+        @apply transition-all duration-500 font-medium;
+    }
+
+    .footer__links li:hover {
+        @apply ml-2;
+    }
+}
+
+@layer components {
+    .service-detail__content p {
+        @apply mb-2
+    }
+
+    .service-detail__content ul {
+        list-style-type: disc;
+        margin-left: 40px;
+        margin-bottom: 20px;
+    }
+}
+
+@layer components {
+    .contact-form input, .contact-form textarea {
+        @apply border border-[#eee] rounded-xl px-4 py-3 w-full outline-none
+    }
+
+    .contact-form label {
+        @apply text-secondary block text-sm mb-2
+    }
+}
+
+
+
+
+.gm-style-iw+div {
+    display: none;
+}
+
+.gm-style-iw button {
+    display: none !important;
+}
