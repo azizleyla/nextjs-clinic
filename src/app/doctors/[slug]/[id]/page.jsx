@@ -11,7 +11,6 @@ const DoctorDetail = async ({ params }) => {
   const { slug, id } = params;
   const doctor = await apiClient.get(`/api/doctors/${id}`);
   const doctors = await apiClient.get(`/api/doctors`);
-  console.log(doctor, "d");
 
   //useMemo
   const releatedDoctors = doctors.filter(
@@ -19,8 +18,7 @@ const DoctorDetail = async ({ params }) => {
       item.department_id === doctor.department_id && item.id !== doctor.id,
   );
 
-  console.log(doctor.departament_id);
-  console.log(releatedDoctors);
+ 
   return (
     <>
       <Banner title={`${doctor?.name} (${doctor?.specialty})`} />
