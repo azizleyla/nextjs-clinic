@@ -7,19 +7,13 @@ import { Navigation, Pagination } from "swiper/modules";
 import Image from "next/image";
 import Button from "../../ui/button";
 import styles from "./Hero.module.css";
-import dynamic from "next/dynamic";
 
 SwiperCore.use([Navigation, Pagination]);
-
-const SwiperWrapper = dynamic(
-  () => import("swiper/react").then((mod) => mod.Swiper),
-  { ssr: false },
-);
 
 export default function Hero() {
   return (
     <div className={styles.hero}>
-      <SwiperWrapper
+      <Swiper
         className="min-h-[700px]"
         spaceBetween={30}
         slidesPerView={1}
@@ -180,7 +174,7 @@ export default function Hero() {
             </div>
           </div>
         </SwiperSlide>
-      </SwiperWrapper>
+      </Swiper>
     </div>
   );
 }
