@@ -1,17 +1,28 @@
 "use client";
 
-import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css/bundle";
 import { Swiper as SwiperCore } from "swiper";
 import { Navigation, Pagination } from "swiper/modules";
 import Image from "next/image";
 import Button from "../../ui/button";
+import styles from "./Hero.module.css";
+import dynamic from "next/dynamic";
+
+const Swiper = dynamic(
+  () => import("swiper/react").then((mod) => mod.Swiper),
+  { ssr: false },
+);
+const SwiperSlide = dynamic(
+  () => import("swiper/react").then((mod) => mod.SwiperSlide),
+  { ssr: false },
+);
 SwiperCore.use([Navigation, Pagination]);
 
 export default function Hero() {
   return (
-    <div className="hero">
+    <div className={styles.hero}>
       <Swiper
+        className="min-h-[700px]"
         spaceBetween={30}
         slidesPerView={1}
         navigation
@@ -19,12 +30,14 @@ export default function Hero() {
         loop={true}
       >
         <SwiperSlide className="hero-slide">
-          <div
-            style={{
-              backgroundImage: "url('/images/home-slider-bg.jpg')",
-            }}
-            className="relative lg:h-[730px]  bg-cover bg-center text-center h-full text-white flex items-center lg:py-0 md:py-32 py-20"
-          >
+          <div className="relative lg:h-[730px]  bg-cover bg-center text-center h-full text-white flex items-center lg:py-0 md:py-32 py-20">
+            <Image
+              src="/images/home-slider-bg.jpg"
+              alt="Hero Banner"
+              fill
+              priority
+              className="object-cover"
+            />
             <div className="absolute top-0 right-0 w-full h-full bg-primary opacity-80" />
             <div className="container">
               <div className="relative flex flex-col text-center items-center lg:text-left lg:items-start">
@@ -54,10 +67,13 @@ export default function Hero() {
                   </div>
                 </div>
                 <div className="hero-slide__img flex lg:block">
-                  <img
-                    className="lg:absolute order-1 relative top-0 lg:top-28 xl:top-10 left-0 right-0 max-w-72 xl:-right-24 ml-auto mr-auto lg:mr-0 mb-4 md:max-w-xl lg:max-w-[520px] xl:max-w-[730px]"
+                  <Image
                     src="/images/home-slider1.png"
                     alt="Slider"
+                    width={730}
+                    height={730}
+                    priority
+                    className="lg:absolute order-1 relative top-0 lg:top-28 xl:top-10 left-0 right-0 max-w-72 xl:-right-24 ml-auto mr-auto lg:mr-0 mb-4 md:max-w-xl lg:max-w-[520px] xl:max-w-[730px]"
                   />
                 </div>
               </div>
@@ -71,8 +87,8 @@ export default function Hero() {
               src="/images/home-slider-bg.jpg"
               alt="Hero Banner"
               fill
+              loading="lazy"
               className="object-cover"
-              priority
             />
             <div className="absolute top-0 right-0 w-full h-full bg-primary opacity-80" />
             <div className="container">
@@ -103,10 +119,13 @@ export default function Hero() {
                   </div>
                 </div>
                 <div className="hero-slide__img flex lg:block">
-                  <img
-                    className="lg:absolute order-1 relative top-0 lg:top-28 xl:top-16 left-0 right-0 max-w-72 xl:-right-24 ml-auto mr-auto lg:mr-0 mb-4 md:max-w-xl lg:max-w-[520px] xl:max-w-[730px]"
+                  <Image
                     src="/images/home-slider2.png"
                     alt="Slider"
+                    width={730}
+                    height={730}
+                    className="lg:absolute order-1 relative top-0 lg:top-28 xl:top-16 left-0 right-0 max-w-72 xl:-right-24 ml-auto mr-auto lg:mr-0 mb-4 md:max-w-xl lg:max-w-[520px] xl:max-w-[730px]"
+                    loading="lazy"
                   />
                 </div>
               </div>
@@ -114,12 +133,14 @@ export default function Hero() {
           </div>
         </SwiperSlide>
         <SwiperSlide className="hero-slide">
-          <div
-            style={{
-              backgroundImage: "url('/images/home-slider-bg.jpg')",
-            }}
-            className="relative lg:h-[730px]  bg-cover bg-center text-center h-full text-white flex items-center lg:py-0 md:py-32 py-20"
-          >
+          <div className="relative lg:h-[730px]  bg-cover bg-center text-center h-full text-white flex items-center lg:py-0 md:py-32 py-20">
+            <Image
+              src="/images/home-slider-bg.jpg"
+              alt="Hero Banner"
+              fill
+              loading="lazy"
+              className="object-cover"
+            />
             <div className="absolute top-0 right-0 w-full h-full bg-primary opacity-80" />
             <div className="container">
               <div className="relative flex flex-col text-center items-center lg:text-left lg:items-start">
@@ -148,10 +169,13 @@ export default function Hero() {
                   </div>
                 </div>
                 <div className="hero-slide__img flex lg:block">
-                  <img
-                    className="lg:absolute order-1 relative top-0 lg:top-28 xl:top-16  left-0 right-0 max-w-72 xl:-right-24 ml-auto mr-auto lg:mr-0 mb-4 md:max-w-xl lg:max-w-[520px] xl:max-w-[730px]"
+                  <Image
                     src="/images/home-slider3.png"
                     alt="Slider"
+                    width={730}
+                    height={730}
+                    className="lg:absolute order-1 relative top-0 lg:top-28 xl:top-16 left-0 right-0 max-w-72 xl:-right-24 ml-auto mr-auto lg:mr-0 mb-4 md:max-w-xl lg:max-w-[520px] xl:max-w-[730px]"
+                    loading="lazy"
                   />
                 </div>
               </div>

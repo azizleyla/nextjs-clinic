@@ -1,0 +1,19 @@
+.hero :global(.swiper-button-next),
+.hero :global(.swiper-button-prev) {
+    width: 55px;
+    height: 55px;
+}
+
+.hero :global(.swiper-button-prev svg),
+.hero :global(.swiper-button-next svg) {
+    width: 14px;
+    color: white;
+}
+
+@media (max-width: 768px) {
+
+    .hero :global(.swiper-button-prev),
+    .hero :global(.swiper-button-next) {
+        display: none !important;
+    }
+}
