@@ -1,21 +1,13 @@
 "use client";
 
+import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css/bundle";
 import { Swiper as SwiperCore } from "swiper";
 import { Navigation, Pagination } from "swiper/modules";
 import Image from "next/image";
 import Button from "../../ui/button";
 import styles from "./Hero.module.css";
-import dynamic from "next/dynamic";
 
-const Swiper = dynamic(
-  () => import("swiper/react").then((mod) => mod.Swiper),
-  { ssr: false },
-);
-const SwiperSlide = dynamic(
-  () => import("swiper/react").then((mod) => mod.SwiperSlide),
-  { ssr: false },
-);
 SwiperCore.use([Navigation, Pagination]);
 
 export default function Hero() {
