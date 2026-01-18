@@ -6,6 +6,7 @@ import "swiper/css/pagination";
 import { Footer, Navbar, Topbar } from "@/src/components";
 import ScrollToTop from "@/src/components/shared/ScrollToTop";
 import { Analytics } from "@vercel/analytics/next";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 
 const geist = Geist({
   subsets: ["latin"],
@@ -26,6 +27,7 @@ export default function RootLayout({ children }) {
         <Navbar />
         <ScrollToTop />
         <main>{children}</main>
+        <SpeedInsights />
         <Analytics />
         <Footer />
       </body>
