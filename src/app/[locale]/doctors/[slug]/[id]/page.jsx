@@ -21,7 +21,7 @@ const DoctorDetail = async ({ params }) => {
  
   return (
     <>
-      <Banner title={`${doctor?.name} (${doctor?.specialty})`} />
+      <Banner pageKey={`${doctor?.name} (${doctor?.specialty})`} />
       <div className="container my-11">
         <div className="flex flex-col lg:flex-row gap-6 items-start">
           <div className="w-full lg:w-1/4">

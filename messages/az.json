@@ -1,0 +1,15 @@
+{
+  "HomePage": {
+    "hero_title1": "Sağlamlığınız sağlamlığımızdır!",
+    "hero_desc1": "Diamed Klinikası olaraq, 1999-cu ildən etibarən müasir tibbi xidmətlər və peşəkar həkim komandamızla sağlamlığınızı ən yüksək standartlarda qoruyuruq. Hər addımda yanınızdayıq, sağlam gələcəyiniz üçün ən son texnologiyalardan istifadə edirik. egnced"
+  },
+  "AboutPage": {
+    "title": "Haqqimizda"
+  },
+  "BlogPage": {
+    "title": "Bloqlar"
+  },
+  "DoctorPage": {
+    "title": "Həkimlərimiz"
+  }
+}

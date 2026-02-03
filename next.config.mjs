@@ -1,4 +1,8 @@
-/** @type {import('next').NextConfig} */
-const nextConfig = {};
+// next.config.mjs
+import createNextIntlPlugin from 'next-intl/plugin';
 
-export default nextConfig;
+const nextConfig = {
+    reactStrictMode: true,
+};
+
+export default createNextIntlPlugin('./src/i18n/request.js')(nextConfig);

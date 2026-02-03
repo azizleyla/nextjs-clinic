@@ -26,7 +26,7 @@ const DepartmentDetail = async ({ params }) => {
 
   return (
     <>
-      <Banner title={department.title} />
+      <Banner pageKey={department.title} />
       <section>
         <div className="container">
           <div className="flex flex-col gap-1 lg:flex-row justify-center items-start">

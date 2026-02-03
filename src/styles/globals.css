@@ -5,6 +5,8 @@
 section {
     @apply mt-20;
 }
+
+
 .swiper-button-prev,
 .swiper-button-next {
     border-radius: 50% !important;
@@ -13,9 +15,6 @@ section {
     justify-content: center;
     align-items: center;
 }
-
-
-
 
 .doctors .swiper-button-next, .doctors .swiper-button-prev {
     width: 40px;
@@ -48,7 +47,6 @@ section {
     transition-timing-function: linear !important;
 
 }
-
 
 .doctors .swiper-button-prev svg, .doctors .swiper-button-next svg {
     width: 10px;
@@ -98,13 +96,15 @@ section .all_btn-container {
     }
 }
 
-
-
-
 .gm-style-iw+div {
     display: none;
 }
 
 .gm-style-iw button {
     display: none !important;
+}
+
+
+.checkbox:checked+.checkbox-label span {
+    transform: translateX(24px);
 }

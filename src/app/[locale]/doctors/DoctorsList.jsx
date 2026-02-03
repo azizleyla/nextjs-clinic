@@ -11,7 +11,7 @@ import { useDebounce } from "@/src/utils/hooks/useDebounce";
 import useLoadMore from "@/src/utils/hooks/useLoadMore";
 import { createSelectOptions } from "@/src/utils";
 import CardSkeleton from "@/src/components/shared/skeleton/CardSkeleton";
-import Loading from "../loading";
+import Loading from "../../loading";
 
 const DoctorsList = ({ doctors }) => {
   const [allDoctors, setAllDoctors] = useState(doctors || []);

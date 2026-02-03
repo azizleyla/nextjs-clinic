@@ -3,11 +3,12 @@ import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import { FiSearch } from "react-icons/fi";
 import { IoMenu } from "react-icons/io5";
-import Link from "next/link";
 import { IoClose } from "react-icons/io5";
 import { MdArrowDropDown } from "react-icons/md";
 import { menuItems } from "@/src/utils/constants/menuItem";
 import { usePathname } from "next/navigation";
+import DarkModeToggle from "@/src/ThemeToggle";
+import { Link } from "../../i18n/navigation";
 
 const Navbar = () => {
   const [isShowMenu, setIsShowMenu] = useState(false);
@@ -79,15 +80,18 @@ const Navbar = () => {
             </li>
           ))}
         </ul>
-        <form className="hidden relative lg:block">
-          <input
-            className="h-10 py-1 px-2 border-[1px] border-[#dee2e6] rounded-md focus:border-[#86b7fe]  focus:outline-none"
-            placeholder="Axtar..."
-          />
-          <button className="absolute flex items-center justify-center top-0 right-0 w-10 h-full rounded bg-[#d8e0e8]">
-            <FiSearch fontSize="18px" color="#0046c0" />
-          </button>
-        </form>
+        <div className="flex gap-6 items-center">
+          <form className="hidden relative lg:block">
+            <input
+              className="h-10 py-1 px-2 border-[1px] border-[#dee2e6] rounded-md focus:border-[#86b7fe]  focus:outline-none"
+              placeholder="Axtar..."
+            />
+            <button className="absolute flex items-center justify-center top-0 right-0 w-10 h-full rounded bg-[#d8e0e8]">
+              <FiSearch fontSize="18px" color="#0046c0" />
+            </button>
+          </form>
+          <DarkModeToggle />
+        </div>
       </nav>
     </div>
   );

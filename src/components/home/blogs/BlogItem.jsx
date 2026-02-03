@@ -9,7 +9,7 @@ const BlogItem = ({ post }) => {
 
   return (
     <Link href={`/blogs/${slug}/${post.id}`}>
-      <div className="rounded-lg h-full cursor-pointer group shadow-custom-gray bg-white">
+      <div className="rounded-lg h-full cursor-pointer group shadow-custom-gray dark:bg-black bg-white">
         <div className="overflow-hidden">
           <img
             src={post.image}
@@ -18,7 +18,7 @@ const BlogItem = ({ post }) => {
           />
         </div>
         <div className="py-6 px-4 flex-grow flex flex-col gap-2">
-          <h3 className="font-semibold text-base lg:text-md text-[#232323]">
+          <h3 className="font-semibold text-base lg:text-md dark:text-primary text-[#232323]">
             {post.title}
           </h3>
           <p className="leading-relaxed line-clamp-3 text-base text-secondary">

@@ -1,5 +1,4 @@
 "use client";
-
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css/bundle";
 import { Swiper as SwiperCore } from "swiper";
@@ -7,10 +6,14 @@ import { Navigation, Pagination } from "swiper/modules";
 import Image from "next/image";
 import Button from "../../ui/button";
 import styles from "./Hero.module.css";
+import { useTransition } from "react";
+import { useTranslations } from "next-intl";
 
 SwiperCore.use([Navigation, Pagination]);
 
 export default function Hero() {
+  const t = useTranslations("HomePage");
+
   return (
     <div className={styles.hero}>
       <Swiper
@@ -35,15 +38,9 @@ export default function Hero() {
               <div className="relative flex flex-col text-center items-center lg:text-left lg:items-start">
                 <div className="flex relative order-2  z-10 items-center lg:items-start justify-center max-w-[600px] flex-col gap-4">
                   <h1 className="text-2xl md:text-[46px] leading-[1.4] font-semibold capitalize">
-                    Sağlamlığınız Sağlamlığımızdır!
+                    {t("hero_title1")}
                   </h1>
-                  <p className="leading-relaxed my-2">
-                    Diamed Klinikası olaraq, 1999-cu ildən etibarən müasir
-                    tibbi xidmətlər və peşəkar həkim komandamızla
-                    sağlamlığınızı ən yüksək standartlarda qoruyuruq. Hər
-                    addımda yanınızdayıq, sağlam gələcəyiniz üçün ən son
-                    texnologiyalardan istifadə edirik.
-                  </p>
+                  <p className="leading-relaxed my-2">{t("hero_desc1")}</p>
                   <div className="flex gap-5 my-10">
                     <Button
                       variant="secondary"

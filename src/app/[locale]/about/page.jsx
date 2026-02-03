@@ -3,7 +3,6 @@ import {
   Banner,
   Counter,
   DepartmentsSection,
-  DoctorsSection,
 } from "@/src/components";
 import DoctorsSectionWrapper from "@/src/components/features/doctors/DoctorsSectionWrapper";
 import React from "react";
@@ -52,7 +51,7 @@ export const metadata = {
 export default async function About() {
   return (
     <>
-      <Banner title="Haqqımızda" />
+      <Banner pageKey="AboutPage" />
       <div className="container">
         <AboutSection />
       </div>

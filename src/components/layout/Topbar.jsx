@@ -1,4 +1,3 @@
-import React from "react";
 import { FaPhoneAlt } from "react-icons/fa";
 import { IoMdMail } from "react-icons/io";
 import { IoLocationSharp } from "react-icons/io5";
@@ -6,6 +5,7 @@ import { RiInstagramLine } from "react-icons/ri";
 import { SlSocialTwitter } from "react-icons/sl";
 import { ImFacebook } from "react-icons/im";
 import { IoLogoLinkedin } from "react-icons/io5";
+import { LanguageSwitcher } from "@/src/LanguageSwitcher";
 
 const Topbar = () => {
   return (
@@ -34,7 +34,7 @@ const Topbar = () => {
               </li>
             </ul>
           </div>
-          <ul className="flex gap-2">
+          <ul className="flex gap-2 items-center">
             <li>
               <a
                 className="text-white w-6 h-6 bg-primary font-medium flex items-center text-sm  justify-center"
@@ -66,6 +66,9 @@ const Topbar = () => {
               >
                 <IoLogoLinkedin />
               </a>
+            </li>
+            <li className="ml-4">
+              <LanguageSwitcher />
             </li>
           </ul>
         </div>

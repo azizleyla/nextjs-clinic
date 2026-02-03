@@ -50,7 +50,7 @@ export const metadata = {
 export default function DoctorsPage() {
   return (
     <>
-      <Banner title="Həkimlərimiz" />
+      <Banner pageKey="DoctorPage" />
       <DoctorsPageContent />
     </>
   );

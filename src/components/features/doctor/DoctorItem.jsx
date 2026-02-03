@@ -9,7 +9,7 @@ const DoctorItem = ({ doctor }) => {
     <Link href={`/doctors/${title}/${doctor?.id}`}>
       <div
         key={doctor.id}
-        className={`bg-white transition-all duration-400 ease-linear box-border group cursor-pointer shadow-[0_0_20px_0_#ddd] text-center rounded-xl`}
+        className={`bg-white dark:bg-zinc-900 dark:shadow-[0_0_20px_0_#111] transition-all duration-400 ease-linear box-border group cursor-pointer shadow-[0_0_20px_0_#ddd] text-center rounded-xl`}
       >
         <div className="relative overflow-hidden rounded-xl">
           <img
@@ -27,7 +27,8 @@ const DoctorItem = ({ doctor }) => {
           </ul>
         </div>
         <div className="p-4">
-          <h3 className="text-lg group-hover:text-primary font-semibold">
+          <h3 className="text-lg text-black dark:text-primary
+           group-hover:text-primary font-semibold">
             {doctor.name}
           </h3>
           <p className="text-sm text-gray-500">{doctor.specialty}</p>
