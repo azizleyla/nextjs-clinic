@@ -1,5 +1,5 @@
+import { Link } from "@/src/i18n/navigation";
 import { generateSlug } from "@/src/utils/slug";
-import Link from "next/link";
 import React from "react";
 import { FaFacebook, FaInstagram } from "react-icons/fa";
 

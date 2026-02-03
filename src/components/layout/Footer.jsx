@@ -1,17 +1,13 @@
 import React from "react";
 import {
-  FaFacebook,
   FaInstagram,
-  FaMailBulk,
-  FaPhone,
-  FaPhoneAlt,
   FaYoutube,
 } from "react-icons/fa";
 import { CiFacebook } from "react-icons/ci";
-import Link from "next/link";
 import { CgMail } from "react-icons/cg";
 import { MdOutlinePhoneAndroid } from "react-icons/md";
 import { FaLocationDot } from "react-icons/fa6";
+import { Link } from "@/src/i18n/navigation";
 
 const Footer = () => {
   return (

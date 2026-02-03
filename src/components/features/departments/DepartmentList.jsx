@@ -1,8 +1,8 @@
 "use client";
 import { Button } from "@/src/components";
+import { Link } from "@/src/i18n/navigation";
 import useLoadMore from "@/src/utils/hooks/useLoadMore";
 import { generateSlug } from "@/src/utils/slug";
-import Link from "next/link";
 import React, { useState } from "react";
 import { FaUserDoctor } from "react-icons/fa6";
 import { IoEyeOutline } from "react-icons/io5";

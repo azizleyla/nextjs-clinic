@@ -4,10 +4,9 @@ import "swiper/css/bundle";
 import { Swiper as SwiperCore } from "swiper";
 import { Navigation, Pagination } from "swiper/modules";
 import Image from "next/image";
-import Button from "../../ui/button";
 import styles from "./Hero.module.css";
-import { useTransition } from "react";
 import { useTranslations } from "next-intl";
+import Button from "../../ui/button";
 
 SwiperCore.use([Navigation, Pagination]);
 
