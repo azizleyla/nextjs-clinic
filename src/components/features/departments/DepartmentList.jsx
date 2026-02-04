@@ -3,6 +3,7 @@ import { Button } from "@/src/components";
 import { Link } from "@/src/i18n/navigation";
 import useLoadMore from "@/src/utils/hooks/useLoadMore";
 import { generateSlug } from "@/src/utils/slug";
+import { useLocale } from "next-intl";
 import React, { useState } from "react";
 import { FaUserDoctor } from "react-icons/fa6";
 import { IoEyeOutline } from "react-icons/io5";
@@ -17,7 +18,9 @@ const iconsMap = {
 };
 
 const DepartmentList = ({ departments, isLoadMore }) => {
-  const { visibleCount, handleLoadMore } = useLoadMore(4,4);
+  const { visibleCount, handleLoadMore } = useLoadMore(4, 4);
+
+  const locale = useLocale();
 
   return (
     <div>
@@ -26,14 +29,16 @@ const DepartmentList = ({ departments, isLoadMore }) => {
           const Icon = iconsMap[department.icon_name];
           return (
             <Link
-              href={`/departments/${generateSlug(department.title)}/${
+              href={`/departments/${generateSlug(department?.title[locale])}/${
                 department.id
               }`}
               key={department.id}
               className="flex md:hover:-translate-y-2 transition-all duration-300 shadow-custom-gray py-5 px-3 gap-3 flex-col items-center text-center cursor-pointer"
             >
               <Icon className="text-primary" fontSize="50px" />
-              <h3 className="font-medium text-md">{department?.title}</h3>
+              <h3 className="font-medium text-md">
+                {department?.title[locale] || department?.title["az"]}
+              </h3>
               <p className="text-secondary text-sm leading-relaxed">
                 {department?.desc}
               </p>
