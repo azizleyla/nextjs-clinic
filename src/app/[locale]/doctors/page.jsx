@@ -9,6 +9,9 @@ import DoctorsPageContent from "./DoctorsPageContent";
 import { createMetadata } from "@/src/lib/metadata";
 
 export async function generateMetadata({ params }) {
+  const resolvedParams = await params;
+  const { locale } = resolvedParams;
+
   return createMetadata({
     title: "Həkimlərimiz",
     description:
@@ -16,7 +19,7 @@ export async function generateMetadata({ params }) {
     image: "/images/doctor1.jpg",
     path: "/doctors",
     keywords: ["Həkimlərimiz", "Təcrübəli həkimlər", "Tibbi xidmətlər"],
-    locale: params.locale, 
+    locale,
   });
 }
 

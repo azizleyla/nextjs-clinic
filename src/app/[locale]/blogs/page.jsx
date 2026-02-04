@@ -3,8 +3,9 @@ import { createMetadata } from "@/src/lib/metadata";
 import { blogPosts } from "@/src/utils/constants/blogs";
 import React from "react";
 
-
 export async function generateMetadata({ params }) {
+  const resolvedParams = await params;
+  const { locale } = resolvedParams;
   return createMetadata({
     title: "Bloqlar",
     description:
@@ -12,7 +13,7 @@ export async function generateMetadata({ params }) {
     path: "/blogs",
     image: "/images/blog1.jpg",
     keywords: ["Bloqlar", "Sağlamlıq", "Məsləhətlər"],
-    locale: params.locale,
+    locale,
   });
 }
 
