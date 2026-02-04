@@ -8,9 +8,13 @@ import { FaMapMarkerAlt } from "react-icons/fa";
 import Image from "next/image";
 
 const DoctorDetail = async ({ params }) => {
-  const { slug, id } = params;
+  const resolvedParams = await params;
+  const { slug, id } = resolvedParams;
   const doctor = await apiClient.get(`/api/doctors/${id}`);
   const doctors = await apiClient.get(`/api/doctors`);
+
+  console.log(doctor, "dd");
+  console.log(id, "iddd");
 
   //useMemo
   const releatedDoctors = doctors.filter(
@@ -18,7 +22,6 @@ const DoctorDetail = async ({ params }) => {
       item.department_id === doctor.department_id && item.id !== doctor.id,
   );
 
- 
   return (
     <>
       <Banner pageKey={`${doctor?.name} (${doctor?.specialty})`} />

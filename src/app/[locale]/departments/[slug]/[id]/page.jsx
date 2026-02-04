@@ -2,26 +2,29 @@ import { Banner } from "@/src/components";
 import React from "react";
 import { apiClient } from "@/src/lib/apiClient";
 
-export async function generateMetadata({ params }) {
-  const { id } = params;
+// export async function generateMetadata({ params }) {
+//   const { id, locale } = params;
+//   console.log(locale, "l");
 
-  const department = await apiClient.get(`/api/departments/${id}`);
+//   const department = await apiClient.get(`/api/departments/${id}`);
 
-  return {
-    title: `Elmed Hospital | ${department.title}`,
-    description: department.description,
-    keywords: department?.keywords || [
-      "Elmed Hospital",
-      "Tibbi xidmətlər",
-      department.title,
-    ],
-    robots: { index: true, follow: true },
-  };
-}
+//   return createMetadata({
+//     title: department.title,
+//     description: department.description,
+//     path: `/departments/${id}`, 
+//     image: department.image || "/images/department-default.jpg", // optional
+//     keywords: department?.keywords || [
+//       "Elmed Hospital",
+//       "Tibbi xidmətlər",
+//       department.title,
+//     ],
+//     locale, 
+//   });
+// }
 
 const DepartmentDetail = async ({ params }) => {
-  const { id } = params;
-
+  const resolvedParams = await params;
+  const { id } = resolvedParams;
   const department = await apiClient.get(`/api/departments/${id}`);
 
   return (

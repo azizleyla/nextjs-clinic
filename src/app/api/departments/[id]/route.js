@@ -3,8 +3,13 @@ import { supabase } from '@/src/lib/supabaseClient';
 
 export async function GET(req, { params }) {
     try {
-        const { id } = params;
 
+        const resolvedParams = await params
+        const id = Number(resolvedParams.id);
+        // id yoxdursa və ya NaN-dırsa, 400 qaytar
+        if (!id || isNaN(id)) {
+            return NextResponse.json({ error: "Invalid doctor id" }, { status: 400 });
+        }
         const { data, error } = await supabase
             .from("departments")
             .select("*")

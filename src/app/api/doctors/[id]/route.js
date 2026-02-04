@@ -2,8 +2,9 @@ import { supabase } from '@/src/lib/supabaseClient';
 import { NextResponse } from 'next/server';
 
 export async function GET(req, { params }) {
-    const { id } = params;
-
+    const resolvedParams = await params;
+    const { id } = resolvedParams;
+    
     const { data, error } = await supabase
         .from("doctors")
         .select(`
