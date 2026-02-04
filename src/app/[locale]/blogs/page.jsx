@@ -1,8 +1,8 @@
 import { Banner, BlogItem, Button } from "@/src/components";
+import { createMetadata } from "@/src/lib/metadata";
 import { blogPosts } from "@/src/utils/constants/blogs";
 import React from "react";
 
-import { createMetadata } from "@/lib/metadata";
 
 export async function generateMetadata({ params }) {
   return createMetadata({
