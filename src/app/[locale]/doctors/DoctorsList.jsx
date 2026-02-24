@@ -5,12 +5,12 @@ import React, { useEffect, useMemo, useState } from "react";
 import { BsBuildingFill } from "react-icons/bs";
 import { IoSearch } from "react-icons/io5";
 import { FaUserDoctor } from "react-icons/fa6";
-import { Button, DoctorItem } from "@/src/components";
-import { apiClient } from "@/src/lib/apiClient";
-import { useDebounce } from "@/src/utils/hooks/useDebounce";
-import useLoadMore from "@/src/utils/hooks/useLoadMore";
-import { createSelectOptions } from "@/src/utils";
-import CardSkeleton from "@/src/components/shared/skeleton/CardSkeleton";
+import { Button, DoctorItem } from "@/components";
+import { apiClient } from "@/core/api/apiClient";
+import { useDebounce } from "@/utils/hooks/useDebounce";
+import useLoadMore from "@/utils/hooks/useLoadMore";
+import { createSelectOptions } from "@/utils";
+import CardSkeleton from "@/shared/ui/skeleton/CardSkeleton";
 import Loading from "../../loading";
 
 const DoctorsList = ({ doctors }) => {

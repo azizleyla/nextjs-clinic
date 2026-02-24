@@ -3,9 +3,9 @@ import {
   Banner,
   Counter,
   DepartmentsSection,
-} from "@/src/components";
-import DoctorsSectionWrapper from "@/src/components/features/doctors/DoctorsSectionWrapper";
-import { createMetadata } from "@/src/lib/metadata";
+} from "@/components";
+import DoctorsSectionWrapper from "@/features/doctors/components/DoctorsSectionWrapper";
+import { createMetadata } from "@/core/seo/metadata";
 import React from "react";
 
 export async function generateMetadata({ params }) {

@@ -1,6 +1,6 @@
-import { Banner, BlogItem, Button } from "@/src/components";
-import { createMetadata } from "@/src/lib/metadata";
-import { blogPosts } from "@/src/utils/constants/blogs";
+import { Banner, BlogItem, Button } from "@/components";
+import { createMetadata } from "@/core/seo/metadata";
+import { blogPosts } from "@/features/blogs/constants/blogs";
 import React from "react";
 
 export async function generateMetadata({ params }) {

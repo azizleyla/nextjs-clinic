@@ -1,8 +1,8 @@
-import { Banner } from "@/src/components";
+import { Banner } from "@/components";
 import React from "react";
-import { apiClient } from "@/src/lib/apiClient";
-import { generateSlug } from "@/src/utils/slug";
-import { createMetadata } from "@/src/lib/metadata";
+import { apiClient } from "@/core/api/apiClient";
+import { generateSlug } from "@/utils/slug";
+import { createMetadata } from "@/core/seo/metadata";
 
 export async function generateMetadata({ params }) {
   const resolvedParams = await params;

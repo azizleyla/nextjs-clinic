@@ -1,13 +1,13 @@
 "use client";
 import dynamic from "next/dynamic";
-import { categoryOptions } from "@/src/utils/constants/categories";
+import { categoryOptions } from "@/utils/constants/categories";
 import React, { useEffect, useState } from "react";
-import { Button } from "@/src/components";
+import { Button } from "@/components";
 import { IoLocationOutline } from "react-icons/io5";
 const Select = dynamic(() => import("react-select"), { ssr: false });
 import { TiPhoneOutline } from "react-icons/ti";
-import MapContainer from "@/src/components/GoogleMap";
-import { apiClient } from "@/src/lib/apiClient";
+import MapContainer from "@/features/contact/components/GoogleMap";
+import { apiClient } from "@/core/api/apiClient";
 
 const Contact = () => {
   const [selectedBranch, setSelectedBranch] = useState(null);

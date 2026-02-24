@@ -5,4 +5,4 @@ const nextConfig = {
     reactStrictMode: true,
 };
 
-export default createNextIntlPlugin('./src/i18n/request.js')(nextConfig);
+export default createNextIntlPlugin('./src/core/i18n/request.js')(nextConfig);

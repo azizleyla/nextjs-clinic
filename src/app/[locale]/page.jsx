@@ -5,9 +5,9 @@ import {
   Hero,
   Partners,
   DepartmentsSection,
-} from "@/src/components";
-import DoctorsSectionWrapper from "@/src/components/features/doctors/DoctorsSectionWrapper";
-import ListSkeletonWrapper from "@/src/components/shared/skeleton/ListSkeletonWrapper";
+} from "@/components";
+import DoctorsSectionWrapper from "@/features/doctors/components/DoctorsSectionWrapper";
+import ListSkeletonWrapper from "@/shared/ui/skeleton/ListSkeletonWrapper";
 import { Suspense } from "react";
 import Loading from "../loading";
 

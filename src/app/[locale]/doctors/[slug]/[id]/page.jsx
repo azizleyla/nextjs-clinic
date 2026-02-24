@@ -1,5 +1,5 @@
-import { Banner, DoctorsSection } from "@/src/components";
-import { apiClient } from "@/src/lib/apiClient";
+import { Banner, DoctorsSection } from "@/components";
+import { apiClient } from "@/core/api/apiClient";
 import React from "react";
 import { RiGraduationCapLine } from "react-icons/ri";
 import { BsBriefcase } from "react-icons/bs";

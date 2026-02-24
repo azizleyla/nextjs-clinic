@@ -1,4 +1,4 @@
-import { Banner, DepartmentsSection } from "@/src/components";
+import { Banner, DepartmentsSection } from "@/components";
 import React from "react";
 
 const Departments = () => {

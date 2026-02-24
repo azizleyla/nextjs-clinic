@@ -4,7 +4,7 @@
     "lib": ["dom", "dom.iterable", "esnext"],
     "baseUrl": ".",
     "paths": {
-      "@/*": ["./*"]
+      "@/*": ["src/*"]
     },
     "allowJs": true,
     "skipLibCheck": true,
@@ -26,11 +26,11 @@
   "include": [
     "next-env.d.ts",
     ".next/types/**/*.ts",
-    "**/*.ts",
-    "**/*.tsx",
     ".next/dev/types/**/*.ts",
-    "src/ThemeProvider.jsx",
-    "src/app/[locale]/layout.jsx"
+    "src/**/*.ts",
+    "src/**/*.tsx",
+    "src/**/*.js",
+    "src/**/*.jsx"
   ],
   "exclude": ["node_modules"]
 }

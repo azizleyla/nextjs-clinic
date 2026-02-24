@@ -1,4 +1,4 @@
-import { blogPosts } from "@/src/utils/constants/blogs";
+import { blogPosts } from "@/features/blogs/constants/blogs";
 
 export async function GET(request, { params }) {
     const { id } = params;

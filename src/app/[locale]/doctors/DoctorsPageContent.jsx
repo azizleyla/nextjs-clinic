@@ -1,8 +1,8 @@
 import React, { Suspense } from "react";
 import DoctorsList from "./DoctorsList";
-import { Banner } from "@/src/components";
-import { apiClient } from "@/src/lib/apiClient";
-import CardSkeleton from "@/src/components/shared/skeleton/CardSkeleton";
+import { Banner } from "@/components";
+import { apiClient } from "@/core/api/apiClient";
+import CardSkeleton from "@/shared/ui/skeleton/CardSkeleton";
 
 export default async function DoctorsPageContent() {
   const doctors = await apiClient.get("/api/doctors");

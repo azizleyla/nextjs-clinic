@@ -1,12 +1,12 @@
 // app/doctors/page.jsx (GÜNCELLENMİŞ)
 
 import React, { Suspense } from "react"; // Suspense'i import edin
-import { Banner } from "@/src/components";
+import { Banner } from "@/components";
 // import { apiClient } from "@/lib/apiClient"; // Veri çekmeyi taşıdık, artık bu import'a gerek yok
 // import CardSkeleton from "@/components/ui/shared/CardSkeleton"; // Skeleton'ı DoctorsPageContent'e taşıdık
-import CardSkeleton from "@/src/components/shared/skeleton/CardSkeleton";
+import CardSkeleton from "@/shared/ui/skeleton/CardSkeleton";
 import DoctorsPageContent from "./DoctorsPageContent";
-import { createMetadata } from "@/src/lib/metadata";
+import { createMetadata } from "@/core/seo/metadata";
 
 export async function generateMetadata({ params }) {
   const resolvedParams = await params;
