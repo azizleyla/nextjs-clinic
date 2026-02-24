@@ -1,5 +1,10 @@
 // components/SectionTitle.jsx
-export default function SectionTitle({ title, subtitle }) {
+type SectionTitleProps = {
+  title: string;
+  subtitle?: string;
+};
+
+export default function SectionTitle({ title, subtitle }:SectionTitleProps) {
   return (
     <div className=" mb-8">
       {subtitle && (

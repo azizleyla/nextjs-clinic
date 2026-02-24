@@ -3,7 +3,11 @@ import SectionTitle from "@/shared/ui/typography/SectionTitle";
 import { apiClient } from "@/core/api/apiClient";
 import DepartmentList from "./DepartmentList";
 
-export default async function Departments({ isLoadMore = false }) {
+type DepartmensProps = {
+  isLoadMore?: boolean;
+};
+
+export default async function Departments({ isLoadMore = false }:DepartmensProps) {
   const departments = await apiClient.get("/api/departments");
 
   return (
