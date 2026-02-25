@@ -1,15 +1,13 @@
 import { Banner, BlogItem, Button } from "@/components";
 import { createMetadata } from "@/core/seo/metadata";
 import { blogPosts } from "@/features/blogs/constants/blogs";
-import type { BlogPost } from "@/features/blogs/types";
 
 type PageProps = {
   params: Promise<{ locale: string }>;
 };
 
 export async function generateMetadata({ params }: PageProps) {
-  const resolvedParams = await params;
-  const { locale } = resolvedParams;
+  const { locale } = await params;
   return createMetadata({
     title: "Bloqlar",
     description:
@@ -28,7 +26,7 @@ export default function Blogs() {
       <section>
         <div className="container">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {blogPosts.map((post: BlogPost) => (
+            {blogPosts.map((post) => (
               <BlogItem post={post} key={post.id} />
             ))}
           </div>

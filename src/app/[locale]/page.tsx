@@ -7,53 +7,27 @@ import {
   DepartmentsSection,
 } from "@/components";
 import DoctorsSectionWrapper from "@/features/doctors/components/DoctorsSectionWrapper";
-import ListSkeletonWrapper from "@/shared/ui/skeleton/ListSkeletonWrapper";
+import { createMetadata } from "@/core/seo/metadata";
 import { Suspense } from "react";
 import Loading from "../loading";
 
-export const metadata = {
-  title: "Elmed Hospital | Ana səhifə",
-  description:
-    "Elmed Hospital – etibarlı səhiyyə platforması. Təcrübəli həkimlərlə tanış olun, xidmətlərimizi kəşf edin və sağlamlıq bloqlarımızla məlumatlı qalın.",
-  keywords: [
-    "Elmed Hospital",
-    "Səhiyyə",
-    "Həkimlər",
-    "Tibbi xidmətlər",
-    "Klinikalar",
-    "Bloqlar",
-  ],
-  robots: {
-    index: true,
-    follow: true,
-  },
-  openGraph: {
-    title: "Elmed Hospital – Etibarlı səhiyyə platforması",
-    description:
-      "Peşəkar həkimlər, etibarlı tibbi xidmətlər və sağlamlıq mövzularında bloqlar – hamısı Elmed Hospital-də.",
-    url: "https://elmed-clinic.vercel.app/",
-    siteName: "Elmed Hospital",
-    images: [
-      {
-        url: "https://elmed-clinic.vercel.app/images/logo.png",
-        width: 1200,
-        height: 630,
-        alt: "Elmed Hospital Ana Səhifə",
-      },
-    ],
-    locale: "az_AZ",
-    type: "website",
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: "Elmed Hospital – Etibarlı səhiyyə platforması",
-    description:
-      "Peşəkar həkimlər və etibarlı tibbi xidmətlərlə sağlamlığınızı qoruyun. Elmed Hospital sizin üçün buradadır.",
-    images: ["https://elmed-clinic.vercel.app/images/logo.png"],
-  },
+type HomePageProps = {
+  params: Promise<{ locale: string }>;
 };
 
-export default async function Home() {
+export async function generateMetadata({ params }: HomePageProps) {
+  const { locale } = await params;
+  return createMetadata({
+    title: "Ana səhifə",
+    description:
+      "Elmed Hospital – etibarlı səhiyyə platforması. Təcrübəli həkimlərlə tanış olun, xidmətlərimizi kəşf edin və sağlamlıq bloqlarımızla məlumatlı qalın.",
+    path: "/",
+    keywords: ["Səhiyyə", "Həkimlər", "Tibbi xidmətlər", "Klinikalar", "Bloqlar"],
+    locale,
+  });
+}
+
+export default async function HomePage() {
   return (
     <>
       <Hero />

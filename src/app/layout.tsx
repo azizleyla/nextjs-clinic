@@ -18,9 +18,11 @@ const geist = Geist({
 export const metadata = {
   title: "Elmed Hospital",
   description: "Etibarlı səhiyyə platforması",
-};
+} as const;
 
-export default function RootLayout({ children }: { children: ReactNode }) {
+type RootLayoutProps = { children: ReactNode };
+
+export default function RootLayout({ children }: RootLayoutProps) {
   return (
     <html
       lang="en"

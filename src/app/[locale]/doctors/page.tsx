@@ -7,9 +7,7 @@ type PageProps = {
 };
 
 export async function generateMetadata({ params }: PageProps) {
-  const resolvedParams = await params;
-  const { locale } = resolvedParams;
-
+  const { locale } = await params;
   return createMetadata({
     title: "Həkimlərimiz",
     description:

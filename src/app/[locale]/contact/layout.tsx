@@ -14,12 +14,11 @@ export const metadata = {
     "Qəbula yazıl",
     "Filiallar",
   ],
-  robots: {
-    index: true,
-    follow: true,
-  },
-};
+  robots: { index: true, follow: true },
+} as const;
 
-export default function ContactLayout({ children }: { children: ReactNode }) {
+type ContactLayoutProps = { children: ReactNode };
+
+export default function ContactLayout({ children }: ContactLayoutProps) {
   return <>{children}</>;
 }

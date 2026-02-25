@@ -1,9 +1,9 @@
-export const createSelectOptions = (data, defaultLabel, labelKey) => {
+export const createSelectOptions = (data, defaultLabel, labelKey, locale) => {
   return [
     { value: null, label: defaultLabel },
     ...data.map((item) => ({
       value: item.id,
-      label: item[labelKey],
+      label: locale ? item[labelKey][locale] : item[labelKey],
     })),
   ];
 };
