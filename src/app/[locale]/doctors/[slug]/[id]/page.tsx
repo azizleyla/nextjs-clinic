@@ -1,4 +1,4 @@
-import { Banner, DoctorsSection } from "@/components";
+import { Banner } from "@/components";
 import { apiClient } from "@/core/api/apiClient";
 import { RiGraduationCapLine } from "react-icons/ri";
 import { BsBriefcase } from "react-icons/bs";
@@ -6,6 +6,7 @@ import { BsFillTelephoneFill } from "react-icons/bs";
 import { FaMapMarkerAlt } from "react-icons/fa";
 import Image from "next/image";
 import type { Doctor } from "@/features/doctors/types";
+import DoctorsSection from "@/features/doctors/components/DoctorsSection";
 
 type Params = { slug: string; id: string };
 
