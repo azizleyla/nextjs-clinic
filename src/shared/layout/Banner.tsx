@@ -2,11 +2,11 @@ import { useTranslations } from "next-intl";
 import React from "react";
 
 type BannerProps = {
-  pageKey: string;
-  dynamicTitle?: string
-}
+  pageKey?: string;
+  dynamicTitle?: string;
+};
 
-const Banner = ({ pageKey, dynamicTitle }:BannerProps) => {
+const Banner = ({ pageKey, dynamicTitle }: BannerProps) => {
   const t = useTranslations(pageKey);
 
   return (

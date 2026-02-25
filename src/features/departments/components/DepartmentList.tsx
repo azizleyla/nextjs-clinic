@@ -26,7 +26,7 @@ type Department = {
 };
 
 type DepartmentListProps = {
-  departments: Department[];
+  departments: any
   isLoadMore?: boolean;
 };
 

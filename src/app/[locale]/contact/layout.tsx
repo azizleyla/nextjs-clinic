@@ -1,3 +1,5 @@
+import type { ReactNode } from "react";
+
 export const metadata = {
   title: "Elmed Hospital | Əlaqə",
   description:
@@ -17,3 +19,7 @@ export const metadata = {
     follow: true,
   },
 };
+
+export default function ContactLayout({ children }: { children: ReactNode }) {
+  return <>{children}</>;
+}
