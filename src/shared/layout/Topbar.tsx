@@ -1,10 +1,11 @@
-import { FaPhoneAlt } from "react-icons/fa";
-import { IoMdMail } from "react-icons/io";
-import { IoLocationSharp } from "react-icons/io5";
-import { RiInstagramLine } from "react-icons/ri";
-import { SlSocialTwitter } from "react-icons/sl";
-import { ImFacebook } from "react-icons/im";
-import { IoLogoLinkedin } from "react-icons/io5";
+import {
+  FaPhone,
+  FaEnvelope,
+  FaFacebook,
+  FaInstagram,
+  FaLinkedin,
+} from "react-icons/fa";
+import { FaLocationDot, FaXTwitter } from "react-icons/fa6";
 import { LanguageSwitcher } from "@/shared/i18n/LanguageSwitcher";
 
 const Topbar = () => {
@@ -16,19 +17,19 @@ const Topbar = () => {
             <ul className="flex gap-2 justify-center lg:justify-normal lg:gap-6 flex-wrap lg:flex-nowrap">
               <li>
                 <a className="flex text-primary_bold items-center font-semibold text-sm gap-1">
-                  <FaPhoneAlt className="text-primary text-md" />
+                  <FaPhone className="text-primary text-md" />
                   Call : +07 554 332 322
                 </a>
               </li>
               <li>
                 <a className="flex text-primary_bold font-semibold  items-center text-sm gap-1">
-                  <IoMdMail className="text-primary text-md" />
+                  <FaEnvelope className="text-primary text-md" />
                   hello@disin.com
                 </a>
               </li>
               <li>
                 <a className="flex text-primary_bold font-semibold  items-center font-medium text-sm gap-1 ">
-                  <IoLocationSharp className="text-primary text-md" />
+                  <FaLocationDot className="text-primary text-md" />
                   210-27 Quadra, Canada
                 </a>
               </li>
@@ -40,7 +41,7 @@ const Topbar = () => {
                 className="text-white w-6 h-6 bg-primary font-medium flex items-center text-sm  justify-center"
                 href=""
               >
-                <ImFacebook />
+                <FaFacebook />
               </a>
             </li>
             <li>
@@ -48,7 +49,7 @@ const Topbar = () => {
                 className="text-white w-6 h-6 bg-primary font-medium text-sm flex items-center justify-center"
                 href=""
               >
-                <SlSocialTwitter />
+                <FaXTwitter />
               </a>
             </li>
             <li>
@@ -56,7 +57,7 @@ const Topbar = () => {
                 className="text-white w-6 h-6 bg-primary font-medium text-sm flex items-center justify-center"
                 href=""
               >
-                <RiInstagramLine />
+                <FaInstagram />
               </a>
             </li>
             <li>
@@ -64,7 +65,7 @@ const Topbar = () => {
                 className="text-white w-6 h-6 bg-primary text-sm flex items-center justify-center"
                 href=""
               >
-                <IoLogoLinkedin />
+                <FaLinkedin />
               </a>
             </li>
             <li className="ml-4">

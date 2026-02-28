@@ -1,18 +1,18 @@
 "use client";
+import React from "react";
 import { Button } from "@/components";
 import { Link } from "@/core/i18n/navigation";
 import useLoadMore from "@/utils/hooks/useLoadMore";
 import { generateSlug } from "@/utils/slug";
 import { useLocale } from "next-intl";
-import { FaUserDoctor } from "react-icons/fa6";
-import { IoEyeOutline } from "react-icons/io5";
-import { PiBrain, PiHeartbeat, PiHospitalLight } from "react-icons/pi";
+import { FaEye } from "react-icons/fa";
+import { FaUserDoctor, FaBrain, FaHeartPulse, FaHospital } from "react-icons/fa6";
 
-const iconsMap = {
-  PiHeartbeat,
-  PiHospitalLight,
-  IoEyeOutline,
-  PiBrain,
+const iconsMap: Record<string, React.ComponentType<{ className?: string; fontSize?: string }>> = {
+  PiHeartbeat: FaHeartPulse,
+  PiHospitalLight: FaHospital,
+  IoEyeOutline: FaEye,
+  PiBrain: FaBrain,
   FaUserDoctor,
 };
 

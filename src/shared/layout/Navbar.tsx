@@ -1,10 +1,8 @@
 "use client";
 import React, { useEffect, useState } from "react";
 import Image from "next/image";
-import { FiSearch } from "react-icons/fi";
-import { IoMenu } from "react-icons/io5";
-import { IoClose } from "react-icons/io5";
-import { MdArrowDropDown } from "react-icons/md";
+import { FaBars, FaChevronDown } from "react-icons/fa";
+import { FaMagnifyingGlass, FaXmark } from "react-icons/fa6";
 import { menuItems } from "@/utils/constants/menuItem";
 import { usePathname } from "next/navigation";
 import DarkModeToggle from "@/core/theme/ThemeToggle";
@@ -39,9 +37,9 @@ const Navbar = () => {
 
         <button onClick={handleOpenMenu} className="block lg:hidden">
           {isShowMenu ? (
-            <IoClose fontSize="50px" />
+            <FaXmark fontSize="50px" />
           ) : (
-            <IoMenu fontSize="50px" />
+            <FaBars fontSize="50px" />
           )}
         </button>
         <ul
@@ -60,7 +58,7 @@ const Navbar = () => {
                 >
                   {item.title}
                 </Link>
-                {item.children && <MdArrowDropDown />}
+                {item.children && <FaChevronDown />}
               </div>
 
               {item.children && (
@@ -87,7 +85,7 @@ const Navbar = () => {
               placeholder="Axtar..."
             />
             <button className="absolute flex items-center justify-center top-0 right-0 w-10 h-full rounded bg-[#d8e0e8]">
-              <FiSearch fontSize="18px" color="#0046c0" />
+              <FaMagnifyingGlass fontSize="18px" color="#0046c0" />
             </button>
           </form>
           <DarkModeToggle />

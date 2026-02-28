@@ -1,9 +1,6 @@
 import { Banner } from "@/components";
 import { apiClient } from "@/core/api/apiClient";
-import { RiGraduationCapLine } from "react-icons/ri";
-import { BsBriefcase } from "react-icons/bs";
-import { BsFillTelephoneFill } from "react-icons/bs";
-import { FaMapMarkerAlt } from "react-icons/fa";
+import { FaGraduationCap, FaBriefcase, FaPhone, FaMapMarkerAlt } from "react-icons/fa";
 import Image from "next/image";
 import type { Doctor } from "@/features/doctors/types";
 import DoctorsSection from "@/features/doctors/components/DoctorsSection";
@@ -42,7 +39,7 @@ export default async function DoctorDetail({ params }: { params: Promise<Params>
                 </h3>
                 <ul className="my-3 pb-3 text-sm text-secondary flex flex-col gap-2">
                   <li className="flex items-center gap-2">
-                    <BsFillTelephoneFill className="text-primary" />
+                    <FaPhone className="text-primary" />
                     {doctor?.branch?.phone?.join(", ")}
                   </li>
                   <li className="flex items-center gap-2">
@@ -60,7 +57,7 @@ export default async function DoctorDetail({ params }: { params: Promise<Params>
             {doctor?.education?.length ? (
               <>
                 <h4 className="text-secondary flex items-center gap-2 text-md mb-2 font-semibold">
-                  <RiGraduationCapLine className="text-secondary text-lg" />
+                  <FaGraduationCap className="text-secondary text-lg" />
                   Təhsil
                 </h4>
                 <ul className="list-disc">
@@ -75,7 +72,7 @@ export default async function DoctorDetail({ params }: { params: Promise<Params>
             {doctor?.experience?.length ? (
               <>
                 <h4 className="text-secondary flex items-center gap-2 text-md my-4 font-semibold">
-                  <BsBriefcase className="text-secondary text-lg" /> İş təcrübəsi
+                  <FaBriefcase className="text-secondary text-lg" /> İş təcrübəsi
                 </h4>
                 <ul className="list-disc">
                   {doctor.experience.map((item, index) => (

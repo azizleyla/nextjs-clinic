@@ -1,12 +1,23 @@
 "use client";
-import dynamic from "next/dynamic";
 import { categoryOptions } from "@/utils/constants/categories";
 import { useEffect, useState } from "react";
 import { Button } from "@/components";
-import { IoLocationOutline } from "react-icons/io5";
-import { TiPhoneOutline } from "react-icons/ti";
-import MapContainer from "@/features/contact/components/GoogleMap";
+import { FaPhone } from "react-icons/fa";
+import { FaLocationDot } from "react-icons/fa6";
+import dynamic from "next/dynamic";
 import { apiClient } from "@/core/api/apiClient";
+
+const MapContainer = dynamic(
+  () => import("@/features/contact/components/GoogleMap"),
+  {
+    ssr: false,
+    loading: () => (
+      <div className="w-full h-[400px] bg-gray-100 animate-pulse rounded-md flex items-center justify-center text-secondary">
+        Xəritə yüklənir...
+      </div>
+    ),
+  }
+);
 
 type Branch = {
   id: number;
@@ -111,11 +122,11 @@ export default function Contact() {
                   </h5>
                   <ul className="flex flex-col gap-2 my-2">
                     <li className="text-secondary flex items-center gap-2 text-sm">
-                      <IoLocationOutline />
+                      <FaLocationDot />
                       {item.address}
                     </li>
                     <li className="text-secondary flex items-center gap-2 text-sm">
-                      <TiPhoneOutline />
+                      <FaPhone />
                       {item.phone?.join(", ")}
                     </li>
                   </ul>

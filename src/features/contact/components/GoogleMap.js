@@ -1,7 +1,6 @@
 "use client";
 import Loading from "@/app/loading";
 import { GoogleMap, LoadScript, Marker, InfoWindow } from "@react-google-maps/api";
-import Image from "next/image";
 import Link from "next/link";
 import React, { useState } from "react";
 
@@ -22,8 +21,9 @@ const MapContainer = ({ selectedBranch, branches }) => {
     const [infoWindowOffset, setInfoWindowOffset] = useState(null);
 
     const onMapLoad = (map) => {
+        if (!branches?.length) return;
         const bounds = new window.google.maps.LatLngBounds();
-        branches.forEach(({ latitude, longitude }) => bounds.extend({ latitude, longitude }));
+        branches.forEach(({ latitude, longitude }) => bounds.extend({ lat: latitude, lng: longitude }));
         map.fitBounds(bounds);
 
         if (window.google) {
@@ -85,7 +85,7 @@ const MapContainer = ({ selectedBranch, branches }) => {
                                     <div className=" custom-infowindow-content">
                                         <p className="text-sm text-black font-medium">{b?.name}</p>
                                         <p className="text-[#5b5b5b] text-xs font-medium my-2">
-                                            {placeDetails?.formatted_address.replace(/Азербайджан/gi, '').trim()}
+                                            {(placeDetails?.formatted_address ?? "").replace(/Азербайджан/gi, "").trim()}
 
                                         </p>
                                         {/* 🔹 Əgər placeDetails varsa, reytinq və rəyləri göstər */}

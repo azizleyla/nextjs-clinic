@@ -1,3 +1,5 @@
+import { ApiError, reportError } from "@/core/errors";
+
 const API_BASE_URL =
   process.env.NODE_ENV === "development"
     ? "http://localhost:3000"
@@ -7,10 +9,20 @@ type RequestOptions = RequestInit & {
   headers?: HeadersInit;
 };
 
+async function getErrorMessage(res: Response): Promise<string> {
+  const text = await res.text();
+  try {
+    const body = JSON.parse(text) as { message?: string; error?: string };
+    return (body.message ?? body.error ?? text) || `HTTP ${res.status}`;
+  } catch {
+    return text || `HTTP ${res.status}`;
+  }
+}
+
 export const apiClient = {
   baseUrl: API_BASE_URL as string,
 
-  async request<T = any>(endpoint: string, options: RequestOptions = {}): Promise<T> {
+  async request<T = unknown>(endpoint: string, options: RequestOptions = {}): Promise<T> {
     const url = `${this.baseUrl}${endpoint}`;
 
     const defaultOptions: RequestInit = {
@@ -20,13 +32,22 @@ export const apiClient = {
       },
     };
 
-    const res = await fetch(url, { ...defaultOptions, ...options });
+    try {
+      const res = await fetch(url, { ...defaultOptions, ...options });
 
-    if (!res.ok) {
-      throw new Error(`HTTP error! status: ${res.status}`);
+      if (!res.ok) {
+        const message = await getErrorMessage(res);
+        const err = new ApiError(message, res.status);
+        reportError(err, { endpoint, status: res.status });
+        throw err;
+      }
+
+      return res.json() as Promise<T>;
+    } catch (e) {
+      if (e instanceof ApiError) throw e;
+      reportError(e, { endpoint });
+      throw e;
     }
-
-    return res.json() as Promise<T>;
   },
 
   get<T = unknown>(endpoint: string, options?: RequestOptions): Promise<T> {

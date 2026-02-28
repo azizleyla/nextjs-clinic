@@ -1,7 +1,6 @@
 import { generateSlug } from "@/utils/slug";
 import Link from "next/link";
-import { FaRegCalendarAlt } from "react-icons/fa";
-import { HiOutlineArrowLongRight } from "react-icons/hi2";
+import { FaRegCalendarAlt, FaArrowRight } from "react-icons/fa";
 import type { BlogPost } from "@/features/blogs/types";
 
 type BlogItemProps = {
@@ -31,7 +30,7 @@ export default function BlogItem({ post }: BlogItemProps) {
           <div className="flex text-[15px] justify-between pt-5 border-t border-[#b1b8ed]">
             <button className="flex gap-2 items-center font-semibold text-primary transition-colors duration-300 group hover:text-[#232323]">
               Ətraflı oxu
-              <HiOutlineArrowLongRight className="mt-1 text-md transition-colors duration-300 group-hover:text-[#232323]" />
+              <FaArrowRight className="mt-1 text-md transition-colors duration-300 group-hover:text-[#232323]" />
             </button>
 
             <span className="flex items-center font-semibold gap-2 text-primary">

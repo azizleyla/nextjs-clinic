@@ -1,4 +1,5 @@
 import { supabase } from "@/core/db/supabaseClient";
+import { reportError } from "@/core/errors";
 import { NextRequest, NextResponse } from "next/server";
 
 export async function GET(req: NextRequest) {
@@ -25,8 +26,7 @@ export async function GET(req: NextRequest) {
 
     return NextResponse.json(data);
   } catch (err) {
-    const message = err instanceof Error ? err.message : "Unknown error";
-    console.error("Supabase GET error:", message);
+    reportError(err, { context: "api/doctors GET" });
     return NextResponse.json(
       { error: "Məlumatları yükləmək mümkün olmadı" },
       { status: 500 }

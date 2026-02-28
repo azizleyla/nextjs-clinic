@@ -3,7 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import { useRouter, usePathname } from "next/navigation";
 import { useLocale } from "next-intl";
-import { IoChevronDown, IoChevronUp } from "react-icons/io5";
+import { FaChevronDown, FaChevronUp } from "react-icons/fa";
 import Image from "next/image";
 
 const languages = [
@@ -55,9 +55,9 @@ export function LanguageSwitcher() {
         />
         <span className="font-medium text-black">{currentLang.label}</span>
         {open ? (
-          <IoChevronUp className="text-black" />
+          <FaChevronUp className="text-black" />
         ) : (
-          <IoChevronDown className="text-black" />
+          <FaChevronDown className="text-black" />
         )}
       </button>
       {open && (

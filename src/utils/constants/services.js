@@ -1,18 +1,18 @@
-import { FaUserDoctor } from "react-icons/fa6";
-import { LuBrain } from "react-icons/lu";
-import { FaDiagnoses } from "react-icons/fa";
-import { TbDental } from "react-icons/tb";
-import { LuReceiptText } from "react-icons/lu";
-import { PiHeartbeat } from "react-icons/pi";
-import { IoEyeOutline } from "react-icons/io5";
-import { TbMassage } from "react-icons/tb";
-import { LuAmbulance } from "react-icons/lu";
-import { PiHospitalLight } from "react-icons/pi";
+import { FaDiagnoses, FaEye } from "react-icons/fa";
+import {
+  FaUserDoctor,
+  FaBrain,
+  FaHeartPulse,
+  FaHospital,
+  FaTooth,
+  FaHandHoldingMedical,
+  FaTruckMedical,
+} from "react-icons/fa6";
 
 export const services = [
     {
         id: 1,
-        icon: PiHeartbeat,
+        icon: FaHeartPulse,
         title: "Kardiologiya",
         description: "Kardiologiya şöbəsində ürək sit amet, consectetur adipiscing elit, sed do eiusmod",
         image: "/urolog.webp",
@@ -23,7 +23,7 @@ export const services = [
     },
     {
         id: 2,
-        icon: LuBrain,
+        icon: FaBrain,
         title: "Nevrologiya",
         image: "/urolog.webp",
         updatedAt: new Date().toISOString(),
@@ -32,7 +32,7 @@ export const services = [
     },
     {
         id: 3,
-        icon: IoEyeOutline,
+        icon: FaEye,
         title: "Oftalmologiya",
         updatedAt: new Date().toISOString(),
         image: "/urolog.webp",
@@ -49,7 +49,7 @@ export const services = [
     },
     {
         id: 5,
-        icon: TbDental,
+        icon: FaTooth,
         title: "Stomatologiya",
         updatedAt: new Date().toISOString(),
 
@@ -58,7 +58,7 @@ export const services = [
     },
     {
         id: 6,
-        icon: TbMassage,
+        icon: FaHandHoldingMedical,
         title: "Fizioterapiya",
 
         description: "Zədə, azalma göstərən funksional hərəkətləri geri qazandırma məqsədli edilən elektrik cərəyanı xəstələrin müalicəsinə verilən addır.",
@@ -66,7 +66,7 @@ export const services = [
     },
     {
         id: 7,
-        icon: LuAmbulance,
+        icon: FaTruckMedical,
         title: "Təcili yardım",
         updatedAt: new Date().toISOString(),
 
@@ -75,7 +75,7 @@ export const services = [
     },
     {
         id: 8,
-        icon: PiHospitalLight,
+        icon: FaHospital,
         updatedAt: new Date().toISOString(),
         title: "Reanimasiya",
         description: "Reanimasiyada süni tənəffüs aparatına ehtiyacı olan və xüsusi baxım tələb olunan xəstələr yatırılır.",

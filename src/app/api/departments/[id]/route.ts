@@ -1,5 +1,6 @@
-import { NextResponse } from "next/server";
 import { supabase } from "@/core/db/supabaseClient";
+import { reportError } from "@/core/errors";
+import { NextResponse } from "next/server";
 
 type RouteContext = { params: Promise<{ id: string }> };
 
@@ -21,8 +22,8 @@ export async function GET(
     if (error) throw error;
     return NextResponse.json(data, { status: 200 });
   } catch (err) {
+    reportError(err, { context: "api/departments/[id] GET" });
     const message = err instanceof Error ? err.message : "Unknown error";
-    console.error("Supabase GET by id error:", message);
     return NextResponse.json({ error: message }, { status: 500 });
   }
 }

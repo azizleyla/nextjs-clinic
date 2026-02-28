@@ -1,4 +1,5 @@
 import { supabase } from "@/core/db/supabaseClient";
+import { reportError } from "@/core/errors";
 import { NextRequest, NextResponse } from "next/server";
 
 export async function GET() {
@@ -23,8 +24,8 @@ export async function POST(req: NextRequest) {
     if (error) throw error;
     return NextResponse.json(data, { status: 201 });
   } catch (err) {
+    reportError(err, { context: "api/branches POST" });
     const message = err instanceof Error ? err.message : "Unknown error";
-    console.error("Supabase POST error:", message);
     return NextResponse.json({ error: message }, { status: 500 });
   }
 }

@@ -1,10 +1,10 @@
 import {
+  FaFacebook,
   FaInstagram,
   FaYoutube,
+  FaEnvelope,
+  FaPhone,
 } from "react-icons/fa";
-import { CiFacebook } from "react-icons/ci";
-import { CgMail } from "react-icons/cg";
-import { MdOutlinePhoneAndroid } from "react-icons/md";
 import { FaLocationDot } from "react-icons/fa6";
 import { Link } from "@/core/i18n/navigation";
 
@@ -30,7 +30,7 @@ const Footer = () => {
                     href="/"
                     className="leading-10 group-hover:bg-white w-10 transition-colors duration-500 flex items-center justify-center h-10 border-[1px] rounded-full text-center   border-[#ffffff38]"
                   >
-                    <CiFacebook className="group-hover:text-primary text-md" />
+                    <FaFacebook className="group-hover:text-primary text-md" />
                   </Link>
                 </li>
                 <li className="group">
@@ -108,14 +108,14 @@ const Footer = () => {
             <h3 className="text-lg md:text-2xl mb-5 font-semibold">Əlaqə</h3>
             <ul className="flex flex-col gap-y-3 md:gap-y-4">
               <li className="flex gap-3 items-center">
-                <CgMail className="text-3xl md:text-4xl" />
+                <FaEnvelope className="text-3xl md:text-4xl" />
                 <div className="flex flex-col">
                   <Link href="/">disin@gmail.com</Link>
                   <Link href="/">disin@gmail.com</Link>
                 </div>
               </li>
               <li className="flex gap-3 items-center">
-                <MdOutlinePhoneAndroid className="text-3xl md:text-4xl" />
+                <FaPhone className="text-3xl md:text-4xl" />
                 <div className="flex flex-col">
                   <Link href="/">(+99412) 430 43 03</Link>
                   <Link href="/">(+99412) 430 43 03</Link>

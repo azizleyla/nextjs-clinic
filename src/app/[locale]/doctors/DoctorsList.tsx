@@ -2,11 +2,11 @@
 
 import dynamic from "next/dynamic";
 import { useCallback, useEffect, useRef, useState } from "react";
-import { BsBuildingFill } from "react-icons/bs";
-import { IoSearch } from "react-icons/io5";
-import { FaUserDoctor } from "react-icons/fa6";
+import { FaBuilding } from "react-icons/fa";
+import { FaUserDoctor, FaMagnifyingGlass } from "react-icons/fa6";
 import { Button, DoctorItem } from "@/components";
 import { apiClient } from "@/core/api/apiClient";
+import { reportError } from "@/core/errors";
 import { useDebounce } from "@/utils/hooks/useDebounce";
 import useLoadMore from "@/utils/hooks/useLoadMore";
 import { createSelectOptions } from "@/utils";
@@ -59,8 +59,8 @@ export default function DoctorsList({ doctors }: DoctorsListProps) {
         ]);
         setDepartments(deps ?? []);
         setBranches(brs ?? []);
-      } catch {
-        // filters optional
+      } catch (err) {
+        reportError(err, { context: "DoctorsList.fetchFilters" });
       } finally {
         setFiltersLoading(false);
       }
@@ -85,7 +85,8 @@ export default function DoctorsList({ doctors }: DoctorsListProps) {
         `/api/doctors?${params.toString()}`,
       );
       setAllDoctors(res ?? []);
-    } catch {
+    } catch (err) {
+      reportError(err, { context: "DoctorsList.fetchDoctors" });
       setAllDoctors([]);
     } finally {
       setIsLoading(false);
@@ -139,7 +140,7 @@ export default function DoctorsList({ doctors }: DoctorsListProps) {
             onSubmit={(e) => e.preventDefault()}
           >
             <div className="relative flex gap-4 items-center">
-              <FaUserDoctor className="text-4xl flex-shrink-0 text-primary" />
+              <FaUserDoctor className="text-4xl flex-shrink-0 text-primary" aria-hidden />
               <div className="flex flex-col w-full">
                 <label className="text-secondary mb-1">Axtar</label>
                 <input
@@ -156,7 +157,7 @@ export default function DoctorsList({ doctors }: DoctorsListProps) {
                 className="absolute bottom-3 right-0"
                 aria-label="Axtar"
               >
-                <IoSearch className="text-secondary text-md" />
+                <FaMagnifyingGlass className="text-secondary text-md" />
               </button>
             </div>
           </form>
@@ -164,7 +165,7 @@ export default function DoctorsList({ doctors }: DoctorsListProps) {
 
         <div className="flex-none w-full md:w-1/3 min-h-[76px] flex flex-col justify-end">
           <div className="w-full lg:w-10/12 relative flex gap-4 items-center">
-            <BsBuildingFill
+            <FaBuilding
               className="text-4xl text-primary flex-shrink-0"
               aria-hidden
             />
@@ -192,7 +193,7 @@ export default function DoctorsList({ doctors }: DoctorsListProps) {
 
         <div className="flex-none w-full md:w-1/3 min-h-[76px] flex flex-col justify-end">
           <div className="w-full lg:w-10/12 relative flex gap-4 items-center">
-            <BsBuildingFill
+            <FaBuilding
               className="text-4xl text-primary flex-shrink-0"
               aria-hidden
             />
