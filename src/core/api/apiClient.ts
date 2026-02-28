@@ -9,14 +9,27 @@ type RequestOptions = RequestInit & {
   headers?: HeadersInit;
 };
 
+const MAX_MESSAGE_LENGTH = 200;
+const LOOKS_LIKE_HTML = /^\s*<(!DOCTYPE|html|[\w-]+)/i;
+
 async function getErrorMessage(res: Response): Promise<string> {
   const text = await res.text();
   try {
     const body = JSON.parse(text) as { message?: string; error?: string };
-    return (body.message ?? body.error ?? text) || `HTTP ${res.status}`;
+    const msg = body.message ?? body.error ?? text;
+    return sanitizeMessage(msg, res.status);
   } catch {
-    return text || `HTTP ${res.status}`;
+    return sanitizeMessage(text, res.status);
   }
+}
+
+function sanitizeMessage(raw: string, status: number): string {
+  if (!raw || typeof raw !== "string") return `HTTP ${status}`;
+  const trimmed = raw.trim();
+  if (LOOKS_LIKE_HTML.test(trimmed) || trimmed.length > MAX_MESSAGE_LENGTH) {
+    return status === 404 ? "Məlumat tapılmadı" : `HTTP ${status}`;
+  }
+  return trimmed;
 }
 
 export const apiClient = {

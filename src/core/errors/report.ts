@@ -1,5 +1,5 @@
+import * as Sentry from "@sentry/nextjs";
 import { normalizeError } from "./normalize";
-
 
 export function reportError(error: unknown, context?: Record<string, unknown>): void {
   const normalized = normalizeError(error);
@@ -8,4 +8,5 @@ export function reportError(error: unknown, context?: Record<string, unknown>): 
     console.error("[reportError]", normalized.message, normalized.code, context ?? "");
   }
 
+  Sentry.captureException(error, { extra: context });
 }
