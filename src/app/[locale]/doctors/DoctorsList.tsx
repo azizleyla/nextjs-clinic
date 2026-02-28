@@ -55,7 +55,7 @@ export default function DoctorsList({ doctors }: DoctorsListProps) {
       try {
         const [deps, brs] = await Promise.all([
           apiClient.get<Department[]>("/api/departments"),
-          apiClient.get<Branch[]>("/api/braches"),
+          apiClient.get<Branch[]>("/api/branches"),
         ]);
         setDepartments(deps ?? []);
         setBranches(brs ?? []);
