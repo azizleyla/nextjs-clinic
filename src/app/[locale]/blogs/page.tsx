@@ -1,21 +1,14 @@
 import { Banner } from "@/components";
 import { createMetadata } from "@/core/seo/metadata";
-import { apiClient } from "@/core/api/apiClient";
-import { DEFAULT_BLOGS_PER_PAGE } from "@/features/blogs/constants/blogs";
-import type { BlogPost } from "@/features/blogs/types";
+import {
+  getPaginatedPosts,
+  DEFAULT_BLOGS_PER_PAGE,
+} from "@/features/blogs/constants/blogs";
 import BlogsList from "./BlogsList";
 
 type PageProps = {
   params: Promise<{ locale: string }>;
   searchParams: Promise<{ page?: string }>;
-};
-
-type BlogsApiResponse = {
-  data: BlogPost[];
-  total: number;
-  total_pages: number;
-  current_page: number;
-  per_page: number;
 };
 
 export async function generateMetadata({ params }: PageProps) {
@@ -34,8 +27,9 @@ export async function generateMetadata({ params }: PageProps) {
 export default async function Blogs({ searchParams }: PageProps) {
   const params = await searchParams;
   const page = Math.max(1, parseInt(params?.page || "1", 10) || 1);
-  const data = await apiClient.get<BlogsApiResponse>(
-    `/api/blogs?page=${page}&per_page=${DEFAULT_BLOGS_PER_PAGE}`
+  const { posts, totalPages, currentPage } = getPaginatedPosts(
+    page,
+    DEFAULT_BLOGS_PER_PAGE
   );
 
   return (
@@ -44,9 +38,9 @@ export default async function Blogs({ searchParams }: PageProps) {
       <section>
         <div className="container">
           <BlogsList
-            posts={data.data}
-            currentPage={data.current_page}
-            totalPages={data.total_pages}
+            posts={posts}
+            currentPage={currentPage}
+            totalPages={totalPages}
           />
         </div>
       </section>
