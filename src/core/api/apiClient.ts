@@ -1,9 +1,12 @@
 import { ApiError, reportError } from "@/core/errors";
 
-const API_BASE_URL =
-  process.env.NODE_ENV === "development"
-    ? "http://localhost:3000"
-    : process.env.NEXT_PUBLIC_API_BASE_URL;
+function getApiBaseUrl(): string {
+  if (process.env.NODE_ENV === "development") return "http://localhost:3000";
+  if (typeof window !== "undefined") return ""; // browser: same-origin
+  return process.env.VERCEL_URL
+    ? `https://${process.env.VERCEL_URL}`
+    : (process.env.NEXT_PUBLIC_API_BASE_URL || "");
+}
 
 type RequestOptions = RequestInit & {
   headers?: HeadersInit;
@@ -33,10 +36,12 @@ function sanitizeMessage(raw: string, status: number): string {
 }
 
 export const apiClient = {
-  baseUrl: API_BASE_URL as string,
+  get baseUrl() {
+    return getApiBaseUrl();
+  },
 
   async request<T = unknown>(endpoint: string, options: RequestOptions = {}): Promise<T> {
-    const url = `${this.baseUrl}${endpoint}`;
+    const url = `${getApiBaseUrl()}${endpoint}`;
 
     const defaultOptions: RequestInit = {
       headers: {
