@@ -11,6 +11,8 @@ type PageProps = {
   params: Promise<{ locale: string }>;
 };
 
+export const dynamic = "force-dynamic";
+
 export async function generateMetadata({ params }: PageProps) {
   const { locale } = await params;
   return createMetadata({
