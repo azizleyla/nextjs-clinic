@@ -8,7 +8,13 @@ type DepartmensProps = {
 };
 
 export default async function Departments({ isLoadMore = false }:DepartmensProps) {
-  const departments = await apiClient.get("/api/departments");
+  let departments: Awaited<ReturnType<typeof apiClient.get>> = [];
+  try {
+    departments = await apiClient.get("/api/departments");
+  } catch {
+    departments = [];
+  }
+  const list = Array.isArray(departments) ? departments : [];
 
   return (
     <section>
@@ -16,7 +22,7 @@ export default async function Departments({ isLoadMore = false }:DepartmensProps
         <SectionTitle title="Şöbələr" />
         <DepartmentList
           isLoadMore={isLoadMore}
-          departments={departments}
+          departments={list}
         />
       </div>
     </section>

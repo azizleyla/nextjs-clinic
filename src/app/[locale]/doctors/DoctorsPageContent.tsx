@@ -23,8 +23,14 @@ export default async function DoctorsPageContent({
     1,
     parseInt(searchParams?.page || "1", 10) || 1
   );
-  const data = (await apiClient.get(
-    `/api/doctors?page=${page}&per_page=${PER_PAGE}`
-  )) as DoctorsApiResponse | undefined;
-  return <DoctorsList doctors={data?.data ?? []} />;
+  let doctors: Doctor[] = [];
+  try {
+    const data = (await apiClient.get(
+      `/api/doctors?page=${page}&per_page=${PER_PAGE}`
+    )) as DoctorsApiResponse | undefined;
+    doctors = data?.data ?? [];
+  } catch {
+    doctors = [];
+  }
+  return <DoctorsList doctors={doctors} />;
 }
