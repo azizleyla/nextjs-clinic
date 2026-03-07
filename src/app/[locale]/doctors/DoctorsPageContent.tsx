@@ -2,7 +2,29 @@ import DoctorsList from "./DoctorsList";
 import { apiClient } from "@/core/api/apiClient";
 import type { Doctor } from "@/features/doctors/types";
 
-export default async function DoctorsPageContent() {
-  const doctors = (await apiClient.get("/api/doctors")) as Doctor[] | undefined;
-  return <DoctorsList doctors={doctors ?? []} />;
+type DoctorsApiResponse = {
+  data: Doctor[];
+  total: number;
+  total_pages: number;
+  current_page: number;
+  per_page: number;
+};
+
+const PER_PAGE = 6;
+
+type DoctorsPageContentProps = {
+  searchParams?: { page?: string };
+};
+
+export default async function DoctorsPageContent({
+  searchParams,
+}: DoctorsPageContentProps) {
+  const page = Math.max(
+    1,
+    parseInt(searchParams?.page || "1", 10) || 1
+  );
+  const data = (await apiClient.get(
+    `/api/doctors?page=${page}&per_page=${PER_PAGE}`
+  )) as DoctorsApiResponse | undefined;
+  return <DoctorsList doctors={data?.data ?? []} />;
 }

@@ -1,5 +1,5 @@
 import { generateSlug } from "@/utils/slug";
-import Link from "next/link";
+import { Link } from "@/core/i18n/navigation";
 import { FaRegCalendarAlt, FaArrowRight } from "react-icons/fa";
 import type { BlogPost } from "@/features/blogs/types";
 

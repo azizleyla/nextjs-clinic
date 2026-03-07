@@ -11,5 +11,8 @@
   },
   "DoctorPage": {
     "title": "Doctors"
+  },
+  "DepartmentsPage": {
+    "title": "Departments"
   }
 }

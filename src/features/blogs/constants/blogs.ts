@@ -1,6 +1,28 @@
 import { BlogPost } from "../types";
 
-export const blogPosts:BlogPost[] = [
+export const DEFAULT_BLOGS_PER_PAGE = 3;
+
+export function getPaginatedPosts(
+  page: number,
+  perPage: number = DEFAULT_BLOGS_PER_PAGE
+): {
+  posts: BlogPost[];
+  total: number;
+  totalPages: number;
+  currentPage: number;
+} {
+  const total = blogPosts.length;
+  const totalPages = Math.ceil(total / perPage) || 1;
+  const currentPage = Math.min(
+    Math.max(1, Number.isFinite(page) ? page : 1),
+    totalPages
+  );
+  const start = (currentPage - 1) * perPage;
+  const posts = blogPosts.slice(start, start + perPage);
+  return { posts, total, totalPages, currentPage };
+}
+
+export const blogPosts: BlogPost[] = [
     {
         id: 1,
         image: "/images/blog1.jpg",

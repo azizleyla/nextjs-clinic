@@ -4,6 +4,7 @@ import { createMetadata } from "@/core/seo/metadata";
 
 type PageProps = {
   params: Promise<{ locale: string }>;
+  searchParams: Promise<{ page?: string }>;
 };
 
 export async function generateMetadata({ params }: PageProps) {
@@ -19,11 +20,12 @@ export async function generateMetadata({ params }: PageProps) {
   });
 }
 
-export default function DoctorsPage() {
+export default async function DoctorsPage({ searchParams }: PageProps) {
+  const params = await searchParams;
   return (
     <>
       <Banner pageKey="DoctorPage" />
-      <DoctorsPageContent />
+      <DoctorsPageContent searchParams={params} />
     </>
   );
 }

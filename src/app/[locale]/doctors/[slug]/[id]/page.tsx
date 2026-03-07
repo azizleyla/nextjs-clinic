@@ -10,7 +10,10 @@ type Params = { slug: string; id: string };
 export default async function DoctorDetail({ params }: { params: Promise<Params> }) {
   const { slug, id } = await params;
   const doctor = (await apiClient.get(`/api/doctors/${id}`)) as Doctor;
-  const doctors = (await apiClient.get(`/api/doctors`)) as Doctor[];
+  const doctorsRes = (await apiClient.get(`/api/doctors?page=1&per_page=50`)) as {
+    data: Doctor[];
+  };
+  const doctors = doctorsRes?.data ?? [];
 
   const releatedDoctors = doctors.filter(
     (item) =>

@@ -2,13 +2,13 @@
 
 import dynamic from "next/dynamic";
 import { useCallback, useEffect, useRef, useState } from "react";
+import { useSearchParams, useRouter, usePathname, notFound } from "next/navigation";
 import { FaBuilding } from "react-icons/fa";
 import { FaUserDoctor, FaMagnifyingGlass } from "react-icons/fa6";
-import { Button, DoctorItem } from "@/components";
+import { DoctorItem, Pagination } from "@/components";
 import { apiClient } from "@/core/api/apiClient";
 import { reportError } from "@/core/errors";
 import { useDebounce } from "@/utils/hooks/useDebounce";
-import useLoadMore from "@/utils/hooks/useLoadMore";
 import { createSelectOptions } from "@/utils";
 import Loading from "../../loading";
 import type { Doctor } from "@/features/doctors/types";
@@ -21,18 +21,26 @@ type SelectOption = { value: number | null; label: string };
 type Department = { id: number; title?: Record<string, string> | string };
 type Branch = { id: number; short_name?: string };
 
+type DoctorsApiResponse = {
+  data: Doctor[];
+  total: number;
+  total_pages: number;
+  current_page: number;
+  per_page: number;
+};
+
 type DoctorsListProps = {
   doctors: Doctor[];
 };
 
-const INITIAL_PAGE_SIZE = 4;
-const LOAD_MORE_STEP = 2;
+const PER_PAGE = 6;
 
 const DEFAULT_DEP: SelectOption = { value: null, label: "Şöbələr" };
 const DEFAULT_BRANCH: SelectOption = { value: null, label: "Filiallar" };
 
 export default function DoctorsList({ doctors }: DoctorsListProps) {
   const [allDoctors, setAllDoctors] = useState<Doctor[]>(doctors ?? []);
+  const [totalPages, setTotalPages] = useState(1);
   const [searchQuery, setSearchQuery] = useState("");
   const debouncedSearch = useDebounce(searchQuery, 300);
   const [isLoading, setIsLoading] = useState(false);
@@ -44,11 +52,15 @@ export default function DoctorsList({ doctors }: DoctorsListProps) {
   const [branches, setBranches] = useState<Branch[]>([]);
   const [filtersLoading, setFiltersLoading] = useState(true);
   const isInitialFetch = useRef(true);
-
-  const { visibleCount, handleLoadMore, reset } = useLoadMore(
-    INITIAL_PAGE_SIZE,
-    LOAD_MORE_STEP,
-  );
+  const searchParams = useSearchParams();
+  const router = useRouter();
+  const pathname = usePathname();
+  const pageParam = searchParams.get("page");
+  const currentPage = Math.max(1, parseInt(pageParam || "1", 10) || 1);
+  const safePage = Math.min(currentPage, totalPages || 1);
+  const isPageOutOfRange =
+    currentPage > totalPages || currentPage < 1 || Number.isNaN(currentPage);
+  const doctorsToShow = allDoctors ?? [];
 
   useEffect(() => {
     async function fetchFilters() {
@@ -76,30 +88,39 @@ export default function DoctorsList({ doctors }: DoctorsListProps) {
     else setIsLoading(true);
     try {
       const params = new URLSearchParams();
+      params.set("page", String(currentPage));
+      params.set("per_page", String(PER_PAGE));
       if (selectedDep?.value != null)
         params.set("department_id", String(selectedDep.value));
       if (selectedBranch?.value != null)
         params.set("branch_id", String(selectedBranch.value));
       if (debouncedSearch) params.set("name", debouncedSearch);
-      const res = await apiClient.get<Doctor[]>(
+      const res = await apiClient.get<DoctorsApiResponse>(
         `/api/doctors?${params.toString()}`,
       );
-      setAllDoctors(res ?? []);
+      setAllDoctors(res.data ?? []);
+      setTotalPages(res.total_pages ?? 1);
     } catch (err) {
       reportError(err, { context: "DoctorsList.fetchDoctors" });
       setAllDoctors([]);
+      setTotalPages(1);
     } finally {
       setIsLoading(false);
     }
-  }, [selectedDep?.value, selectedBranch?.value, debouncedSearch]);
+  }, [selectedDep?.value, selectedBranch?.value, debouncedSearch, currentPage]);
 
   useEffect(() => {
     fetchDoctors();
   }, [fetchDoctors]);
 
+  const didMountRef = useRef(false);
   useEffect(() => {
-    reset();
-  }, [selectedDep?.value, selectedBranch?.value, debouncedSearch, reset]);
+    if (!didMountRef.current) {
+      didMountRef.current = true;
+      return;
+    }
+    router.replace(`${pathname}?page=1`);
+  }, [selectedDep?.value, selectedBranch?.value, debouncedSearch, pathname, router]);
 
   const branchesOptions = createSelectOptions(
     branches,
@@ -118,8 +139,6 @@ export default function DoctorsList({ doctors }: DoctorsListProps) {
     setSelectedDep(v ?? DEFAULT_DEP);
   const handleBranchChange = (v: SelectOption | null) =>
     setSelectedBranch(v ?? DEFAULT_BRANCH);
-
-  const showLoadMore = allDoctors.length > visibleCount && !isLoading;
 
   const selectStyles = {
     control: (base: Record<string, unknown>) => ({
@@ -223,22 +242,22 @@ export default function DoctorsList({ doctors }: DoctorsListProps) {
       <section>
         {isLoading ? (
           <Loading />
+        ) : isPageOutOfRange ? (
+          notFound()
         ) : (
-          <div className="grid grid-cols-1 sm-custom:grid-cols-2 lg:grid-cols-3 gap-8">
-            {allDoctors.slice(0, visibleCount).map((doctor, index) => (
-              <DoctorItem key={doctor.id} doctor={doctor} index={index} />
-            ))}
-          </div>
-        )}
-
-        {showLoadMore && (
-          <div className="flex justify-center my-5">
-            <Button
-              label="Daha çox"
-              variant="outline_primary"
-              onClick={handleLoadMore}
+          <>
+            <div className="grid grid-cols-1 sm-custom:grid-cols-2 lg:grid-cols-3 gap-8">
+              {doctorsToShow.map((doctor, index) => (
+                <DoctorItem key={doctor.id} doctor={doctor} index={index} />
+              ))}
+            </div>
+            <Pagination
+              currentPage={safePage}
+              totalPages={totalPages}
+              basePath="/doctors"
+              ariaLabel="Həkim səhifələri"
             />
-          </div>
+          </>
         )}
       </section>
     </div>

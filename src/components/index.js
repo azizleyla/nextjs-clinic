@@ -7,6 +7,7 @@ export { default as DepartmentsSection } from "../features/departments/component
 
 export { default as BlogItem } from "../features/blogs/components/BlogItem";
 export { default as DoctorItem } from "../features/doctors/components/DoctorItem";
+export { default as Pagination } from "../shared/ui/pagination/Pagination";
 
 export { default as Banner } from "../shared/layout/Banner";
 export { default as Title } from "../shared/ui/typography/SectionTitle";

@@ -2,10 +2,14 @@ import { apiClient } from "@/core/api/apiClient";
 import DoctorsSection from "@/features/doctors/components/DoctorsSection";
 import type { Doctor } from "../types";
 
-export async function DoctorsSectionWrapper() {
-  const data = (await apiClient.get("/api/doctors")) as Doctor[] | undefined;
+type DoctorsApiResponse = { data: Doctor[] };
 
-  return <DoctorsSection doctors={data ?? []} />;
+export async function DoctorsSectionWrapper() {
+  const res = (await apiClient.get("/api/doctors?page=1&per_page=12")) as
+    | DoctorsApiResponse
+    | undefined;
+
+  return <DoctorsSection doctors={res?.data ?? []} />;
 }
 
 export default DoctorsSectionWrapper;

@@ -31,7 +31,7 @@ export default function RootLayout({ children }: RootLayoutProps) {
     >
       <body>
         <ScrollToTop />
-        <main>{children}</main>
+        {children}
         <SpeedInsights />
         <Analytics />
       </body>

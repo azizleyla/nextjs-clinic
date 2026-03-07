@@ -1,9 +1,21 @@
-import { Banner, BlogItem, Button } from "@/components";
+import { Banner } from "@/components";
 import { createMetadata } from "@/core/seo/metadata";
-import { blogPosts } from "@/features/blogs/constants/blogs";
+import { apiClient } from "@/core/api/apiClient";
+import { DEFAULT_BLOGS_PER_PAGE } from "@/features/blogs/constants/blogs";
+import type { BlogPost } from "@/features/blogs/types";
+import BlogsList from "./BlogsList";
 
 type PageProps = {
   params: Promise<{ locale: string }>;
+  searchParams: Promise<{ page?: string }>;
+};
+
+type BlogsApiResponse = {
+  data: BlogPost[];
+  total: number;
+  total_pages: number;
+  current_page: number;
+  per_page: number;
 };
 
 export async function generateMetadata({ params }: PageProps) {
@@ -19,20 +31,23 @@ export async function generateMetadata({ params }: PageProps) {
   });
 }
 
-export default function Blogs() {
+export default async function Blogs({ searchParams }: PageProps) {
+  const params = await searchParams;
+  const page = Math.max(1, parseInt(params?.page || "1", 10) || 1);
+  const data = await apiClient.get<BlogsApiResponse>(
+    `/api/blogs?page=${page}&per_page=${DEFAULT_BLOGS_PER_PAGE}`
+  );
+
   return (
     <>
       <Banner pageKey="BlogPage" />
       <section>
         <div className="container">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {blogPosts.map((post) => (
-              <BlogItem post={post} key={post.id} />
-            ))}
-          </div>
-          <div className="flex justify-center items-center my-10">
-            <Button variant="outline_primary" label="Daha çox"></Button>
-          </div>
+          <BlogsList
+            posts={data.data}
+            currentPage={data.current_page}
+            totalPages={data.total_pages}
+          />
         </div>
       </section>
     </>

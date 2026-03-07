@@ -11,5 +11,8 @@
   },
   "DoctorPage": {
     "title": "Həkimlərimiz"
+  },
+  "DepartmentsPage": {
+    "title": "Şöbələr"
   }
 }
