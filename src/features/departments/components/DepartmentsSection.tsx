@@ -1,21 +1,20 @@
-import React, { Suspense } from "react";
+import React from "react";
 import SectionTitle from "@/shared/ui/typography/SectionTitle";
-import { apiClient } from "@/core/api/apiClient";
+import { supabase } from "@/core/db/supabaseClient";
 import DepartmentList from "./DepartmentList";
 
 type DepartmensProps = {
   isLoadMore?: boolean;
 };
 
-export default async function Departments({ isLoadMore = false }:DepartmensProps) {
-  let departments: Awaited<ReturnType<typeof apiClient.get>> = [];
+export default async function Departments({ isLoadMore = false }: DepartmensProps) {
+  let list: unknown[] = [];
   try {
-    departments = await apiClient.get("/api/departments");
+    const { data, error } = await supabase.from("departments").select("*");
+    if (!error) list = data ?? [];
   } catch {
-    departments = [];
+    list = [];
   }
-  const list = Array.isArray(departments) ? departments : [];
-
   return (
     <section>
       <div className="container">
