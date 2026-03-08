@@ -37,11 +37,18 @@ const DepartmentList = ({
   const { visibleCount, handleLoadMore } = useLoadMore(4, 4);
 
   const locale = useLocale();
+  const list = Array.isArray(departments) ? departments : [];
+  const hasItems = list.length > 0;
 
   return (
     <div>
+      {!hasItems && (
+        <p className="text-secondary text-center py-8">
+          Şöbələr siyahısı hazırda göstərilə bilmir.
+        </p>
+      )}
       <div className="grid gap-6  grid-cols-1 sm:grid-cols-2 md:grid-col-2 lg:grid-cols-3 xl:grid-cols-4">
-        {departments.slice(0, visibleCount).map((department, index) => {
+        {list.slice(0, visibleCount).map((department, index) => {
           const Icon = iconsMap[department.icon_name];
           return (
             <Link
@@ -63,7 +70,7 @@ const DepartmentList = ({
         })}
       </div>
       <div className="flex justify-center items-center my-5">
-        {isLoadMore && departments.length > visibleCount && (
+        {isLoadMore && list.length > visibleCount && (
           <Button
             onClick={handleLoadMore}
             variant="outline_primary"

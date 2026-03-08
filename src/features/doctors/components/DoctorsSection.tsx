@@ -19,28 +19,36 @@ export default function DoctorsSection({
     ? "Digər şöbə həkimlərimiz"
     : "Həkimlərimiz";
 
+  const hasDoctors = Array.isArray(doctors) && doctors.length > 0;
+
   return (
     <section className="doctors">
       <div className="container">
         <SectionTitle title={title} />
 
-        <Swiper
-          className="overflow-visible"
-          spaceBetween={30}
-          watchOverflow={true}
-          breakpoints={{
-            0: { slidesPerView: 1 },
-            576: { slidesPerView: 2 },
-            1024: { slidesPerView: 3 },
-          }}
-          navigation
-        >
-          {doctors?.map((doctor, index) => (
-            <SwiperSlide key={doctor?.id}>
-              <DoctorItem doctor={doctor} index={index} />
-            </SwiperSlide>
-          ))}
-        </Swiper>
+        {hasDoctors ? (
+          <Swiper
+            className="overflow-visible"
+            spaceBetween={30}
+            watchOverflow={true}
+            breakpoints={{
+              0: { slidesPerView: 1 },
+              576: { slidesPerView: 2 },
+              1024: { slidesPerView: 3 },
+            }}
+            navigation
+          >
+            {doctors.map((doctor, index) => (
+              <SwiperSlide key={doctor?.id}>
+                <DoctorItem doctor={doctor} index={index} />
+              </SwiperSlide>
+            ))}
+          </Swiper>
+        ) : (
+          <p className="text-secondary text-center py-8">
+            Həkimlər siyahısı hazırda göstərilə bilmir.
+          </p>
+        )}
         {!isReleatedDoctor && (
           <div className="all_btn-container">
             <Button
