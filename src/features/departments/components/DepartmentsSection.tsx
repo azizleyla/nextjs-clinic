@@ -1,6 +1,6 @@
 import React from "react";
 import SectionTitle from "@/shared/ui/typography/SectionTitle";
-import { supabase } from "@/core/db/supabaseClient";
+import { apiClient } from "@/core/api/apiClient";
 import DepartmentList from "./DepartmentList";
 
 type DepartmensProps = {
@@ -10,8 +10,8 @@ type DepartmensProps = {
 export default async function Departments({ isLoadMore = false }: DepartmensProps) {
   let list: unknown[] = [];
   try {
-    const { data, error } = await supabase.from("departments").select("*");
-    if (!error) list = data ?? [];
+    const departments = await apiClient.get("/api/departments");
+    list = Array.isArray(departments) ? departments : [];
   } catch {
     list = [];
   }

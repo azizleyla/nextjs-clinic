@@ -1,8 +1,16 @@
 import { ApiError, reportError } from "@/core/errors";
 
-function getApiBaseUrl(): string {
+async function getApiBaseUrl(): Promise<string> {
   if (process.env.NODE_ENV === "development") return "http://localhost:3000";
   if (typeof window !== "undefined") return ""; // browser: same-origin
+  try {
+    const { headers } = await import("next/headers");
+    const h = await headers();
+    const host = h.get("x-forwarded-host") || h.get("host");
+    if (host) return `https://${host}`;
+  } catch {
+    // ignore
+  }
   return process.env.VERCEL_URL
     ? `https://${process.env.VERCEL_URL}`
     : (process.env.NEXT_PUBLIC_API_BASE_URL || "");
@@ -36,12 +44,9 @@ function sanitizeMessage(raw: string, status: number): string {
 }
 
 export const apiClient = {
-  get baseUrl() {
-    return getApiBaseUrl();
-  },
-
   async request<T = unknown>(endpoint: string, options: RequestOptions = {}): Promise<T> {
-    const url = `${getApiBaseUrl()}${endpoint}`;
+    const baseUrl = await getApiBaseUrl();
+    const url = `${baseUrl}${endpoint}`;
 
     const defaultOptions: RequestInit = {
       headers: {

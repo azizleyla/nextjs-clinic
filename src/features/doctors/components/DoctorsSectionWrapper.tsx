@@ -1,17 +1,16 @@
-import { supabase } from "@/core/db/supabaseClient";
+import { apiClient } from "@/core/api/apiClient";
 import DoctorsSection from "@/features/doctors/components/DoctorsSection";
 import type { Doctor } from "../types";
 
-const HOME_DOCTORS_LIMIT = 12;
+type DoctorsApiResponse = { data: Doctor[] };
 
 export async function DoctorsSectionWrapper() {
   let doctors: Doctor[] = [];
   try {
-    const { data, error } = await supabase
-      .from("doctors")
-      .select("*")
-      .limit(HOME_DOCTORS_LIMIT);
-    if (!error) doctors = (data as Doctor[]) ?? [];
+    const res = (await apiClient.get("/api/doctors?page=1&per_page=12")) as
+      | DoctorsApiResponse
+      | undefined;
+    doctors = res?.data ?? [];
   } catch {
     doctors = [];
   }
