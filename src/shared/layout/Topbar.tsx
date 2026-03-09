@@ -5,70 +5,78 @@ import {
   FaInstagram,
   FaLinkedin,
 } from "react-icons/fa";
-import { FaLocationDot, FaXTwitter } from "react-icons/fa6";
+import { FaXTwitter } from "react-icons/fa6";
 import { LanguageSwitcher } from "@/shared/i18n/LanguageSwitcher";
 
 const Topbar = () => {
   return (
-    <div className="bg-white border border-[#f2f2f2]">
+    <div className="bg-slate-50 dark:bg-zinc-900 border-b border-slate-200/80 dark:border-zinc-800">
       <div className="container">
-        <div className="flex justify-between  sm:flex-row  items-center p-4 flex-col gap-3">
+        <div className="flex justify-between sm:flex-row items-center py-2.5 px-4 flex-col gap-2">
           <div className="topbar__left">
-            <ul className="flex gap-2 justify-center lg:justify-normal lg:gap-6 flex-wrap lg:flex-nowrap">
+            <ul className="flex gap-4 sm:gap-5 lg:gap-6 justify-center lg:justify-normal flex-wrap lg:flex-nowrap items-center">
               <li>
-                <a className="flex text-primary_bold items-center font-semibold text-sm gap-1">
-                  <FaPhone className="text-primary text-md" />
-                  Call : +07 554 332 322
+                <a
+                  href="tel:+07554332322"
+                  className="flex text-zinc-600 dark:text-zinc-400 items-center gap-1.5 text-xs hover:text-primary dark:hover:text-primary transition-colors"
+                >
+                  <FaPhone className="text-primary shrink-0 text-[10px]" />
+                  <span>+07 554 332 322</span>
                 </a>
               </li>
               <li>
-                <a className="flex text-primary_bold font-semibold  items-center text-sm gap-1">
-                  <FaEnvelope className="text-primary text-md" />
-                  hello@disin.com
+                <a
+                  href="mailto:hello@disin.com"
+                  className="flex text-zinc-600 dark:text-zinc-400 items-center gap-1.5 text-xs hover:text-primary dark:hover:text-primary transition-colors"
+                >
+                  <FaEnvelope className="text-primary shrink-0 text-[10px]" />
+                  <span>hello@disin.com</span>
                 </a>
               </li>
-              <li>
-                <a className="flex text-primary_bold font-semibold  items-center font-medium text-sm gap-1 ">
-                  <FaLocationDot className="text-primary text-md" />
-                  210-27 Quadra, Canada
-                </a>
+              <li className="text-zinc-600 dark:text-zinc-400 text-xs">
+                Bakı, Azərbaycan
               </li>
             </ul>
           </div>
-          <ul className="flex gap-2 items-center">
+          <ul className="flex gap-1 items-center">
             <li>
               <a
-                className="text-white w-6 h-6 bg-primary font-medium flex items-center text-sm  justify-center"
-                href=""
+                className="text-primary hover:bg-primary/15 w-8 h-8 rounded flex items-center justify-center transition-colors text-sm"
+                href="#"
+                aria-label="Facebook"
               >
                 <FaFacebook />
               </a>
             </li>
             <li>
               <a
-                className="text-white w-6 h-6 bg-primary font-medium text-sm flex items-center justify-center"
-                href=""
+                className="text-primary hover:bg-primary/15 w-8 h-8 rounded flex items-center justify-center transition-colors text-sm"
+                href="#"
+                aria-label="Twitter"
               >
                 <FaXTwitter />
               </a>
             </li>
             <li>
               <a
-                className="text-white w-6 h-6 bg-primary font-medium text-sm flex items-center justify-center"
-                href=""
+                className="text-primary hover:bg-primary/15 w-8 h-8 rounded flex items-center justify-center transition-colors text-sm"
+                href="#"
+                aria-label="Instagram"
               >
                 <FaInstagram />
               </a>
             </li>
             <li>
               <a
-                className="text-white w-6 h-6 bg-primary text-sm flex items-center justify-center"
-                href=""
+                className="text-primary hover:bg-primary/15 w-8 h-8 rounded flex items-center justify-center transition-colors text-sm"
+                href="#"
+                aria-label="LinkedIn"
               >
                 <FaLinkedin />
               </a>
             </li>
-            <li className="ml-4">
+            {/* Desktop: dil seçimi topbarda; mobil: yalnız menyuda (Seçimlər) */}
+            <li className="hidden lg:flex ml-2 pl-2 border-l border-zinc-200 dark:border-zinc-700 items-center">
               <LanguageSwitcher />
             </li>
           </ul>

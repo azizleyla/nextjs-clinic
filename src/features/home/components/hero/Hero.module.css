@@ -1,7 +1,92 @@
+.heroSwiper {
+    min-height: 420px;
+}
+
+@media (min-width: 768px) {
+    .heroSwiper {
+        min-height: 560px;
+    }
+}
+
+@media (min-width: 1024px) {
+    .heroSwiper {
+        min-height: 700px;
+    }
+}
+
+.heroSlideInner {
+    position: relative;
+    min-height: 420px;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    text-align: center;
+    color: white;
+    display: flex;
+    align-items: center;
+    padding: 1.5rem 0 2rem;
+}
+
+@media (min-width: 768px) {
+    .heroSlideInner {
+        min-height: 560px;
+        padding: 4rem 0;
+    }
+}
+
+@media (min-width: 1024px) {
+    .heroSlideInner {
+        min-height: 730px;
+        padding: 0;
+    }
+}
+
+.heroContent {
+    position: relative;
+    order: 2;
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    max-width: 600px;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+@media (min-width: 1024px) {
+    .heroContent {
+        align-items: flex-start;
+    }
+}
+
+.hero :global(.swiper-pagination-bullets) {
+    bottom: 1.5rem;
+}
+
+.hero :global(.swiper-pagination-horizontal) {
+    left: 0;
+    width: 100%;
+}
+
+.hero :global(.swiper-pagination-bullet) {
+    width: 8px;
+    height: 8px;
+    border-radius: 9999px;
+    background: rgba(255, 255, 255, 0.4);
+    opacity: 1;
+    transition: background-color 0.2s ease, width 0.2s ease;
+}
+
+.hero :global(.swiper-pagination-bullet-active) {
+    width: 16px;
+    background: #ffffff;
+}
+
 .hero :global(.swiper-button-next),
 .hero :global(.swiper-button-prev) {
     width: 55px;
     height: 55px;
+    transition: opacity 0.2s ease, transform 0.2s ease;
 }
 
 .hero :global(.swiper-button-prev svg),
@@ -11,9 +96,12 @@
 }
 
 @media (max-width: 768px) {
-
     .hero :global(.swiper-button-prev),
     .hero :global(.swiper-button-next) {
         display: none !important;
+    }
+
+    .hero :global(.hero-slide__img img) {
+        max-width: 200px !important;
     }
 }

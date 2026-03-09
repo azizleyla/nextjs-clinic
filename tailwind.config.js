@@ -57,11 +57,21 @@ module.exports = {
           '0%, 100%': { transform: 'scale(1)' },
           '50%': { transform: 'scale(1.1)' },
         },
+        'heart-pulse': {
+          '0%, 100%': { transform: 'scale(1)', opacity: '1' },
+          '50%': { transform: 'scale(1.15)', opacity: '0.9' },
+        },
+        'ecg-line': {
+          '0%': { strokeDashoffset: '250' },
+          '100%': { strokeDashoffset: '0' },
+        },
       },
       animation: {
         'a-one': 'a-one 5s linear infinite',
         'a-two': 'a-two 5s linear infinite',
         'a-seven': 'a-seven 10s linear infinite',
+        'heart-pulse': 'heart-pulse 1s ease-in-out infinite',
+        'ecg-line': 'ecg-line 2s ease-in-out infinite',
       },
     },
   },

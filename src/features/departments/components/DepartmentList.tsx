@@ -47,22 +47,22 @@ const DepartmentList = ({
           Şöbələr siyahısı hazırda göstərilə bilmir.
         </p>
       )}
-      <div className="grid gap-6  grid-cols-1 sm:grid-cols-2 md:grid-col-2 lg:grid-cols-3 xl:grid-cols-4">
+      <div className="grid gap-6 grid-cols-1 sm:grid-cols-2 md:grid-col-2 lg:grid-cols-3 xl:grid-cols-4">
         {list.slice(0, visibleCount).map((department, index) => {
           const Icon = iconsMap[department.icon_name];
           return (
             <Link
-              href={`/departments/${generateSlug(department?.title[locale])}/${
-                department.id
-              }`}
+              href={`/departments/${generateSlug(department?.title[locale])}/${department.id}`}
               key={department.id}
-              className="flex md:hover:-translate-y-2 transition-all duration-300 shadow-custom-gray py-5 px-3 gap-3 flex-col items-center text-center cursor-pointer"
+              className="flex flex-col items-start text-left gap-3 rounded-xl border border-slate-200/80 dark:border-zinc-800 bg-white dark:bg-zinc-900/60 px-5 py-5 md:px-6 md:py-6 transition-all duration-300 hover:border-primary/60 hover:shadow-md"
             >
-              <Icon className="text-primary" fontSize="50px" />
-              <h3 className="font-medium text-md">
+              <div className="inline-flex items-center justify-center rounded-lg bg-primary/10 text-primary w-12 h-12 mb-1">
+                <Icon className="text-xl" />
+              </div>
+              <h3 className="font-semibold text-base md:text-lg text-secondary dark:text-white">
                 {department?.title[locale] || department?.title["az"]}
               </h3>
-              <p className="text-secondary text-sm leading-relaxed">
+              <p className="text-secondary/90 dark:text-zinc-300 text-sm leading-relaxed line-clamp-3">
                 {department?.desc}
               </p>
             </Link>
@@ -81,6 +81,7 @@ const DepartmentList = ({
           <Button
             href="/departments"
             variant="outline_primary"
+            size="sm"
             label="Bütün şöbələr"
           />
         )}

@@ -1,7 +1,14 @@
 import { Banner } from "@/components";
 import { apiClient } from "@/core/api/apiClient";
-import { FaGraduationCap, FaBriefcase, FaPhone, FaMapMarkerAlt } from "react-icons/fa";
+import {
+  FaGraduationCap,
+  FaBriefcase,
+  FaPhone,
+  FaMapMarkerAlt,
+  FaArrowLeft,
+} from "react-icons/fa";
 import Image from "next/image";
+import { Link } from "@/core/i18n/navigation";
 import type { Doctor } from "@/features/doctors/types";
 import DoctorsSection from "@/features/doctors/components/DoctorsSection";
 
@@ -15,82 +22,150 @@ export default async function DoctorDetail({ params }: { params: Promise<Params>
   };
   const doctors = doctorsRes?.data ?? [];
 
-  const releatedDoctors = doctors.filter(
+  const relatedDoctors = doctors.filter(
     (item) =>
       item.department_id === doctor.department_id && item.id !== doctor.id
   );
 
+  const doctorImageSrc = doctor?.img_url ? `/${doctor.img_url}` : "/images/d1.jpg";
+  const hasContact =
+    (doctor?.branch?.phone?.length ?? 0) > 0 || doctor?.branch?.short_name;
+
   return (
     <>
-      <Banner pageKey={`${doctor?.name} (${doctor?.specialty})`} />
-      <div className="container my-11">
-        <div className="flex flex-col lg:flex-row gap-6 items-start">
-          <div className="w-full lg:w-1/4">
-            <div className="shadow-custom-gray  rounded-xl">
-              <div className="h-60  relative">
+      <Banner dynamicTitle={`${doctor?.name}${doctor?.specialty ? ` — ${doctor.specialty}` : ""}`} />
+      <div className="container py-10 lg:py-14">
+        <Link
+          href="/doctors"
+          className="inline-flex items-center gap-2 text-primary font-medium text-sm mb-8 hover:underline"
+        >
+          <FaArrowLeft className="text-xs" />
+          Həkimlərə qayıt
+        </Link>
+
+        <div className="flex flex-col lg:flex-row gap-8 lg:gap-10 items-start">
+          {/* Sidebar - foto və əlaqə */}
+          <aside className="w-full lg:w-[320px] shrink-0">
+            <div className="rounded-2xl overflow-hidden border border-slate-100 dark:border-zinc-800 shadow-lg bg-white dark:bg-zinc-900">
+              <div className="relative aspect-[3/4] max-h-[420px] bg-slate-100 dark:bg-zinc-800">
                 <Image
                   fill
+                  sizes="(max-width: 1024px) 100vw, 320px"
                   style={{ objectFit: "cover" }}
-                  className="w-full rounded-xl"
-                  alt={doctor.name}
-                  src="/images/d1.jpg"
+                  alt={doctor?.name ?? "Həkim"}
+                  src={doctorImageSrc}
                 />
               </div>
-              <div className="py-3 px-4 lg:px-10">
-                <h3 className="text-md mt-2 text-secondary font-semibold">
-                  Əlaqə məlumatları
-                </h3>
-                <ul className="my-3 pb-3 text-sm text-secondary flex flex-col gap-2">
-                  <li className="flex items-center gap-2">
-                    <FaPhone className="text-primary" />
-                    {doctor?.branch?.phone?.join(", ")}
-                  </li>
-                  <li className="flex items-center gap-2">
-                    <FaMapMarkerAlt className="text-primary" />
-                    {doctor?.branch?.short_name}
-                  </li>
-                </ul>
+              <div className="p-6">
+                <h2 className="text-xl font-semibold text-secondary dark:text-primary">
+                  {doctor?.name}
+                </h2>
+                {doctor?.specialty && (
+                  <p className="text-primary_bold text-sm mt-1">{doctor.specialty}</p>
+                )}
+                {hasContact && (
+                  <>
+                    <hr className="my-4 border-slate-200 dark:border-zinc-700" />
+                    <h3 className="text-sm font-semibold text-secondary dark:text-primary mb-3">
+                      Əlaqə məlumatları
+                    </h3>
+                    <ul className="space-y-3 text-sm text-secondary">
+                      {doctor?.branch?.phone?.length ? (
+                        <li className="flex items-start gap-3">
+                          <FaPhone className="text-primary mt-0.5 shrink-0" />
+                          <span className="break-all">
+                            {doctor.branch.phone.join(", ")}
+                          </span>
+                        </li>
+                      ) : null}
+                      {doctor?.branch?.short_name ? (
+                        <li className="flex items-start gap-3">
+                          <FaMapMarkerAlt className="text-primary mt-0.5 shrink-0" />
+                          <span>{doctor.branch.short_name}</span>
+                        </li>
+                      ) : null}
+                    </ul>
+                  </>
+                )}
+                <Link
+                  href="/contact"
+                  className="mt-6 block w-full text-center py-3 px-4 rounded-xl bg-primary text-white font-medium text-sm hover:bg-primary_bold transition-colors"
+                >
+                  Qeydiyyat / Əlaqə
+                </Link>
               </div>
             </div>
-          </div>
-          <div className="w-full lg:w-3/4 shadow-custom-gray rounded-xl p-4 lg:p-10">
-            <h3 className="text-secondary mt-2 mb-6 text-2xl font-semibold">
-              {doctor?.name} {doctor?.specialty && `(${doctor.specialty})`}
-            </h3>
-            {doctor?.education?.length ? (
-              <>
-                <h4 className="text-secondary flex items-center gap-2 text-md mb-2 font-semibold">
-                  <FaGraduationCap className="text-secondary text-lg" />
-                  Təhsil
-                </h4>
-                <ul className="list-disc">
-                  {doctor.education.map((item, index) => (
-                    <li key={index} className="ml-8 text-secondary text-sm">
-                      {item.years} {item.place}
-                    </li>
-                  ))}
-                </ul>
-              </>
-            ) : null}
-            {doctor?.experience?.length ? (
-              <>
-                <h4 className="text-secondary flex items-center gap-2 text-md my-4 font-semibold">
-                  <FaBriefcase className="text-secondary text-lg" /> İş təcrübəsi
-                </h4>
-                <ul className="list-disc">
-                  {doctor.experience.map((item, index) => (
-                    <li className="ml-8 text-secondary text-sm" key={index}>
-                      {item?.years} {item?.place && `- ${item.place}`}
-                      {item?.position && `, ${item.position}`}
-                    </li>
-                  ))}
-                </ul>
-              </>
-            ) : null}
+          </aside>
+
+          {/* Əsas məzmun - təhsil və təcrübə */}
+          <div className="flex-1 min-w-0">
+            <div className="rounded-2xl border border-slate-100 dark:border-zinc-800 shadow-lg bg-white dark:bg-zinc-900 p-6 lg:p-10">
+              <h3 className="text-xl font-semibold text-secondary dark:text-primary mb-2">
+                {doctor?.name}
+                {doctor?.specialty && (
+                  <span className="text-primary_bold font-normal text-base ml-1">
+                    — {doctor.specialty}
+                  </span>
+                )}
+              </h3>
+
+              {doctor?.education?.length ? (
+                <section className="mb-8">
+                  <h4 className="flex items-center gap-2 text-secondary dark:text-primary font-semibold mb-3">
+                    <span className="w-8 h-8 rounded-lg bg-primary/10 flex items-center justify-center">
+                      <FaGraduationCap className="text-primary text-sm" />
+                    </span>
+                    Təhsil
+                  </h4>
+                  <ul className="space-y-2 ml-10">
+                    {doctor.education.map((item, index) => (
+                      <li
+                        key={index}
+                        className="text-secondary text-sm leading-relaxed flex flex-wrap gap-1"
+                      >
+                        {item.years && <span className="font-medium">{item.years}</span>}
+                        {item.place}
+                        {item.position && `, ${item.position}`}
+                      </li>
+                    ))}
+                  </ul>
+                </section>
+              ) : null}
+
+              {doctor?.experience?.length ? (
+                <section>
+                  <h4 className="flex items-center gap-2 text-secondary dark:text-primary font-semibold mb-3">
+                    <span className="w-8 h-8 rounded-lg bg-primary/10 flex items-center justify-center">
+                      <FaBriefcase className="text-primary text-sm" />
+                    </span>
+                    İş təcrübəsi
+                  </h4>
+                  <ul className="space-y-2 ml-10">
+                    {doctor.experience.map((item, index) => (
+                      <li
+                        key={index}
+                        className="text-secondary text-sm leading-relaxed"
+                      >
+                        {item?.years}
+                        {item?.place && ` — ${item.place}`}
+                        {item?.position && `, ${item.position}`}
+                      </li>
+                    ))}
+                  </ul>
+                </section>
+              ) : null}
+
+              {!doctor?.education?.length && !doctor?.experience?.length && (
+                <p className="text-secondary text-sm">
+                  Bu həkim haqqında əlavə məlumat tezliklə əlavə ediləcək.
+                </p>
+              )}
+            </div>
           </div>
         </div>
       </div>
-      <DoctorsSection doctors={releatedDoctors} isReleatedDoctor={true} />
+
+      <DoctorsSection doctors={relatedDoctors} isReleatedDoctor={true} />
     </>
   );
 }

@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 section {
-    @apply mt-20;
+    @apply mt-16;
 }
 
 

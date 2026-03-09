@@ -47,21 +47,28 @@ export default async function DepartmentDetail({
   return (
     <>
       <Banner dynamicTitle={department?.title?.[locale]} />
-      <section>
+      <section className="bg-slate-50/70 dark:bg-zinc-900/40 py-10 md:py-14">
         <div className="container">
-          <div className="flex flex-col gap-1 lg:flex-row justify-center items-start">
-            <div className="text-secondary mt-1 w-full service-detail__content lg:w-1/2 flex-none">
-              <div
-                dangerouslySetInnerHTML={{ __html: department.content }}
-              />
-            </div>
-            <div className="w-full lg:w-1/2 flex-none">
-              <Image
-                height="400"
-                alt={String(department.title)}
-                className="rounded-md h-[400px] w-full object-contain"
-                src={`/images/${department?.img_url}`}
-              />
+          <div className="mx-auto max-w-5xl rounded-2xl bg-white dark:bg-zinc-950/90 border border-slate-200/80 dark:border-zinc-800 shadow-sm px-4 py-6 sm:px-8 sm:py-8 lg:px-10 lg:py-10">
+            <div className="flex flex-col gap-8 lg:flex-row lg:items-start">
+              <div className="w-full lg:w-1/2 flex-none">
+                <div className="overflow-hidden rounded-xl bg-slate-100 dark:bg-zinc-900">
+                  <Image
+                    height={420}
+                    width={640}
+                    alt={String(department.title)}
+                    className="h-[260px] sm:h-[320px] lg:h-[380px] w-full object-cover"
+                    src={`/images/${department?.img_url}`}
+                  />
+                </div>
+              </div>
+              <div className="w-full lg:w-1/2 flex-none">
+                <div className="service-detail__content text-secondary dark:text-zinc-300 leading-relaxed space-y-3">
+                  <div
+                    dangerouslySetInnerHTML={{ __html: department.content }}
+                  />
+                </div>
+              </div>
             </div>
           </div>
         </div>

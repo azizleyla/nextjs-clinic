@@ -13,31 +13,31 @@ export default function DoctorItem({ doctor, index }: DoctorItemProps) {
   const imgSrc = doctor?.img_url ? `/${doctor.img_url}` : "/images/d1.jpg";
 
   return (
-    <Link href={`/doctors/${title}/${doctor?.id}`}>
+    <Link href={`/doctors/${title}/${doctor?.id}`} className="block h-full">
       <div
         key={doctor.id}
-        className={`bg-white dark:bg-zinc-900 dark:shadow-[0_0_20px_0_#111] transition-all duration-400 ease-linear box-border group cursor-pointer shadow-[0_0_20px_0_#ddd] text-center rounded-xl`}
+        className="h-full bg-white dark:bg-zinc-900 rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-all duration-300 group border border-slate-100 dark:border-zinc-800"
       >
-        <div className="relative overflow-hidden rounded-xl">
+        <div className="relative w-full aspect-[4/3] bg-slate-100 dark:bg-zinc-800 overflow-hidden shrink-0">
           <img
-            className="w-full rounded-xl"
+            className="absolute inset-0 w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500"
             src={imgSrc}
             alt={doctor.name}
           />
-          <ul className="absolute top-5 -left-12 flex flex-col gap-2 transition-all duration-300 ease-in-out group-hover:left-5">
-            <li className="w-8 h-8 flex justify-center items-center shadow-md bg-white border-[1px] rounded-full">
-              <FaFacebook className="text-primary" />
+          <ul className="absolute top-2 left-2 flex flex-col gap-1.5 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+            <li className="w-7 h-7 flex justify-center items-center rounded-full bg-white/90 shadow text-primary hover:bg-primary hover:text-white transition-colors">
+              <FaFacebook className="text-xs" />
             </li>
-            <li className="w-8 h-8 flex justify-center items-center shadow-md bg-white border-[1px] rounded-full">
-              <FaInstagram className="text-primary" />
+            <li className="w-7 h-7 flex justify-center items-center rounded-full bg-white/90 shadow text-primary hover:bg-primary hover:text-white transition-colors">
+              <FaInstagram className="text-xs" />
             </li>
           </ul>
         </div>
-        <div className="p-4">
-          <h3 className="text-lg text-black dark:text-primary group-hover:text-primary font-semibold">
+        <div className="p-3 text-center">
+          <h3 className="text-base font-semibold text-secondary dark:text-primary group-hover:text-primary transition-colors line-clamp-1">
             {doctor.name}
           </h3>
-          <p className="text-sm text-gray-500">{doctor.specialty}</p>
+          <p className="text-xs text-primary_bold mt-0.5 line-clamp-2">{doctor.specialty}</p>
         </div>
       </div>
     </Link>

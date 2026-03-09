@@ -1,7 +1,8 @@
 "use client";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css/bundle";
-import { Navigation, Pagination } from "swiper/modules";
+import "swiper/css/effect-fade";
+import { Navigation, Pagination, Autoplay, EffectFade } from "swiper/modules";
 import Image from "next/image";
 import styles from "./Hero.module.css";
 import { useTranslations } from "next-intl";
@@ -13,16 +14,24 @@ export default function Hero() {
   return (
     <div className={styles.hero}>
       <Swiper
-        className="min-h-[700px]"
-        spaceBetween={30}
+        className={styles.heroSwiper}
+        spaceBetween={0}
         slidesPerView={1}
+        effect="fade"
+        fadeEffect={{ crossFade: true }}
         navigation
         pagination={{ clickable: true }}
         loop={true}
-        modules={[Navigation, Pagination]}
+        speed={650}
+        grabCursor={true}
+        autoplay={{
+          delay: 8000,
+          disableOnInteraction: false,
+        }}
+        modules={[Navigation, Pagination, Autoplay, EffectFade]}
       >
         <SwiperSlide className="hero-slide">
-          <div className="relative lg:h-[730px]  bg-cover bg-center text-center h-full text-white flex items-center lg:py-0 md:py-32 py-20">
+          <div className={styles.heroSlideInner}>
             <Image
               src="/images/home-slider-bg.jpg"
               alt="Hero Banner"
@@ -39,12 +48,6 @@ export default function Hero() {
                   </h1>
                   <p className="leading-relaxed my-2">{t("hero_desc1")}</p>
                   <div className="flex gap-5 my-10">
-                    <Button
-                      variant="secondary"
-                      href="/contact"
-                      label="Qəbula yazıl"
-                    />
-
                     <Button
                       label="Ətraflı bax"
                       href="/about"
@@ -68,7 +71,7 @@ export default function Hero() {
         </SwiperSlide>
 
         <SwiperSlide className="hero-slide">
-          <div className="relative lg:h-[730px] h-full text-white flex items-center lg:py-0 md:py-32 py-20 text-center">
+          <div className={styles.heroSlideInner}>
             <Image
               src="/images/home-slider-bg.jpg"
               alt="Hero Banner"
@@ -92,12 +95,6 @@ export default function Hero() {
                   </p>
                   <div className="flex gap-5 my-10">
                     <Button
-                      href="/contact"
-                      variant="secondary"
-                      label="Qəbula yazıl"
-                    />
-
-                    <Button
                       label="Ətraflı bax"
                       href="/about"
                       variant="outline"
@@ -119,7 +116,7 @@ export default function Hero() {
           </div>
         </SwiperSlide>
         <SwiperSlide className="hero-slide">
-          <div className="relative lg:h-[730px]  bg-cover bg-center text-center h-full text-white flex items-center lg:py-0 md:py-32 py-20">
+          <div className={styles.heroSlideInner}>
             <Image
               src="/images/home-slider-bg.jpg"
               alt="Hero Banner"
@@ -130,7 +127,7 @@ export default function Hero() {
             <div className="absolute top-0 right-0 w-full h-full bg-primary opacity-80" />
             <div className="container">
               <div className="relative flex flex-col text-center items-center lg:text-left lg:items-start">
-                <div className="flex relative order-2  z-10 items-center lg:items-start justify-center max-w-[600px] flex-col gap-4">
+                <div className={styles.heroContent}>
                   <h1 className="text-2xl md:text-5xl leading-6 font-semibold capitalize">
                     Sağlamlığınız Sağlamlığımızdır!
                   </h1>{" "}
@@ -142,11 +139,6 @@ export default function Hero() {
                     texnologiyalardan istifadə edirik.
                   </p>
                   <div className="flex gap-5 my-10">
-                    <Button
-                      href="/contact"
-                      variant="secondary"
-                      label="Qəbula yazıl"
-                    />
                     <Button
                       href="/about"
                       label="Ətraflı bax"

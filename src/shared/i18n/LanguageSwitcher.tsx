@@ -41,43 +41,39 @@ export function LanguageSwitcher() {
   }, []);
 
   return (
-    <div ref={dropdownRef} className="relative  inline-block text-left">
+    <div ref={dropdownRef} className="relative inline-block text-left">
       <button
+        type="button"
         onClick={() => setOpen(!open)}
-        className="flex items-center gap-2 px-3 py-2 border rounded-md shadow-sm bg-white hover:bg-gray-100 focus:outline-none"
+        className="flex items-center gap-2 px-3 py-2 border border-slate-200 dark:border-zinc-600 rounded-lg bg-white dark:bg-zinc-800 hover:bg-slate-50 dark:hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-primary/30 transition-colors min-w-[72px] justify-between"
       >
         <Image
-          width={25}
-          height={25}
-          alt="flag"
+          width={20}
+          height={20}
+          alt=""
           src={currentLang.flag}
-          className="mr-2"
+          className="rounded-sm shrink-0"
         />
-        <span className="font-medium text-black">{currentLang.label}</span>
+        <span className="font-medium text-secondary dark:text-primary text-sm">{currentLang.label}</span>
         {open ? (
-          <FaChevronUp className="text-black" />
+          <FaChevronUp className="text-primary text-xs shrink-0" />
         ) : (
-          <FaChevronDown className="text-black" />
+          <FaChevronDown className="text-primary text-xs shrink-0" />
         )}
       </button>
       {open && (
-        <div className="absolute  right-0 mt-2 w-full bg-white border rounded-md shadow-lg z-10">
+        <div className="absolute right-0 mt-2 min-w-[72px] bg-white dark:bg-zinc-800 border border-slate-200 dark:border-zinc-600 rounded-lg shadow-lg z-50 py-1">
           {languages
             .filter((lang) => lang.value !== currentLocale)
             .map((lang) => (
               <button
                 key={lang.value}
+                type="button"
                 onClick={() => changeLocale(lang.value)}
-                className="flex items-center gap-2 w-full px-3 py-1 hover:bg-gray-100"
+                className="flex items-center gap-2 w-full px-3 py-2 hover:bg-slate-50 dark:hover:bg-zinc-700 text-secondary dark:text-primary text-sm"
               >
-                <Image
-                  alt="flag"
-                  height={25}
-                  width={25}
-                  src={lang.flag}
-                  className="mr-2"
-                />
-                <span className="text-black">{lang.label}</span>
+                <Image alt="" height={20} width={20} src={lang.flag} className="rounded-sm" />
+                <span>{lang.label}</span>
               </button>
             ))}
         </div>

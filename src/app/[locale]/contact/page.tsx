@@ -12,7 +12,7 @@ const MapContainer = dynamic(
   {
     ssr: false,
     loading: () => (
-      <div className="w-full h-[400px] bg-gray-100 animate-pulse rounded-md flex items-center justify-center text-secondary">
+      <div className="w-full h-[400px] bg-gray-100 dark:bg-zinc-900 animate-pulse rounded-2xl flex items-center justify-center text-secondary">
         Xəritə yüklənir...
       </div>
     ),
@@ -45,10 +45,10 @@ export default function Contact() {
   const Select = dynamic(() => import("react-select"), { ssr: false });
 
   return (
-    <div className="py-10">
+    <div className="py-10 bg-slate-50/70 dark:bg-zinc-950">
       <div className="container">
         <div className=" max-w-3xl mx-auto text-center">
-          <h2 className="text-3xl font-semibold text-secondary">
+          <h2 className="text-3xl font-semibold text-secondary dark:text-zinc-100">
             Qəbul üçün yazılın
           </h2>
           <p className="my-2 leading-relaxed text-secondary">
@@ -57,7 +57,7 @@ export default function Contact() {
             müalicə üçün ilk addımı indi atın.
           </p>
         </div>
-        <div className="shadow-custom-gray max-w-3xl mx-auto my-16 p-5 rounded-md">
+        <div className="max-w-3xl mx-auto my-16 p-6 md:p-7 rounded-2xl bg-white dark:bg-zinc-900/80 border border-slate-200/80 dark:border-zinc-800/80 shadow-sm">
           <form className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6 contact-form">
             <div className="col-span-1">
               <label>Ad</label>
@@ -104,7 +104,7 @@ export default function Contact() {
             </div>
           </form>
         </div>
-        <div className="flex relative flex-col lg:flex-row gap-4 border">
+        <div className="flex relative flex-col lg:flex-row gap-4 border border-slate-200/80 dark:border-zinc-800/80 rounded-2xl bg-white dark:bg-zinc-900/80 overflow-hidden">
           <MapContainer
             branches={branches}
             selectedBranch={selectedBranch}
@@ -116,16 +116,16 @@ export default function Contact() {
                 key={item.id}
                 className="w-full py-2 flex-none"
               >
-                <div className="shadow-custom-gray cursor-pointer py-3 px-3 transition-all duration-500 border-l-2 hover:border-l-2 hover:border-primary rounded-md">
+                <div className="cursor-pointer py-3 px-3 transition-all duration-200 border-l-2 border-transparent hover:border-primary rounded-md bg-white dark:bg-zinc-900">
                   <h5 className="text-mg text-primary font-semibold">
                     {item?.name}
                   </h5>
                   <ul className="flex flex-col gap-2 my-2">
-                    <li className="text-secondary flex items-center gap-2 text-sm">
+                    <li className="text-secondary dark:text-zinc-300 flex items-center gap-2 text-sm">
                       <FaLocationDot />
                       {item.address}
                     </li>
-                    <li className="text-secondary flex items-center gap-2 text-sm">
+                    <li className="text-secondary dark:text-zinc-300 flex items-center gap-2 text-sm">
                       <FaPhone />
                       {item.phone?.join(", ")}
                     </li>

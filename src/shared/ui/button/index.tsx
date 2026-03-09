@@ -20,13 +20,14 @@ const sizeClasses: Record<ButtonSize, string> = {
 };
 
 const variantClasses: Record<ButtonVariant, string> = {
-  primary: "bg-primary text-white border-2 border-white hover:bg-black",
+  primary:
+    "bg-primary text-white border border-primary hover:bg-primary/90 hover:border-primary/90",
   secondary:
-    "bg-white text-primary border-2 border-white hover:bg-transparent hover:text-white",
+    "bg-white text-primary border border-slate-200 hover:border-primary/60 hover:bg-primary/5",
   outline:
-    "bg-transparent text-white border-2 border-white hover:bg-white hover:text-primary",
+    "bg-transparent text-white border border-white/70 hover:bg-white hover:text-primary",
   outline_primary:
-    "bg-transparent text-primary border-2 border-primary hover:bg-primary hover:text-white",
+    "bg-transparent text-primary border border-primary/70 hover:bg-primary hover:text-white hover:border-primary",
 };
 
 export default function Button({
@@ -37,7 +38,7 @@ export default function Button({
   href,
   onClick,
 }: ButtonProps) {
-  const classes = `rounded-md font-medium transition-all duration-200 ${sizeClasses[size]} ${variantClasses[variant]} ${className}`;
+  const classes = `inline-flex items-center justify-center rounded-full font-medium tracking-wide transition-all duration-200 ${sizeClasses[size]} ${variantClasses[variant]} ${className}`;
 
   if (href) {
     return (

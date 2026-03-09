@@ -1,69 +1,90 @@
 import { Button } from "@/components";
 import Image from "next/image";
-import React from "react";
-import { FaRegCheckCircle } from "react-icons/fa";
+import { FaRegCheckCircle, FaUserMd, FaHeartbeat, FaShieldAlt } from "react-icons/fa";
 
-const AboutSection = () => {
+const points = [
+  "Peşəkar həkim və tibbi personal",
+  "Müasir diagnostika və müalicə",
+  "Xəstə təhlükəsizliyi və keyfiyyət",
+  "7/24 xidmət və dəstək",
+];
+
+export default function AboutSection() {
   return (
-    <section>
+    <section className="py-16 md:py-20 bg-white dark:bg-zinc-900 overflow-x-hidden">
       <div className="container">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-          <div className="relative h-[350px] md:h-[550px] lg:h-[450px]">
-            <div className="hidden lg:block absolute top-4 -left-3 w-[430px] h-[375px] bg-primary rounded-lg -z-10 animate-a-one"></div>
-
-            {/* After element */}
-            <div className="hidden  lg:block absolute bottom-4 -right-3 w-[430px] h-[375px] bg-primary rounded-lg -z-10 animate-a-two"></div>
-
-            <Image
-              fill
-              objectFit="contain"
-              alt="haqqimizda"
-              className="w-full relative rounded-md lg:animate-a-seven"
-              src="/images/about1.jpg"
-            />
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-14 items-center">
+          {/* Şəkil */}
+          <div className="relative order-2 lg:order-1">
+            <div className="relative aspect-[4/3] max-h-[400px] lg:max-h-[420px] rounded-2xl overflow-hidden bg-slate-100 dark:bg-zinc-800 shadow-lg">
+              <Image
+                fill
+                src="/images/about1.jpg"
+                alt="Elmed Xəstəxanası"
+                className="object-cover"
+                sizes="(max-width: 1024px) 100vw, 50vw"
+              />
+            </div>
+            <div className="hidden lg:flex absolute -bottom-4 -right-4 w-24 h-24 rounded-2xl bg-primary/90 items-center justify-center shadow-xl">
+              <FaHeartbeat className="text-white text-4xl" />
+            </div>
           </div>
-          <div className="flex flex-col gap-5">
-            <h1 className="text-lg md:text-3xl font-medium">Haqqımızda</h1>
-            <p className="text-base text-secondary">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
-              do eiusmod tempor incididunt ut labore et dolore magna
-              aliqua. Quis ipsum suspendisse ultrices gravida. Risus
-              commodo viverra maecenas accumsan lacus vel facilisis.
+
+          {/* Mətn */}
+          <div className="order-1 lg:order-2">
+            <p className="text-sm font-semibold text-primary uppercase tracking-wider mb-2">
+              Haqqımızda
             </p>
-            <ul className="flex flex-col gap-2 mb-2">
-              <li className="flex gap-3 items-center">
-                <FaRegCheckCircle
-                  className="text-primary"
-                  fontSize="22px"
-                />
-                Browse Our website
-              </li>
-              <li className="flex gap-3 items-center">
-                <FaRegCheckCircle
-                  className="text-primary"
-                  fontSize="22px"
-                />
-                Xidmət seç
-              </li>
-              <li className="flex gap-3 items-center">
-                <FaRegCheckCircle
-                  className="text-primary"
-                  fontSize="22px"
-                />
-                Bizə yazın
-              </li>
+            <h2 className="text-2xl md:text-3xl font-bold text-secondary dark:text-primary mb-4">
+              Səhiyyənizə etibar edəcəyiniz məkanda
+            </h2>
+            <p className="text-secondary leading-relaxed mb-6">
+              Elmed-də xəstələrimizin sağlamlığı üçün müasir standartlar və peşəkar komandamızla
+              xidmət göstəririk. Diagnostikadan müalicəyə qədər hər addımda keyfiyyət və
+              təhlükəsizlik əsas prioritetimizdir.
+            </p>
+            <ul className="space-y-3 mb-8">
+              {points.map((item, i) => (
+                <li key={i} className="flex gap-3 items-center text-secondary">
+                  <FaRegCheckCircle className="text-primary shrink-0 text-lg" />
+                  <span>{item}</span>
+                </li>
+              ))}
             </ul>
             <Button
               href="/about"
               variant="primary"
               className="self-start"
-              label="Daha Ətraflı"
+              label="Daha ətraflı"
             />
+          </div>
+        </div>
+
+        {/* Qısa stat / etibar sətiri */}
+        <div className="mt-16 pt-12 border-t border-slate-200 dark:border-zinc-700 grid grid-cols-1 sm:grid-cols-3 gap-8 text-center">
+          <div>
+            <div className="inline-flex w-14 h-14 rounded-xl bg-primary/10 items-center justify-center mb-3">
+              <FaUserMd className="text-primary text-2xl" />
+            </div>
+            <p className="text-2xl font-bold text-secondary dark:text-primary">Təcrübəli mütəxəssislər</p>
+            <p className="text-sm text-primary_bold mt-1">Peşəkar həkim komandamız</p>
+          </div>
+          <div>
+            <div className="inline-flex w-14 h-14 rounded-xl bg-primary/10 items-center justify-center mb-3">
+              <FaShieldAlt className="text-primary text-2xl" />
+            </div>
+            <p className="text-2xl font-bold text-secondary dark:text-primary">Təhlükəsizlik</p>
+            <p className="text-sm text-primary_bold mt-1">Beynəlxalq standartlar</p>
+          </div>
+          <div>
+            <div className="inline-flex w-14 h-14 rounded-xl bg-primary/10 items-center justify-center mb-3">
+              <FaHeartbeat className="text-primary text-2xl" />
+            </div>
+            <p className="text-2xl font-bold text-secondary dark:text-primary">Səhiyyə üçün</p>
+            <p className="text-sm text-primary_bold mt-1">Xəstə mərkəzli yanaşma</p>
           </div>
         </div>
       </div>
     </section>
   );
-};
-
-export default AboutSection;
+}

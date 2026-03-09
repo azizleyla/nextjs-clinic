@@ -82,6 +82,10 @@ export default function DoctorsList({ doctors }: DoctorsListProps) {
 
   const locale = useLocale();
 
+  const isDark =
+    typeof document !== "undefined" &&
+    document.documentElement.classList.contains("dark");
+
   const fetchDoctors = useCallback(async () => {
     const isFirst = isInitialFetch.current;
     if (isFirst) isInitialFetch.current = false;
@@ -146,13 +150,51 @@ export default function DoctorsList({ doctors }: DoctorsListProps) {
       minHeight: 40,
       height: 40,
       borderRadius: 6,
-      borderColor: "#dee2e6",
+      borderColor: isDark ? "#3f3f46" : "#dee2e6",
+      backgroundColor: isDark ? "#09090b" : "#ffffff",
+      boxShadow: "none",
+      zIndex: 20,
+    }),
+    menu: (base: Record<string, unknown>) => ({
+      ...base,
+      backgroundColor: isDark ? "#09090b" : "#ffffff",
+      zIndex: 30,
+    }),
+    menuPortal: (base: Record<string, unknown>) => ({
+      ...base,
+      zIndex: 50,
+    }),
+    singleValue: (base: Record<string, unknown>) => ({
+      ...base,
+      color: isDark ? "#e5e5e5" : "#111827",
+    }),
+    placeholder: (base: Record<string, unknown>) => ({
+      ...base,
+      color: isDark ? "#9ca3af" : "#6b7280",
+    }),
+    option: (
+      base: Record<string, unknown>,
+      state: { isFocused: boolean; isSelected: boolean },
+    ) => ({
+      ...base,
+      backgroundColor: state.isSelected
+        ? isDark
+          ? "#1d4ed8"
+          : "#e0edff"
+        : state.isFocused
+          ? isDark
+            ? "#18181b"
+            : "#f3f4ff"
+          : isDark
+            ? "#09090b"
+            : "#ffffff",
+      color: isDark ? "#e5e5e5" : "#111827",
     }),
   };
 
   return (
     <div className="container">
-      <div className="pt-7 lg:pt-10 ml-auto mr-auto gap-5 rounded-md -mt-16 bg-white pb-8 flex flex-col md:flex-row px-6 lg:px-16 justify-between shadow-custom-gray">
+      <div className="pt-7 lg:pt-10 ml-auto mr-auto gap-5 rounded-xl -mt-16 bg-white dark:bg-zinc-900/80 pb-8 flex flex-col md:flex-row px-6 lg:px-16 justify-between border border-slate-200/80 dark:border-zinc-800/80 backdrop-blur-sm">
         <div className="w-full flex-none md:w-1/3">
           <form
             className="w-full lg:w-10/12"
@@ -161,11 +203,13 @@ export default function DoctorsList({ doctors }: DoctorsListProps) {
             <div className="relative flex gap-4 items-center">
               <FaUserDoctor className="text-4xl flex-shrink-0 text-primary" aria-hidden />
               <div className="flex flex-col w-full">
-                <label className="text-secondary mb-1">Axtar</label>
+                <label className="text-secondary dark:text-zinc-300 mb-1">
+                  Axtar
+                </label>
                 <input
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
-                  className="w-full placeholder:text-[#212529] focus:outline-none font-semibold border-b border-[#ccd9f2] pb-3"
+                  className="w-full bg-transparent placeholder:text-[#212529] dark:placeholder:text-zinc-500 focus:outline-none font-semibold border-b border-[#ccd9f2] dark:border-zinc-700 text-secondary dark:text-zinc-100 pb-3"
                   placeholder="Həkim adı"
                   type="search"
                   aria-label="Həkim adı ilə axtar"
@@ -189,7 +233,9 @@ export default function DoctorsList({ doctors }: DoctorsListProps) {
               aria-hidden
             />
             <div className="flex w-full flex-col">
-              <label className="text-[#344c5d] mb-1">Şöbə</label>
+              <label className="text-[#344c5d] dark:text-zinc-300 mb-1">
+                Şöbə
+              </label>
               <div className="h-10 w-full">
                 {filtersLoading ? (
                   <div
@@ -203,6 +249,10 @@ export default function DoctorsList({ doctors }: DoctorsListProps) {
                     value={selectedDep}
                     onChange={handleDepChange}
                     styles={selectStyles}
+                    menuPortalTarget={
+                      typeof document !== "undefined" ? document.body : undefined
+                    }
+                    menuShouldScrollIntoView={false}
                   />
                 )}
               </div>
@@ -217,7 +267,9 @@ export default function DoctorsList({ doctors }: DoctorsListProps) {
               aria-hidden
             />
             <div className="flex w-full flex-col">
-              <label className="text-[#344c5d] mb-1">Filiallar</label>
+              <label className="text-[#344c5d] dark:text-zinc-300 mb-1">
+                Filiallar
+              </label>
               <div className="h-10 w-full">
                 {filtersLoading ? (
                   <div
@@ -231,6 +283,10 @@ export default function DoctorsList({ doctors }: DoctorsListProps) {
                     value={selectedBranch}
                     onChange={handleBranchChange}
                     styles={selectStyles}
+                    menuPortalTarget={
+                      typeof document !== "undefined" ? document.body : undefined
+                    }
+                    menuShouldScrollIntoView={false}
                   />
                 )}
               </div>
