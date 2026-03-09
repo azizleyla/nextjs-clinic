@@ -4,7 +4,6 @@ export function GlobalLoading() {
       className="flex items-center justify-center min-h-[50vh] text-primary"
       aria-busy="true"
     >
-      {/* EKG / ürək döyüntüsü xətti */}
       <div className="w-80 sm:w-96 overflow-hidden px-4">
         <svg
           viewBox="0 0 200 40"
@@ -18,7 +17,6 @@ export function GlobalLoading() {
               <stop offset="100%" stopColor="currentColor" stopOpacity="0.3" />
             </linearGradient>
           </defs>
-          {/* Arxa fon xətti (sabit) */}
           <path
             d="M 0 20 L 200 20"
             fill="none"
@@ -27,7 +25,6 @@ export function GlobalLoading() {
             strokeOpacity="0.2"
             strokeDasharray="4 4"
           />
-          {/* EKG pulse forması */}
           <path
             d="M 0 20 L 30 20 L 40 8 L 50 20 L 70 20 L 75 12 L 80 20 L 200 20"
             fill="none"

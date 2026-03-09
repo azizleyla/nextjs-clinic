@@ -87,7 +87,6 @@ const Navbar = () => {
           ))}
         </ul>
 
-        {/* Sağ tərəf: axtarış (desktop) + dark mode (desktop) / hamburger (mobil) */}
         <div className="flex items-center gap-4 lg:gap-6">
           <form className="hidden lg:block relative">
             <input
@@ -179,7 +178,6 @@ const Navbar = () => {
               </li>
             ))}
           </ul>
-          {/* Mobil: Dil və Tema — aşağıda ayrı blok */}
           <div className="p-4 border-t border-slate-200 dark:border-zinc-800 bg-slate-50/50 dark:bg-zinc-800/30">
             <p className="text-xs font-semibold text-primary_bold dark:text-zinc-400 uppercase tracking-wider mb-3">Seçimlər</p>
             <div className="flex flex-col gap-3">

@@ -7,22 +7,16 @@ type DepartmensProps = {
   isLoadMore?: boolean;
 };
 
-export default async function Departments({ isLoadMore = false }: DepartmensProps) {
-  let list: unknown[] = [];
-  try {
-    const departments = await apiClient.get("/api/departments");
-    list = Array.isArray(departments) ? departments : [];
-  } catch {
-    list = [];
-  }
+export default async function Departments({
+  isLoadMore = false,
+}: DepartmensProps) {
+  const departments = (await apiClient.get("/api/departments")) ?? [];
+
   return (
     <section>
       <div className="container">
         <SectionTitle title="Şöbələr" />
-        <DepartmentList
-          isLoadMore={isLoadMore}
-          departments={list}
-        />
+        <DepartmentList isLoadMore={isLoadMore} departments={departments} />
       </div>
     </section>
   );

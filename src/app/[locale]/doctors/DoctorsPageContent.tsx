@@ -19,18 +19,14 @@ type DoctorsPageContentProps = {
 export default async function DoctorsPageContent({
   searchParams,
 }: DoctorsPageContentProps) {
-  const page = Math.max(
-    1,
-    parseInt(searchParams?.page || "1", 10) || 1
-  );
+  const page = Math.max(1, parseInt(searchParams?.page || "1", 10) || 1);
   let doctors: Doctor[] = [];
-  try {
-    const data = (await apiClient.get(
-      `/api/doctors?page=${page}&per_page=${PER_PAGE}`
-    )) as DoctorsApiResponse | undefined;
-    doctors = data?.data ?? [];
-  } catch {
-    doctors = [];
-  }
+
+  const data = (await apiClient.get(
+    `/api/doctors?page=${page}&per_page=${PER_PAGE}`,
+  )) as DoctorsApiResponse | undefined;
+
+  doctors = data?.data ?? [];
+
   return <DoctorsList doctors={doctors} />;
 }
