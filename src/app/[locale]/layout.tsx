@@ -26,9 +26,11 @@ export default async function LocaleLayout({ children, params }: LocaleLayoutPro
   return (
     <NextIntlClientProvider locale={locale} messages={messages}>
       <ThemeProvider>
-        <Topbar />
-        <Navbar />
-        <main>{children}</main>
+        <header className="sticky top-0 z-40 bg-slate-50/90 dark:bg-zinc-900/90 backdrop-blur border-b border-slate-200/70 dark:border-zinc-800/70">
+          <Topbar />
+          <Navbar />
+        </header>
+        <main className="pt-2 md:pt-4 lg:pt-6">{children}</main>
         <Footer />
       </ThemeProvider>
     </NextIntlClientProvider>

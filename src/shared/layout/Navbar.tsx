@@ -146,7 +146,7 @@ const Navbar = () => {
               <FaTimes className="text-lg" />
             </button>
           </div>
-          <ul className="flex-1 overflow-y-auto py-2">
+          <ul className="flex-1 overflow-y-auto py-2 pb-6">
             {menuItems.map((item, idx) => (
               <li key={idx} className="border-b border-slate-50 dark:border-zinc-800/80">
                 <Link
@@ -178,7 +178,7 @@ const Navbar = () => {
               </li>
             ))}
           </ul>
-          <div className="p-4 border-t border-slate-200 dark:border-zinc-800 bg-slate-50/50 dark:bg-zinc-800/30">
+          <div className="p-4 pb-8 border-t border-slate-200 dark:border-zinc-800 bg-slate-50/50 dark:bg-zinc-800/30">
             <p className="text-xs font-semibold text-primary_bold dark:text-zinc-400 uppercase tracking-wider mb-3">Seçimlər</p>
             <div className="flex flex-col gap-3">
               <div className="flex items-center justify-between">
