@@ -178,7 +178,7 @@ const Navbar = () => {
               </li>
             ))}
           </ul>
-          <div className="p-4 pb-8 border-t border-slate-200 dark:border-zinc-800 bg-slate-50/50 dark:bg-zinc-800/30">
+          <div className="p-4 pb-24 border-t border-slate-200 dark:border-zinc-800 bg-slate-50/50 dark:bg-zinc-800/30">
             <p className="text-xs font-semibold text-primary_bold dark:text-zinc-400 uppercase tracking-wider mb-3">Seçimlər</p>
             <div className="flex flex-col gap-3">
               <div className="flex items-center justify-between">
