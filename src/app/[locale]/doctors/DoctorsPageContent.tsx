@@ -1,32 +1,31 @@
+// app/doctors/page.tsx (Server Component)
+import { dehydrate, HydrationBoundary, QueryClient } from "@tanstack/react-query";
 import DoctorsList from "./DoctorsList";
-import { apiClient } from "@/core/api/apiClient";
-import type { Doctor } from "@/features/doctors/types";
+import { fetchDoctors } from "@/services/doctorService";
+import { fetchBranches, fetchDepartments } from "@/services/departmentService";
 
-type DoctorsApiResponse = {
-  data: Doctor[];
-  total: number;
-  total_pages: number;
-  current_page: number;
-  per_page: number;
-};
+export default async function Page({ searchParams }: { searchParams: any }) {
+  const queryClient = new QueryClient();
+  const params = await searchParams; // URL-dəki filtrləri serverdə oxuyuruq
 
-const PER_PAGE = 6;
+  // Bütün vacib sorğuları serverdə paralel başladırıq
+  await Promise.all([
+    queryClient.prefetchQuery({
+      queryKey: ["doctors", { 
+        page: Number(params.page) || 1, 
+        name: params.name || "", 
+        department_id: params.department_id || null, 
+        branch_id: params.branch_id || null 
+      }],
+      queryFn: () => fetchDoctors(params),
+    }),
+    queryClient.prefetchQuery({ queryKey: ["departments"], queryFn: fetchDepartments }),
+    queryClient.prefetchQuery({ queryKey: ["branches"], queryFn: fetchBranches }),
+  ]);
 
-type DoctorsPageContentProps = {
-  searchParams?: { page?: string };
-};
-
-export default async function DoctorsPageContent({
-  searchParams,
-}: DoctorsPageContentProps) {
-  const page = Math.max(1, parseInt(searchParams?.page || "1", 10) || 1);
-  let doctors: Doctor[] = [];
-
-  const data = (await apiClient.get(
-    `/api/doctors?page=${page}&per_page=${PER_PAGE}`,
-  )) as DoctorsApiResponse | undefined;
-
-  doctors = data?.data ?? [];
-
-  return <DoctorsList doctors={doctors} />;
+  return (
+    <HydrationBoundary state={dehydrate(queryClient)}>
+      <DoctorsList />
+    </HydrationBoundary>
+  );
 }

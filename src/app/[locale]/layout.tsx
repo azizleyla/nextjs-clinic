@@ -6,6 +6,7 @@ import azMessages from "../../../messages/az.json";
 import ThemeProvider from "@/core/theme/ThemeProvider";
 import { Footer, Navbar, Topbar } from "@/components";
 import type { ReactNode } from "react";
+import QueryProvider from "@/providers/QueryProvider";
 
 const messagesMap = { en: enMessages, az: azMessages };
 
@@ -28,7 +29,9 @@ export default async function LocaleLayout({ children, params }: LocaleLayoutPro
       <ThemeProvider>
         <Topbar />
         <Navbar />
+        <QueryProvider>
         <main>{children}</main>
+        </QueryProvider>
         <Footer />
       </ThemeProvider>
     </NextIntlClientProvider>
