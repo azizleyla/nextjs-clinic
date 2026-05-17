@@ -1,6 +1,6 @@
 import {
   AboutSection,
-  BlogsSection,
+  BlogsSectionWrapper,
   Counter,
   Hero,
   Partners,
@@ -29,7 +29,9 @@ export async function generateMetadata({ params }: HomePageProps) {
   });
 }
 
-export default async function HomePage() {
+export default async function HomePage({ params }: HomePageProps) {
+  const { locale } = await params;
+
   return (
     <>
       <Hero />
@@ -41,7 +43,7 @@ export default async function HomePage() {
       <Suspense fallback={<Loading />}>
         <DoctorsSectionWrapper />
       </Suspense>
-      <BlogsSection />
+      <BlogsSectionWrapper locale={locale} />
       <Partners />
     </>
   );

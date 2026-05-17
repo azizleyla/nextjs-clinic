@@ -7,7 +7,6 @@ import BlogItem from "@/features/blogs/components/BlogItem";
 import { Swiper, SwiperSlide } from "swiper/react";
 import type { Swiper as SwiperType } from "swiper";
 import { Autoplay } from "swiper/modules";
-import { blogPosts } from "@/features/blogs/constants/blogs";
 import type { BlogPost } from "@/features/blogs/types";
 
 import "swiper/css";
@@ -31,15 +30,12 @@ type BlogsSectionProps = {
   title?: string;
 };
 
-const DEFAULT_COUNT = 6;
-
 export default function BlogsSection({ posts: propPosts, title: propTitle }: BlogsSectionProps) {
   const swiperRef = useRef<SwiperType | null>(null);
-  const posts = propPosts ?? blogPosts.slice(0, DEFAULT_COUNT);
+  const posts = propPosts ?? [];
   const title = propTitle ?? "Bloqlar";
   const hasPosts = Array.isArray(posts) && posts.length > 0;
   const useSwiper = hasPosts && posts.length >= 2;
-
   const goPrev = useCallback(() => { if (swiperRef.current) swiperRef.current.slidePrev(); }, []);
   const goNext = useCallback(() => { if (swiperRef.current) swiperRef.current.slideNext(); }, []);
 

@@ -1,8 +1,17 @@
 import { ApiError, reportError } from "@/core/errors";
 
+type RequestOptions = RequestInit & {
+  headers?: HeadersInit;
+  /** true → http://localhost:3131 (və ya NEXT_PUBLIC_BACKEND_API_URL) */
+  backend?: boolean;
+};
+
+const MAX_MESSAGE_LENGTH = 200;
+const LOOKS_LIKE_HTML = /^\s*<(!DOCTYPE|html|[\w-]+)/i;
+
 async function getApiBaseUrl(): Promise<string> {
   if (process.env.NODE_ENV === "development") return "http://localhost:3000";
-  if (typeof window !== "undefined") return ""; // browser: same-origin
+  if (typeof window !== "undefined") return "";
   try {
     const { headers } = await import("next/headers");
     const h = await headers();
@@ -16,12 +25,16 @@ async function getApiBaseUrl(): Promise<string> {
     : (process.env.NEXT_PUBLIC_API_BASE_URL || "");
 }
 
-type RequestOptions = RequestInit & {
-  headers?: HeadersInit;
-};
+function getBackendBaseUrl(): string {
+  return (
+    "http://localhost:5000"
+  )
+}
 
-const MAX_MESSAGE_LENGTH = 200;
-const LOOKS_LIKE_HTML = /^\s*<(!DOCTYPE|html|[\w-]+)/i;
+async function resolveBaseUrl(backend?: boolean): Promise<string> {
+  const url = backend ? getBackendBaseUrl() : await getApiBaseUrl();
+  return url.replace(/\/$/, "");
+}
 
 async function getErrorMessage(res: Response): Promise<string> {
   const text = await res.text();
@@ -44,19 +57,24 @@ function sanitizeMessage(raw: string, status: number): string {
 }
 
 export const apiClient = {
-  async request<T = unknown>(endpoint: string, options: RequestOptions = {}): Promise<T> {
-    const baseUrl = await getApiBaseUrl();
-    const url = `${baseUrl}${endpoint}`;
+  async request<T = unknown>(
+    endpoint: string,
+    options: RequestOptions = {}
+  ): Promise<T> {
+    const { backend, ...fetchOptions } = options;
+    const baseUrl = await resolveBaseUrl(backend);
+    const path = endpoint.startsWith("/") ? endpoint : `/${endpoint}`;
+    const url = `${baseUrl}${path}`;
 
     const defaultOptions: RequestInit = {
       headers: {
         "Content-Type": "application/json",
-        ...(options.headers as Record<string, string>),
+        ...(fetchOptions.headers as Record<string, string>),
       },
     };
 
     try {
-      const res = await fetch(url, { ...defaultOptions, ...options });
+      const res = await fetch(url, { ...defaultOptions, ...fetchOptions });
 
       if (!res.ok) {
         const message = await getErrorMessage(res);

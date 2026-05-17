@@ -1,9 +1,7 @@
 import { Banner } from "@/components";
 import { createMetadata } from "@/core/seo/metadata";
-import {
-  getPaginatedPosts,
-  DEFAULT_BLOGS_PER_PAGE,
-} from "@/features/blogs/constants/blogs";
+import { DEFAULT_BLOGS_PER_PAGE } from "@/features/blogs/constants/blogs";
+import { getBlogs } from "@/features/blogs/api";
 import BlogsList from "./BlogsList";
 
 type PageProps = {
@@ -24,13 +22,19 @@ export async function generateMetadata({ params }: PageProps) {
   });
 }
 
-export default async function Blogs({ searchParams }: PageProps) {
-  const params = await searchParams;
-  const page = Math.max(1, parseInt(params?.page || "1", 10) || 1);
-  const { posts, totalPages, currentPage } = getPaginatedPosts(
+export default async function Blogs({ params, searchParams }: PageProps) {
+  const { locale } = await params;
+  const query = await searchParams;
+  const page = Math.max(1, parseInt(query?.page || "1", 10) || 1);
+  const { posts, totalPages, currentPage } = await getBlogs(
+    locale,
     page,
     DEFAULT_BLOGS_PER_PAGE
-  );
+  ).catch(() => ({
+    posts: [],
+    totalPages: 1,
+    currentPage: page,
+  }));
 
   return (
     <>

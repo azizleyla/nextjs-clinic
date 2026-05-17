@@ -12,6 +12,15 @@ const nextConfig = {
     turbopack: {
         root: process.cwd(),
     },
+    images: {
+        remotePatterns: [
+            {
+                protocol: 'https',
+                hostname: 'fgjlxpcugbilsyrcgwzg.supabase.co',
+                pathname: '/storage/v1/object/public/**',
+            },
+        ],
+    },
 };
 
 const withIntl = createNextIntlPlugin('./src/core/i18n/request.ts');

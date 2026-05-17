@@ -1,4 +1,3 @@
-import { generateSlug } from "@/utils/slug";
 import { Link } from "@/core/i18n/navigation";
 import { FaRegCalendarAlt, FaArrowRight } from "react-icons/fa";
 import type { BlogPost } from "@/features/blogs/types";
@@ -8,10 +7,8 @@ type BlogItemProps = {
 };
 
 export default function BlogItem({ post }: BlogItemProps) {
-  const slug = generateSlug(post.title);
-
   return (
-    <Link href={`/blogs/${slug}/${post.id}`} className="block h-full">
+    <Link href={`/blogs/${post.slug}/${post.id}`} className="block h-full">
       <div className="rounded-xl h-full flex flex-col cursor-pointer group shadow-sm hover:shadow-md border border-slate-100 dark:border-zinc-800 bg-white dark:bg-zinc-900 overflow-hidden transition-shadow duration-300">
         <div className="relative aspect-[4/3] overflow-hidden shrink-0 bg-slate-100 dark:bg-zinc-800">
           <img
