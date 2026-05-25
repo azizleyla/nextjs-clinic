@@ -12,7 +12,7 @@ import { DoctorFilters } from "./DoctorsFilters";
 export default function DoctorsList() {
   const { filters, setFilter } = useFilters();
   const debouncedSearch = useDebounce(filters.searchQuery, 400);
-
+  
   const queryParams = {
     page: filters.page,
     department_id: filters.departmentId,

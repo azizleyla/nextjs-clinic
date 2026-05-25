@@ -2,7 +2,6 @@ import { ApiError, reportError } from "@/core/errors";
 
 type RequestOptions = RequestInit & {
   headers?: HeadersInit;
-  /** true → http://localhost:3131 (və ya NEXT_PUBLIC_BACKEND_API_URL) */
   backend?: boolean;
 };
 

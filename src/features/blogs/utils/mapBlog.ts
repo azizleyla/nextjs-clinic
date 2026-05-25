@@ -11,7 +11,7 @@ function isEmptyHtml(html: string): boolean {
 export function pickLocale(
   field: LocalizedField | undefined,
   locale: string,
-  options?: { skipEmptyHtml?: boolean }
+  options?: { skipEmptyHtml?: boolean },
 ): string {
   if (!field) return "";
 
@@ -56,7 +56,7 @@ export function mapBlog(raw: BlogFromApi, locale: string): BlogPost {
     title,
     description: excerpt,
     content: normalizeContentHtml(
-      pickLocale(raw.content, locale, { skipEmptyHtml: true })
+      pickLocale(raw.content, locale, { skipEmptyHtml: true }),
     ),
     date: formatDate(raw.published_at || raw.created_at, locale),
     tags: raw.tags ?? [],

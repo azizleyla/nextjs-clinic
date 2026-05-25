@@ -24,9 +24,7 @@ const ChevronRight = () => (
 );
 
 type BlogsSectionProps = {
-  /** Ötürülməzsə ana səhifə üçün ilk postlar götürülür */
   posts?: BlogPost[];
-  /** Məs. "Digər bloqlar" — bloq daxilində */
   title?: string;
 };
 

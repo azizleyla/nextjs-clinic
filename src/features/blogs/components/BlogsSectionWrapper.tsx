@@ -13,9 +13,9 @@ export default async function BlogsSectionWrapper({
   locale,
   posts: propPosts,
   title,
-  limit = 6,
+  limit = 2,
 }: Props) {
-  const posts =
+  const data =
     propPosts ?? (await getBlogsList(locale, limit).catch(() => []));
-  return <BlogsSection posts={posts} title={title} />;
+  return <BlogsSection posts={data?.posts} title={title} />;
 }

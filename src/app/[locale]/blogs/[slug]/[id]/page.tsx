@@ -15,7 +15,7 @@ type Params = { id: string; locale: string; slug: string };
 
 async function getOtherPosts(
   locale: string,
-  currentId: number
+  currentId: number,
 ): Promise<BlogPost[]> {
   const list = await getBlogsList(locale).catch(() => []);
   return list.filter((p) => p.id !== currentId).slice(0, RECENT_COUNT);
@@ -69,14 +69,7 @@ export default async function BlogDetailPage({
         </div>
 
         <section className="pb-12">
-          <div className="container px-4 lg:px-6">
-            <Link
-              href="/blogs"
-              className="inline-flex items-center gap-2 text-primary font-medium hover:underline mb-6"
-            >
-              <FaArrowLeft className="w-4 h-4" aria-hidden />
-              Bloqlara qayıt
-            </Link>
+          <div className="container px-2 lg:px-6">
             <article className="max-w-5xl">
               <h1 className="text-2xl lg:text-3xl font-bold text-[#232323] dark:text-primary mb-3">
                 {post.title}
@@ -85,9 +78,7 @@ export default async function BlogDetailPage({
                 <FaRegCalendarAlt className="text-primary" aria-hidden />
                 {post.date}
               </p>
-              {post.description ? (
-                <p className="text-secondary text-lg mb-6">{post.description}</p>
-              ) : null}
+
               <div
                 className="prose prose-lg max-w-full text-secondary leading-relaxed blog-content overflow-hidden"
                 dangerouslySetInnerHTML={{ __html: post.content }}
