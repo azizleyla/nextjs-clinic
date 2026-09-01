@@ -24,7 +24,7 @@ const Counter = ({ isHome }: CounterProps) => {
             <span className="flex items-center justify-center w-12 h-12 rounded-2xl bg-forest/10 text-forest mb-1 transition-colors group-hover:bg-clay/15 group-hover:text-clay">
               <Icon className="text-xl" />
             </span>
-            <h3 className="font-heading text-ink dark:text-white font-semibold text-3xl lg:text-4xl">
+            <h3 className="font-heading text-ink dark:text-white font-semibold text-2xl md:text-3xl lg:text-4xl">
               <CountUp start={0} end={end} duration={2.5} separator="," />
               <span className="text-clay">+</span>
             </h3>

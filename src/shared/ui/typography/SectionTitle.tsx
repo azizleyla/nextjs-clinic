@@ -30,7 +30,7 @@ export default function SectionTitle({
           {centered && <span aria-hidden className="h-px w-6 bg-clay" />}
         </p>
       )}
-      <h2 className="font-heading text-2xl md:text-3xl lg:text-4xl font-semibold leading-[1.15] tracking-tight text-ink dark:text-white">
+      <h2 className="font-heading text-xl md:text-3xl lg:text-4xl font-semibold leading-[1.2] tracking-tight text-ink dark:text-white">
         {title}
       </h2>
     </div>

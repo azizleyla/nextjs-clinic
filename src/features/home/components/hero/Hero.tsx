@@ -58,11 +58,11 @@ export default function Hero({ slides = [], locale = "az" }: HeroProps) {
               </span>
             </div>
 
-            <h1 className="max-w-xl animate-fade-up font-heading text-[2rem] font-bold leading-[1.1] tracking-tight text-ink [animation-delay:120ms] sm:text-4xl lg:text-5xl">
+            <h1 className="max-w-xl animate-fade-up font-heading text-[1.6rem] font-bold leading-[1.12] tracking-tight text-ink [animation-delay:120ms] sm:text-4xl lg:text-5xl">
               {title}
             </h1>
 
-            <p className="mt-5 max-w-md animate-fade-up text-base leading-relaxed text-secondary/90 [animation-delay:240ms]">
+            <p className="mt-4 max-w-md animate-fade-up text-sm leading-relaxed text-secondary/90 [animation-delay:240ms] sm:mt-5 sm:text-base">
               {description}
             </p>
 
