@@ -43,7 +43,7 @@ const DepartmentList = ({ departments, isLoadMore }: DepartmentListProps) => {
               <div className="inline-flex items-center justify-center rounded-2xl bg-forest/10 text-forest w-14 h-14 mb-1 transition-colors group-hover:bg-clay/15 group-hover:text-clay">
                 <Icon className="text-2xl" aria-hidden />
               </div>
-              <h3 className="font-heading font-semibold text-lg md:text-xl text-ink dark:text-white">
+              <h3 className="font-heading font-semibold text-base md:text-lg text-ink dark:text-white">
                 {title}
               </h3>
               <p className="text-primary_bold dark:text-zinc-300 text-sm leading-relaxed line-clamp-3">

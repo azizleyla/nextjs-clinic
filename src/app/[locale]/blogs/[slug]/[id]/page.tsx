@@ -89,7 +89,7 @@ export default async function BlogDetailPage({
                 <FaRegCalendarAlt aria-hidden />
                 {post.date}
               </p>
-              <h1 className="font-heading text-xl md:text-2xl lg:text-3xl font-semibold leading-[1.22] tracking-tight text-ink dark:text-primary mb-6">
+              <h1 className="font-heading text-xl md:text-2xl lg:text-3xl font-semibold leading-[1.22] tracking-tight text-ink mb-6">
                 {post.title}
               </h1>
 

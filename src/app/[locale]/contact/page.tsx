@@ -52,7 +52,7 @@ export default function Contact() {
             title="Bizimlə əlaqə saxlayın"
             className="!mb-0"
           />
-          <p className="mt-4 leading-relaxed text-secondary text-lg">
+          <p className="mt-4 leading-relaxed text-secondary text-sm md:text-lg">
             Məlumat əldə etmək, sualınızı vermək və ya müalicə barədə
             məsləhətləşmək üçün bizimlə əlaqə saxlayın. Peşəkar komandamız
             sizə ən qısa zamanda geri dönüş edəcək.
@@ -106,7 +106,7 @@ export default function Contact() {
                 className="w-full py-2 flex-none"
               >
                 <div className="cursor-pointer py-3 px-4 transition-all duration-200 border-l-2 border-transparent hover:border-forest hover:bg-surface rounded-xl bg-paper dark:bg-zinc-900">
-                  <h5 className="font-heading text-lg text-forest font-semibold">
+                  <h5 className="font-heading text-base md:text-lg text-forest font-semibold">
                     {item?.name}
                   </h5>
                   <ul className="flex flex-col gap-2 my-2">

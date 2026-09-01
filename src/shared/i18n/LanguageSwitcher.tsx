@@ -54,7 +54,7 @@ export function LanguageSwitcher() {
           src={currentLang.flag}
           className="rounded-sm shrink-0"
         />
-        <span className="font-medium text-secondary dark:text-primary text-sm">{currentLang.label}</span>
+        <span className="font-medium text-secondary text-sm">{currentLang.label}</span>
         {open ? (
           <FaChevronUp className="text-forest text-xs shrink-0" />
         ) : (
@@ -70,7 +70,7 @@ export function LanguageSwitcher() {
                 key={lang.value}
                 type="button"
                 onClick={() => changeLocale(lang.value)}
-                className="flex items-center gap-2 w-full px-3 py-2 hover:bg-surface dark:hover:bg-zinc-700 text-secondary dark:text-primary text-sm"
+                className="flex items-center gap-2 w-full px-3 py-2 hover:bg-surface dark:hover:bg-zinc-700 text-secondary text-sm"
               >
                 <Image alt="" height={20} width={20} src={lang.flag} className="rounded-sm" />
                 <span>{lang.label}</span>

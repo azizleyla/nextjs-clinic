@@ -43,7 +43,7 @@ export default function AboutSection() {
               title="Səhiyyənizə etibar edəcəyiniz məkanda"
               className="!mb-6"
             />
-            <p className="text-secondary leading-relaxed mb-7 text-lg">
+            <p className="text-secondary leading-relaxed mb-7 text-sm md:text-lg">
               Elmed-də xəstələrimizin sağlamlığı üçün müasir standartlar və peşəkar komandamızla
               xidmət göstəririk. Diagnostikadan müalicəyə qədər hər addımda keyfiyyət və
               təhlükəsizlik əsas prioritetimizdir.
@@ -76,7 +76,7 @@ export default function AboutSection() {
               <div className="inline-flex w-16 h-16 rounded-3xl bg-forest/10 items-center justify-center mb-4 transition-colors group-hover:bg-clay/15">
                 <Icon className="text-forest text-2xl transition-colors group-hover:text-clay" />
               </div>
-              <p className="font-heading text-xl font-semibold text-ink dark:text-white">{title}</p>
+              <p className="font-heading text-base md:text-xl font-semibold text-ink dark:text-white">{title}</p>
               <p className="text-sm text-primary_bold mt-1">{sub}</p>
             </div>
           ))}

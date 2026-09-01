@@ -29,24 +29,27 @@ module.exports = {
         // existing reference across the app inherits the palette. Names like
         // `forest`/`sage`/`clay` are kept as stable aliases; their *values*
         // are now clinical (blue / soft-sky / teal).
+        // Brand colors — same in light & dark.
         primary: '#0a5cc4',        // medical blue — CTAs, links, chips
         'primary-dark': '#08498f', // pressed / hover blue
-        secondary: '#26374a',      // cool slate for body copy
-        primary_bold: "#5b7186",   // muted slate for secondary copy
         accent: '#0fb5c9',         // fresh cyan-teal pop
         navy: '#0a2540',           // deep medical navy (footer / topbar)
-        surface: '#eef4fb',        // cool light-blue section wash
-
-        // Semantic aliases used across the editorial surfaces
-        cream: '#f5f8fc',          // clean cool page canvas
-        paper: '#ffffff',          // white raised cards
-        ink: '#0f2438',            // deep navy headline text
         clay: '#0fb5c9',           // accent alias (cyan-teal)
         'clay-soft': '#7fd6e0',
-        sand: '#dce7f3',           // cool hairline borders / soft fills
         sage: '#d3ecef',           // soft teal tint (frames / glows)
         forest: '#0a5cc4',         // primary alias (medical blue)
         moss: '#2f7fd6',           // lighter blue
+
+        // Neutral tokens — CSS variables that FLIP in dark mode (see
+        // globals.css :root / .dark). rgb-channel format keeps `/opacity`
+        // modifiers (e.g. text-secondary/90) working.
+        secondary: 'rgb(var(--c-secondary) / <alpha-value>)',   // body copy
+        primary_bold: 'rgb(var(--c-primary-bold) / <alpha-value>)',
+        surface: 'rgb(var(--c-surface) / <alpha-value>)',       // section wash
+        cream: 'rgb(var(--c-cream) / <alpha-value>)',           // page canvas
+        paper: 'rgb(var(--c-paper) / <alpha-value>)',           // raised cards
+        ink: 'rgb(var(--c-ink) / <alpha-value>)',               // headings
+        sand: 'rgb(var(--c-sand) / <alpha-value>)',             // borders
       },
       screens: {
         'sm-custom': '576px',

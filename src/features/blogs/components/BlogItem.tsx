@@ -22,7 +22,7 @@ export default function BlogItem({ post }: BlogItemProps) {
             <FaRegCalendarAlt />
             {post.date}
           </span>
-          <h3 className="font-heading font-semibold text-lg text-ink dark:text-white line-clamp-2 group-hover:text-forest transition-colors">
+          <h3 className="font-heading font-semibold text-base md:text-lg text-ink dark:text-white line-clamp-2 group-hover:text-forest transition-colors">
             {post.title}
           </h3>
           <p className="leading-relaxed line-clamp-2 text-sm text-primary_bold flex-1">

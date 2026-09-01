@@ -106,7 +106,7 @@ export default async function DoctorDetail({ params }: { params: Promise<Params>
           {/* Əsas məzmun - təhsil və təcrübə */}
           <div className="flex-1 min-w-0">
             <div className="rounded-3xl border border-sand dark:border-zinc-800 shadow-xl shadow-forest/10 bg-paper dark:bg-zinc-900 p-6 lg:p-10">
-              <h3 className="font-heading text-2xl font-semibold text-ink dark:text-primary mb-2">
+              <h3 className="font-heading text-2xl font-semibold text-ink mb-2">
                 {doctor?.name}
                 {doctor?.specialty && (
                   <span className="text-primary_bold font-normal text-base ml-1">
@@ -117,7 +117,7 @@ export default async function DoctorDetail({ params }: { params: Promise<Params>
 
               {doctor?.education?.length ? (
                 <section className="mb-8">
-                  <h4 className="flex items-center gap-2 text-ink dark:text-primary font-semibold mb-3">
+                  <h4 className="flex items-center gap-2 text-ink font-semibold mb-3">
                     <span className="w-9 h-9 rounded-xl bg-forest/10 flex items-center justify-center">
                       <FaGraduationCap className="text-forest text-sm" />
                     </span>
@@ -140,7 +140,7 @@ export default async function DoctorDetail({ params }: { params: Promise<Params>
 
               {doctor?.experience?.length ? (
                 <section>
-                  <h4 className="flex items-center gap-2 text-ink dark:text-primary font-semibold mb-3">
+                  <h4 className="flex items-center gap-2 text-ink font-semibold mb-3">
                     <span className="w-9 h-9 rounded-xl bg-forest/10 flex items-center justify-center">
                       <FaBriefcase className="text-forest text-sm" />
                     </span>

@@ -2,8 +2,9 @@
 
 import React, { useEffect, useState } from "react";
 import Image from "next/image";
-import { FaBars, FaChevronDown, FaTimes, FaPhone } from "react-icons/fa";
+import { FaChevronDown, FaTimes, FaPhone } from "react-icons/fa";
 import { FaMagnifyingGlass } from "react-icons/fa6";
+import { RiMenu3Line } from "react-icons/ri";
 import { menuItems } from "@/utils/constants/menuItem";
 import { usePathname } from "next/navigation";
 import DarkModeToggle from "@/core/theme/ThemeToggle";
@@ -146,7 +147,7 @@ const Navbar = () => {
             aria-expanded={menuOpen}
             aria-label={menuOpen ? "Menyunu bağla" : "Menyunu aç"}
           >
-            {menuOpen ? <FaTimes className="text-xl" /> : <FaBars className="text-xl" />}
+            {menuOpen ? <FaTimes className="text-xl" /> : <RiMenu3Line className="text-2xl" />}
           </button>
         </div>
       </nav>
