@@ -4,6 +4,7 @@ import {
   FaBriefcase,
   FaPhone,
   FaMapMarkerAlt,
+  FaRegClock,
 } from "react-icons/fa";
 import { Link } from "@/core/i18n/navigation";
 import type { Doctor } from "@/features/doctors/types";
@@ -12,6 +13,17 @@ import DoctorImage from "@/features/doctors/components/DoctorImage";
 import Breadcrumb from "@/shared/ui/breadcrumb/Breadcrumb";
 
 type Params = { slug: string; id: string };
+
+/** Gün kodu → Azərbaycan etiketi. */
+const DAY_LABELS: Record<string, string> = {
+  mon: "B.e",
+  tue: "Ç.a",
+  wed: "Çərşənbə",
+  thu: "C.a",
+  fri: "Cümə",
+  sat: "Şənbə",
+  sun: "Bazar",
+};
 
 export default async function DoctorDetail({ params }: { params: Promise<Params> }) {
   const { slug, id } = await params;
@@ -92,6 +104,31 @@ export default async function DoctorDetail({ params }: { params: Promise<Params>
                     ) : null}
                   </ul>
                 )}
+
+                {doctor?.work_hours?.length ? (
+                  <div className="mt-5 border-t border-sand dark:border-zinc-700 pt-5">
+                    <h3 className="mb-3 flex items-center gap-2 text-sm font-semibold text-ink dark:text-zinc-200">
+                      <FaRegClock className="text-forest" />
+                      İş saatları
+                    </h3>
+                    <ul className="space-y-2 text-sm">
+                      {doctor.work_hours.map((wh, i) => (
+                        <li
+                          key={i}
+                          className="flex items-center justify-between gap-3"
+                        >
+                          <span className="text-secondary">
+                            {DAY_LABELS[wh.day] ?? wh.day}
+                          </span>
+                          <span className="font-medium text-ink dark:text-zinc-200">
+                            {wh.from}–{wh.to}
+                          </span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                ) : null}
+
                 <Link
                   href="/contact"
                   className="mt-5 flex w-full items-center justify-center gap-2 py-3 px-4 rounded-full bg-forest text-cream font-semibold text-sm shadow-lg shadow-forest/20 hover:bg-primary-dark transition-colors"

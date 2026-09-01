@@ -15,6 +15,13 @@ export type DoctorBranch = {
   short_name?: string;
 };
 
+/** Bir iş günü: day = mon..sun, from/to = "09:00" formatı. */
+export type DoctorWorkHour = {
+  day: string;
+  from: string;
+  to: string;
+};
+
 export type Doctor = {
   id: number;
   name: string;
@@ -24,5 +31,6 @@ export type Doctor = {
   branch?: DoctorBranch;
   education?: DoctorEducation[];
   experience?: DoctorExperience[];
+  work_hours?: DoctorWorkHour[];
   updatedAt: string;
 };

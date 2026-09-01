@@ -1,4 +1,5 @@
 import { ApiError, reportError } from "@/core/errors";
+import { resolveClinicId } from "@/core/tenant/tenant";
 
 type RequestOptions = RequestInit & {
   headers?: HeadersInit;
@@ -54,9 +55,13 @@ export const apiClient = {
     const path = endpoint.startsWith("/") ? endpoint : `/${endpoint}`;
     const url = `${baseUrl}${path}`;
 
+    // Multi-tenant: hansı klinikanın datası olduğunu backend-ə bildir.
+    const clinicId = await resolveClinicId();
+
     const defaultOptions: RequestInit = {
       headers: {
         "Content-Type": "application/json",
+        "X-Clinic": clinicId,
         ...(options.headers as Record<string, string>),
       },
     };
