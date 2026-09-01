@@ -19,13 +19,34 @@ module.exports = {
     },
     extend: {
       colors: {
-        primary: '#0046c0',
-        'primary-dark': '#00378f',
-        secondary: '#344c5d',
-        primary_bold: "#4a6f8a",
-        accent: '#f0ad4e',
-        navy: '#0a2647',
-        surface: '#f4f8fc',
+        // ── "Clinical Editorial" theme ───────────────────────────────────
+        // The unmistakable medical-trust language of Azerbaijani clinics
+        // (MediClub, Bona Dea, Central Clinic): a confident medical blue with
+        // a fresh cyan-teal accent on clean, cool white — but applied over the
+        // distinctive editorial layout so it reads modern, not generic.
+        //
+        // Legacy + semantic tokens are REDEFINED (not renamed) so every
+        // existing reference across the app inherits the palette. Names like
+        // `forest`/`sage`/`clay` are kept as stable aliases; their *values*
+        // are now clinical (blue / soft-sky / teal).
+        primary: '#0a5cc4',        // medical blue — CTAs, links, chips
+        'primary-dark': '#08498f', // pressed / hover blue
+        secondary: '#26374a',      // cool slate for body copy
+        primary_bold: "#5b7186",   // muted slate for secondary copy
+        accent: '#0fb5c9',         // fresh cyan-teal pop
+        navy: '#0a2540',           // deep medical navy (footer / topbar)
+        surface: '#eef4fb',        // cool light-blue section wash
+
+        // Semantic aliases used across the editorial surfaces
+        cream: '#f5f8fc',          // clean cool page canvas
+        paper: '#ffffff',          // white raised cards
+        ink: '#0f2438',            // deep navy headline text
+        clay: '#0fb5c9',           // accent alias (cyan-teal)
+        'clay-soft': '#7fd6e0',
+        sand: '#dce7f3',           // cool hairline borders / soft fills
+        sage: '#d3ecef',           // soft teal tint (frames / glows)
+        forest: '#0a5cc4',         // primary alias (medical blue)
+        moss: '#2f7fd6',           // lighter blue
       },
       screens: {
         'sm-custom': '576px',
@@ -36,7 +57,7 @@ module.exports = {
       fontFamily: {
         sans: ['var(--font-body)', 'sans-serif'],
         base: ['var(--font-body)', 'sans-serif'],
-        heading: ['var(--font-heading)', 'serif'],
+        heading: ['var(--font-heading)', 'sans-serif'],
       },
       fontSize: {
         xs: '0.75rem',
@@ -73,6 +94,18 @@ module.exports = {
           '0%': { opacity: '0', transform: 'translateY(28px)' },
           '100%': { opacity: '1', transform: 'translateY(0)' },
         },
+        'float-slow': {
+          '0%, 100%': { transform: 'translateY(0)' },
+          '50%': { transform: 'translateY(-14px)' },
+        },
+        'blob': {
+          '0%, 100%': { borderRadius: '42% 58% 63% 37% / 42% 42% 58% 58%' },
+          '50%': { borderRadius: '58% 42% 37% 63% / 58% 58% 42% 42%' },
+        },
+        'spin-slow': {
+          '0%': { transform: 'rotate(0deg)' },
+          '100%': { transform: 'rotate(360deg)' },
+        },
       },
       animation: {
         'a-one': 'a-one 5s linear infinite',
@@ -81,6 +114,9 @@ module.exports = {
         'heart-pulse': 'heart-pulse 1s ease-in-out infinite',
         'ecg-line': 'ecg-line 2s ease-in-out infinite',
         'fade-up': 'fade-up 0.9s cubic-bezier(0.16, 1, 0.3, 1) both',
+        'float-slow': 'float-slow 6s ease-in-out infinite',
+        'blob': 'blob 12s ease-in-out infinite',
+        'spin-slow': 'spin-slow 40s linear infinite',
       },
     },
   },

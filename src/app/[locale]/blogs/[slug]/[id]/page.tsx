@@ -1,15 +1,17 @@
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import Image from "next/image";
-import { Banner } from "@/components";
 import { createMetadata } from "@/core/seo/metadata";
 import type { BlogPost } from "@/features/blogs/types";
 import { getBlogById, getBlogsList } from "@/features/blogs/api";
 import { Link } from "@/core/i18n/navigation";
 import { FaRegCalendarAlt, FaArrowLeft } from "react-icons/fa";
 import BlogsSection from "@/features/blogs/components/BlogsSection";
+import Breadcrumb from "@/shared/ui/breadcrumb/Breadcrumb";
 
-const RECENT_COUNT = 3;
+// Slayderin (home-dakı kimi) həqiqətən sürüşməsi üçün 3 sütundan çox post
+// lazımdır — ona görə daha çox gətirib göstəririk.
+const RECENT_COUNT = 8;
 
 type Params = { id: string; locale: string; slug: string };
 
@@ -17,7 +19,7 @@ async function getOtherPosts(
   locale: string,
   currentId: number,
 ): Promise<BlogPost[]> {
-  const { posts } = await getBlogsList(locale).catch(() => ({
+  const { posts } = await getBlogsList(locale, 12, 1).catch(() => ({
     posts: [] as BlogPost[],
     totalPages: 0,
     currentPage: 1,
@@ -59,10 +61,17 @@ export default async function BlogDetailPage({
 
   return (
     <>
-      <Banner dynamicTitle="Bloq" />
       <div className="container">
-        <div className="pt-8 md:pt-12" />
-        <div className="w-full aspect-[21/9] min-h-[220px] md:min-h-[280px] relative bg-slate-200 dark:bg-zinc-800">
+        <Breadcrumb
+          className="pt-6"
+          items={[
+            { label: "Əsas", href: "/" },
+            { label: "Bloqlar", href: "/blogs" },
+            { label: post.title },
+          ]}
+        />
+        <div className="pt-5 md:pt-7" />
+        <div className="w-full aspect-[21/9] min-h-[220px] md:min-h-[280px] relative bg-sage/20 dark:bg-zinc-800 rounded-3xl overflow-hidden ring-1 ring-sand shadow-xl shadow-forest/10">
           <Image
             src={post.image}
             alt={post.title}
@@ -76,13 +85,13 @@ export default async function BlogDetailPage({
         <section className="pb-12">
           <div className="container px-2 lg:px-6">
             <article className="max-w-5xl">
-              <h1 className="text-2xl lg:text-3xl font-bold text-[#232323] dark:text-primary mb-3">
-                {post.title}
-              </h1>
-              <p className="flex items-center gap-2 text-secondary text-sm mb-6">
-                <FaRegCalendarAlt className="text-primary" aria-hidden />
+              <p className="mt-8 mb-4 flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.18em] text-clay">
+                <FaRegCalendarAlt aria-hidden />
                 {post.date}
               </p>
+              <h1 className="font-heading text-2xl lg:text-3xl font-semibold leading-[1.18] tracking-tight text-ink dark:text-primary mb-6">
+                {post.title}
+              </h1>
 
               <div
                 className="prose prose-lg max-w-full text-secondary leading-relaxed blog-content overflow-hidden"

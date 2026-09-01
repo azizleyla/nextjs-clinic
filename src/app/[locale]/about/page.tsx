@@ -1,6 +1,5 @@
 import {
   AboutSection,
-  Banner,
   Counter,
   DepartmentsSection,
 } from "@/components";
@@ -28,7 +27,6 @@ export async function generateMetadata({ params }: PageProps) {
 export default async function About() {
   return (
     <>
-      <Banner pageKey="AboutPage" />
       <div className="container">
         <AboutSection />
       </div>

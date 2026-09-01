@@ -16,19 +16,30 @@ export default function Pagination({
   basePath,
   ariaLabel = "Pagination",
 }: PaginationProps) {
-  if (totalPages < 1) return null;
+  // Backend meta bəzən `undefined`/string gələ bilər — number-ə çevirib
+  // qoruyuruq, əks halda `showPages` boş qalır (oxlar görünür, rəqəm yox).
+  const totalNum = Number(totalPages);
+  const safeTotal =
+    Number.isFinite(totalNum) && totalNum >= 1 ? Math.floor(totalNum) : 0;
 
-  const prevPage = currentPage > 1 ? currentPage - 1 : null;
-  const nextPage = currentPage < totalPages ? currentPage + 1 : null;
+  if (safeTotal < 1) return null;
 
-  const getPageUrl = (page: number) =>
-    page === 1 ? basePath : `${basePath}?page=${page}`;
+  const currentNum = Number(currentPage);
+  const page = Number.isFinite(currentNum)
+    ? Math.min(Math.max(1, Math.floor(currentNum)), safeTotal)
+    : 1;
+
+  const prevPage = page > 1 ? page - 1 : null;
+  const nextPage = page < safeTotal ? page + 1 : null;
+
+  const getPageUrl = (p: number) =>
+    p === 1 ? basePath : `${basePath}?page=${p}`;
 
   const showPages = (() => {
     const delta = 1;
     const range: number[] = [];
-    const lo = Math.max(1, currentPage - delta);
-    const hi = Math.min(totalPages, currentPage + delta);
+    const lo = Math.max(1, page - delta);
+    const hi = Math.min(safeTotal, page + delta);
     for (let i = lo; i <= hi; i++) range.push(i);
     return range;
   })();
@@ -41,27 +52,27 @@ export default function Pagination({
       {prevPage !== null ? (
         <Link
           href={getPageUrl(prevPage)}
-          className="p-2 rounded border border-primary text-primary hover:bg-primary hover:text-white transition inline-flex items-center justify-center"
+          className="w-10 h-10 rounded-full border border-sand text-forest bg-paper hover:bg-forest hover:text-cream hover:border-forest transition inline-flex items-center justify-center"
           aria-label="Əvvəlki"
         >
-          <FaChevronLeft className="w-4 h-4" aria-hidden />
+          <FaChevronLeft className="w-3.5 h-3.5" aria-hidden />
         </Link>
       ) : (
         <span
-          className="p-2 rounded border border-gray-300 text-gray-400 cursor-not-allowed inline-flex items-center justify-center"
+          className="w-10 h-10 rounded-full border border-sand text-secondary/30 cursor-not-allowed inline-flex items-center justify-center"
           aria-disabled="true"
           aria-label="Əvvəlki"
         >
-          <FaChevronLeft className="w-4 h-4" aria-hidden />
+          <FaChevronLeft className="w-3.5 h-3.5" aria-hidden />
         </span>
       )}
 
       <div className="flex gap-2">
         {showPages.map((p) =>
-          p === currentPage ? (
+          p === page ? (
             <span
               key={p}
-              className="px-3 py-2 rounded border-2 border-primary bg-primary text-white font-medium"
+              className="w-10 h-10 rounded-full bg-forest text-white font-bold inline-flex items-center justify-center shadow-lg shadow-forest/20"
               aria-current="page"
             >
               {p}
@@ -70,7 +81,7 @@ export default function Pagination({
             <Link
               key={p}
               href={getPageUrl(p)}
-              className="px-3 py-2 rounded border border-primary text-primary hover:bg-primary hover:text-white transition"
+              className="w-10 h-10 rounded-full border border-sand text-ink bg-paper hover:bg-forest hover:text-white hover:border-forest transition inline-flex items-center justify-center font-semibold"
             >
               {p}
             </Link>
@@ -81,14 +92,14 @@ export default function Pagination({
       {nextPage !== null ? (
         <Link
           href={getPageUrl(nextPage)}
-          className="p-2 rounded border border-primary text-primary hover:bg-primary hover:text-white transition inline-flex items-center justify-center"
+          className="w-10 h-10 rounded-full border border-sand text-forest bg-paper hover:bg-forest hover:text-cream hover:border-forest transition inline-flex items-center justify-center"
           aria-label="Növbəti"
         >
-          <FaChevronRight className="w-4 h-4" aria-hidden />
+          <FaChevronRight className="w-3.5 h-3.5" aria-hidden />
         </Link>
       ) : (
         <span
-          className="p-2 rounded border border-gray-300 text-gray-400 cursor-not-allowed inline-flex items-center justify-center"
+          className="w-10 h-10 rounded-full border border-sand text-secondary/30 cursor-not-allowed inline-flex items-center justify-center"
           aria-disabled="true"
           aria-label="Növbəti"
         >

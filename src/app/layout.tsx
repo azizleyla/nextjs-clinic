@@ -1,4 +1,4 @@
-import { Lora, Source_Sans_3 } from "next/font/google";
+import { Poppins, Open_Sans } from "next/font/google";
 import "../styles/globals.css";
 import "swiper/css";
 import "swiper/css/navigation";
@@ -9,14 +9,17 @@ import { SpeedInsights } from "@vercel/speed-insights/next";
 import type { ReactNode } from "react";
 import Script from "next/script";
 
-const lora = Lora({
+// Display: Poppins — a clean, friendly geometric sans. Simple and universally
+// legible, it reads professional and calm for a healthcare brand.
+const poppins = Poppins({
   subsets: ["latin"],
-  weight: ["500", "600", "700"],
+  weight: ["400", "500", "600", "700", "800"],
   variable: "--font-heading",
   display: "swap",
 });
 
-const sourceSans = Source_Sans_3({
+// Body: Open Sans — a neutral, highly-readable workhorse for long-form copy.
+const openSans = Open_Sans({
   subsets: ["latin"],
   weight: ["400", "500", "600", "700"],
   variable: "--font-body",
@@ -35,7 +38,7 @@ export default function RootLayout({ children }: RootLayoutProps) {
     <html
       lang="en"
       suppressHydrationWarning
-      className={`${lora.variable} ${sourceSans.variable} ${sourceSans.className} light`}
+      className={`${poppins.variable} ${openSans.variable} ${openSans.className} light`}
     >
       <body>
         <ScrollToTop />

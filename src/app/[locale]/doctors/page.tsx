@@ -1,4 +1,3 @@
-import { Banner } from "@/components";
 import DoctorsPageContent from "./DoctorsPageContent";
 import { createMetadata } from "@/core/seo/metadata";
 
@@ -27,9 +26,8 @@ export async function generateMetadata({ params }: PageProps) {
 
 export default async function DoctorsPage({ searchParams }: PageProps) {
   return (
-    <>
-      <Banner pageKey="DoctorPage" />
+    <div className="pt-8 md:pt-10">
       <DoctorsPageContent searchParams={searchParams} />
-    </>
+    </div>
   );
 }

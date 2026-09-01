@@ -9,7 +9,7 @@ export default function Partners() {
   return (
     <section className="partners">
       <div className="container">
-        <SectionTitle title="Sığorta tərəfdaşlarımız" />
+        <SectionTitle subtitle="Etibarlı tərəfdaşlar" title="Sığorta tərəfdaşlarımız" />
         <Swiper
           modules={[Navigation, Autoplay]}
           spaceBetween={30}
@@ -29,51 +29,51 @@ export default function Partners() {
           }}
         >
           <SwiperSlide>
-            <div className="border flex justify-center border-slate-200 dark:border-zinc-700 p-4 bg-white dark:bg-zinc-900">
+            <div className="flex h-24 items-center justify-center rounded-2xl border border-sand dark:border-zinc-700 p-5 bg-paper dark:bg-zinc-900 transition-shadow hover:shadow-lg hover:shadow-forest/5">
               <img
-                className="h-14 object-center"
+                className="h-12 object-center transition-transform duration-300 hover:scale-105"
                 src="/images/pasha-logo.png"
               />
             </div>
           </SwiperSlide>
           <SwiperSlide>
-            <div className="border flex justify-center border-slate-200 dark:border-zinc-700 p-4 bg-white dark:bg-zinc-900">
+            <div className="flex h-24 items-center justify-center rounded-2xl border border-sand dark:border-zinc-700 p-5 bg-paper dark:bg-zinc-900 transition-shadow hover:shadow-lg hover:shadow-forest/5">
               <img
-                className="h-14 object-center"
+                className="h-12 object-center transition-transform duration-300 hover:scale-105"
                 src="/images/xalq-logo.png"
               />
             </div>
           </SwiperSlide>
 
           <SwiperSlide>
-            <div className="border flex justify-center border-slate-200 dark:border-zinc-700 p-4 bg-white dark:bg-zinc-900">
+            <div className="flex h-24 items-center justify-center rounded-2xl border border-sand dark:border-zinc-700 p-5 bg-paper dark:bg-zinc-900 transition-shadow hover:shadow-lg hover:shadow-forest/5">
               <img
-                className="h-14 object-center"
+                className="h-12 object-center transition-transform duration-300 hover:scale-105"
                 src="/images/senaye-sigorta-logo.png"
               />
             </div>
           </SwiperSlide>
 
           <SwiperSlide>
-            <div className="border flex justify-center border-slate-200 dark:border-zinc-700 p-4 bg-white dark:bg-zinc-900">
+            <div className="flex h-24 items-center justify-center rounded-2xl border border-sand dark:border-zinc-700 p-5 bg-paper dark:bg-zinc-900 transition-shadow hover:shadow-lg hover:shadow-forest/5">
               <img
-                className="h-14 object-center"
+                className="h-12 object-center transition-transform duration-300 hover:scale-105"
                 src="/images/Icbari-Tibbi-Sigorta.png"
               />
             </div>
           </SwiperSlide>
           <SwiperSlide>
-            <div className="border flex justify-center border-slate-200 dark:border-zinc-700 p-4 bg-white dark:bg-zinc-900">
+            <div className="flex h-24 items-center justify-center rounded-2xl border border-sand dark:border-zinc-700 p-5 bg-paper dark:bg-zinc-900 transition-shadow hover:shadow-lg hover:shadow-forest/5">
               <img
-                className="h-14 object-center"
+                className="h-12 object-center transition-transform duration-300 hover:scale-105"
                 src="/images/ata-sigorta.png"
               />
             </div>
           </SwiperSlide>
           <SwiperSlide>
-            <div className="border flex justify-center border-slate-200 dark:border-zinc-700 p-4 bg-white dark:bg-zinc-900">
+            <div className="flex h-24 items-center justify-center rounded-2xl border border-sand dark:border-zinc-700 p-5 bg-paper dark:bg-zinc-900 transition-shadow hover:shadow-lg hover:shadow-forest/5">
               <img
-                className="h-14 object-center"
+                className="h-12 object-center transition-transform duration-300 hover:scale-105"
                 src="/images/mega-sigorta.png"
               />
             </div>

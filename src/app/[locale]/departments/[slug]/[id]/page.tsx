@@ -1,9 +1,10 @@
-import { Banner } from "@/components";
+import SectionTitle from "@/shared/ui/typography/SectionTitle";
 import { apiClient } from "@/core/api/apiClient";
 import { generateSlug } from "@/utils/slug";
 import { pickLocalizedText } from "@/services/departmentService";
 import { createMetadata } from "@/core/seo/metadata";
 import Image from "next/image";
+import Breadcrumb from "@/shared/ui/breadcrumb/Breadcrumb";
 
 type Params = { id: string; locale: string; slug: string };
 
@@ -55,13 +56,27 @@ export default async function DepartmentDetail({
   const contentHtml = pickLocalizedText(department.content, locale);
   return (
     <>
-      <Banner dynamicTitle={department?.title?.[locale]} />
-      <section className="bg-slate-50/70 dark:bg-zinc-900/40 py-10 md:py-14">
+      <section className="bg-cream dark:bg-zinc-900/40 pt-6 pb-12 md:pt-8 md:pb-16">
         <div className="container">
-          <div className="mx-auto max-w-5xl rounded-2xl bg-white dark:bg-zinc-950/90 border border-slate-200/80 dark:border-zinc-800 shadow-sm px-4 py-6 sm:px-8 sm:py-8 lg:px-10 lg:py-10">
+          <Breadcrumb
+            className="mb-5"
+            items={[
+              { label: "Əsas", href: "/" },
+              { label: "Şöbələr", href: "/departments" },
+              { label: department?.title?.[locale] ?? "" },
+            ]}
+          />
+          <div className="mx-auto max-w-5xl">
+            <SectionTitle
+              subtitle="Şöbə"
+              title={department?.title?.[locale] ?? ""}
+              className="!mb-6"
+            />
+          </div>
+          <div className="mx-auto max-w-5xl rounded-3xl bg-paper dark:bg-zinc-950/90 border border-sand dark:border-zinc-800 shadow-xl shadow-forest/5 px-4 py-6 sm:px-8 sm:py-8 lg:px-10 lg:py-10">
             <div className="flex flex-col gap-8 lg:flex-row lg:items-start">
               <div className="w-full lg:w-1/2 flex-none">
-                <div className="overflow-hidden rounded-xl bg-slate-100 dark:bg-zinc-900">
+                <div className="overflow-hidden rounded-2xl bg-sage/20 dark:bg-zinc-900 ring-1 ring-sand">
                   <Image
                     height={420}
                     width={640}

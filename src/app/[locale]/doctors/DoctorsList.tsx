@@ -1,6 +1,7 @@
  "use client";
 
 import { DoctorItem, Pagination } from "@/components";
+import SectionTitle from "@/shared/ui/typography/SectionTitle";
 import Loading from "../../loading";
 import { useFilters } from "@/utils/hooks/useFilters";
 import { useDebounce } from "@/utils/hooks/useDebounce";
@@ -31,6 +32,7 @@ export default function DoctorsList() {
 
   return (
     <div className="container">
+      <SectionTitle subtitle="Peşəkar komanda" title="Həkimlərimiz" />
       <DoctorFilters
         filters={filters}
         setFilter={setFilter}

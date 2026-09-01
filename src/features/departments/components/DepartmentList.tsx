@@ -38,21 +38,21 @@ const DepartmentList = ({ departments, isLoadMore }: DepartmentListProps) => {
             <Link
               href={`/departments/${generateSlug(title)}/${department.id}`}
               key={department.id}
-              className="flex flex-col items-start text-left gap-3 rounded-xl border border-slate-200/80 dark:border-zinc-800 bg-white dark:bg-zinc-900/60 px-5 py-5 md:px-6 md:py-6 transition-all duration-300 hover:border-primary/60 hover:shadow-md"
+              className="group flex flex-col items-start text-left gap-3 rounded-3xl border border-sand dark:border-zinc-800 bg-paper dark:bg-zinc-900/60 px-6 py-6 md:px-7 md:py-7 transition-all duration-300 hover:-translate-y-1.5 hover:border-forest/25 hover:shadow-xl hover:shadow-forest/10"
             >
-              <div className="inline-flex items-center justify-center rounded-lg bg-primary/10 text-primary w-12 h-12 mb-1">
-                <Icon className="text-xl" aria-hidden />
+              <div className="inline-flex items-center justify-center rounded-2xl bg-forest/10 text-forest w-14 h-14 mb-1 transition-colors group-hover:bg-clay/15 group-hover:text-clay">
+                <Icon className="text-2xl" aria-hidden />
               </div>
-              <h3 className="font-semibold text-base md:text-lg text-secondary dark:text-white">
+              <h3 className="font-heading font-semibold text-lg md:text-xl text-ink dark:text-white">
                 {title}
               </h3>
-              <p className="text-secondary/90 dark:text-zinc-300 text-sm leading-relaxed line-clamp-3">
+              <p className="text-primary_bold dark:text-zinc-300 text-sm leading-relaxed line-clamp-3">
                 {pickLocalizedText(department.desc, locale)}
 
               </p>
-              <span className="flex items-center gap-2 text-sm font-semibold text-primary mt-1">
+              <span className="flex items-center gap-2 text-sm font-semibold text-forest mt-1">
                 Ətraflı
-                <FaArrowRight className="text-xs" />
+                <FaArrowRight className="text-xs transition-transform group-hover:translate-x-1" />
               </span>
             </Link>
           );

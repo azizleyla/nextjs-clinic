@@ -15,7 +15,7 @@ export default async function Departments({
   return (
     <section>
       <div className="container">
-        <SectionTitle title="Şöbələr" />
+        <SectionTitle subtitle="İxtisaslarımız" title="Şöbələr" />
         <DepartmentList isLoadMore={isLoadMore} departments={departments} />
       </div>
     </section>

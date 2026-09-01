@@ -1,4 +1,4 @@
-import { Banner, DepartmentsSection } from "@/components";
+import { DepartmentsSection } from "@/components";
 import { createMetadata } from "@/core/seo/metadata";
 
 type PageProps = {
@@ -19,8 +19,7 @@ export async function generateMetadata({ params }: PageProps) {
 
 export default function DepartmentsPage() {
   return (
-    <div>
-      <Banner pageKey="DepartmentsPage" />
+    <div className="pt-6 md:pt-8">
       <DepartmentsSection isLoadMore={true} />
     </div>
   );

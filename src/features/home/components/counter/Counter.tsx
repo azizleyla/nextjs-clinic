@@ -18,14 +18,15 @@ const stats = [
 const Counter = ({ isHome }: CounterProps) => {
   return (
     <div className={`container ${isHome ? "-mt-10 md:-mt-14 lg:-mt-16" : "mt-20"}`}>
-      <div className={`bg-white dark:bg-zinc-900 border border-slate-200/80 dark:border-zinc-800 rounded-2xl grid grid-cols-1 sm-custom:grid-cols-2 md:grid-cols-4 divide-y sm-custom:divide-y-0 sm-custom:divide-x divide-slate-100 dark:divide-zinc-800 ${isHome ? "relative z-10 shadow-xl shadow-navy/10" : ""}`}>
+      <div className={`bg-paper dark:bg-zinc-900 border border-sand dark:border-zinc-800 rounded-[2rem] grid grid-cols-1 sm-custom:grid-cols-2 md:grid-cols-4 divide-y sm-custom:divide-y-0 sm-custom:divide-x divide-sand dark:divide-zinc-800 ${isHome ? "relative z-10 shadow-2xl shadow-forest/10" : ""}`}>
         {stats.map(({ icon: Icon, end, label }) => (
-          <div key={label} className="flex flex-col items-center gap-2 py-8 px-4 text-center">
-            <span className="flex items-center justify-center w-12 h-12 rounded-lg bg-primary/10 text-primary mb-1">
+          <div key={label} className="group flex flex-col items-center gap-2 py-9 px-4 text-center">
+            <span className="flex items-center justify-center w-12 h-12 rounded-2xl bg-forest/10 text-forest mb-1 transition-colors group-hover:bg-clay/15 group-hover:text-clay">
               <Icon className="text-xl" />
             </span>
-            <h3 className="text-secondary dark:text-primary font-bold text-3xl lg:text-4xl">
-              <CountUp start={0} end={end} duration={2.5} separator="," />+
+            <h3 className="font-heading text-ink dark:text-white font-semibold text-3xl lg:text-4xl">
+              <CountUp start={0} end={end} duration={2.5} separator="," />
+              <span className="text-clay">+</span>
             </h3>
             <p className="text-sm text-primary_bold font-medium">{label}</p>
           </div>

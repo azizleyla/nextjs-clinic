@@ -38,16 +38,16 @@ export default function BlogsSection({ posts: propPosts, title: propTitle }: Blo
   const goNext = useCallback(() => { if (swiperRef.current) swiperRef.current.slideNext(); }, []);
 
   return (
-    <section className="py-16 md:py-20 bg-surface dark:bg-zinc-900/50 overflow-x-hidden">
+    <section className="!mt-0 py-14 md:py-16 bg-cream dark:bg-zinc-900/50 overflow-x-hidden">
       <div className="container relative">
         <div className="flex flex-nowrap items-center justify-between gap-4 mb-8">
-          <SectionTitle title={title} />
+          <SectionTitle subtitle="Sağlamlıq bloqu" title={title} />
           {useSwiper && (
             <div className="flex items-center gap-2 shrink-0">
               <button
                 type="button"
                 onClick={goPrev}
-                className="w-11 h-11 rounded-full border-2 border-primary text-primary bg-white dark:bg-zinc-800 hover:bg-primary hover:text-white transition-colors flex items-center justify-center"
+                className="w-11 h-11 rounded-full border border-sand text-forest bg-paper dark:bg-zinc-800 hover:bg-forest hover:text-cream hover:border-forest transition-colors flex items-center justify-center"
                 aria-label="Əvvəlki"
               >
                 <ChevronLeft />
@@ -55,7 +55,7 @@ export default function BlogsSection({ posts: propPosts, title: propTitle }: Blo
               <button
                 type="button"
                 onClick={goNext}
-                className="w-11 h-11 rounded-full border-2 border-primary text-primary bg-white dark:bg-zinc-800 hover:bg-primary hover:text-white transition-colors flex items-center justify-center"
+                className="w-11 h-11 rounded-full border border-sand text-forest bg-paper dark:bg-zinc-800 hover:bg-forest hover:text-cream hover:border-forest transition-colors flex items-center justify-center"
                 aria-label="Növbəti"
               >
                 <ChevronRight />

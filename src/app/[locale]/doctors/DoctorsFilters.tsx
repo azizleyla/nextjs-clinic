@@ -34,13 +34,15 @@ export const DoctorFilters = ({
       minHeight: 40,
       height: 40,
       borderRadius: 6,
-      borderColor: isDark ? "#3f3f46" : "#dee2e6",
+      borderColor: isDark ? "#3f3f46" : "#dce7f3",
       backgroundColor: isDark ? "#09090b" : "#ffffff",
       boxShadow: "none",
     }),
     menu: (base: Record<string, unknown>) => ({
       ...base,
       backgroundColor: isDark ? "#09090b" : "#ffffff",
+      borderRadius: 12,
+      overflow: "hidden",
       zIndex: 30,
     }),
     menuPortal: (base: Record<string, unknown>) => ({
@@ -79,10 +81,10 @@ export const DoctorFilters = ({
     ) ?? branchOptions[0];
 
   return (
-    <div className="pt-7 lg:pt-10 gap-5 rounded-xl -mt-16 bg-white dark:bg-zinc-900/80 pb-8 flex flex-col md:flex-row px-6 lg:px-16 justify-between border border-slate-200/80 dark:border-zinc-800/80 backdrop-blur-sm">
+    <div className="pt-7 lg:pt-8 gap-5 rounded-3xl bg-paper/95 dark:bg-zinc-900/80 pb-8 flex flex-col md:flex-row px-6 lg:px-14 justify-between border border-sand dark:border-zinc-800/80 shadow-xl shadow-forest/5 backdrop-blur-sm">
       <div className="w-full md:w-1/3">
-        <div className="relative flex gap-4 items-center border-b border-[#ccd9f2] dark:border-zinc-700 pb-3">
-          <FaUserDoctor className="text-4xl text-primary" />
+        <div className="relative flex gap-4 items-center border-b border-primary/20 dark:border-zinc-700 pb-3">
+          <FaUserDoctor className="text-4xl text-forest" />
           <div className="flex flex-col w-full">
             <label className="text-xs text-secondary dark:text-zinc-400">
               Axtar
@@ -99,13 +101,13 @@ export const DoctorFilters = ({
       </div>
 
       <div className="w-full md:w-1/3 flex gap-4 items-center">
-        <FaBuilding className="text-4xl text-primary" />
+        <FaBuilding className="text-4xl text-forest" />
         <div className="flex flex-col w-full">
           <label className="text-xs text-secondary dark:text-zinc-400">
             Şöbə
           </label>
           {departments.length === 0 ? (
-            <div className="h-10 w-full rounded-md border border-[#dee2e6] bg-[#f8f9fa] dark:bg-zinc-900 animate-pulse" />
+            <div className="h-10 w-full rounded-lg border border-sand bg-surface dark:bg-zinc-900 animate-pulse" />
           ) : (
             <Select
               options={departmentOptions}
@@ -122,13 +124,13 @@ export const DoctorFilters = ({
       </div>
 
       <div className="w-full md:w-1/3 flex gap-4 items-center">
-        <FaBuilding className="text-4xl text-primary" />
+        <FaBuilding className="text-4xl text-forest" />
         <div className="flex flex-col w-full">
           <label className="text-xs text-secondary dark:text-zinc-400">
             Filial
           </label>
           {branches.length === 0 ? (
-            <div className="h-10 w-full rounded-md border border-[#dee2e6] bg-[#f8f9fa] dark:bg-zinc-900 animate-pulse" />
+            <div className="h-10 w-full rounded-lg border border-sand bg-surface dark:bg-zinc-900 animate-pulse" />
           ) : (
             <Select
               options={branchOptions}

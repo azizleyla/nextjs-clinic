@@ -36,7 +36,7 @@ export default async function HomePage({ params }: HomePageProps) {
     <>
       <Suspense
         fallback={
-          <div className="min-h-[560px] w-full animate-pulse bg-navy md:min-h-[620px] lg:min-h-[680px]" />
+          <div className="min-h-[560px] w-full animate-pulse bg-cream md:min-h-[620px] lg:min-h-[680px]" />
         }
       >
         <HeroSectionWrapper locale={locale} />

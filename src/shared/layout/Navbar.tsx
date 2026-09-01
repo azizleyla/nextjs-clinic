@@ -58,7 +58,7 @@ const Navbar = () => {
   }, [menuOpen]);
 
   return (
-    <header className="bg-white dark:bg-zinc-950 border-b border-slate-100 dark:border-zinc-800 sticky top-0 z-50">
+    <header className="bg-paper/85 dark:bg-zinc-950/85 backdrop-blur-md border-b border-sand dark:border-zinc-800 sticky top-0 z-50">
     <div className="container relative">
       <nav className="flex items-center justify-between py-4 px-0 gap-6">
         <Link href="/" className="shrink-0">
@@ -79,8 +79,8 @@ const Navbar = () => {
                 <Link
                   className={`font-medium transition-colors border-b-2 py-1 ${
                     isActive(item.href)
-                      ? "text-primary border-primary"
-                      : "text-secondary border-transparent hover:text-primary"
+                      ? "text-forest border-forest"
+                      : "text-secondary border-transparent hover:text-forest"
                   }`}
                   href={item.href}
                 >
@@ -89,11 +89,11 @@ const Navbar = () => {
                 {item.children && <FaChevronDown className="text-xs text-secondary" />}
               </div>
               {item.children && (
-                <ul className="absolute left-0 top-full pt-1 w-64 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50 bg-white dark:bg-zinc-900 py-3 shadow-lg rounded-lg border border-slate-100 dark:border-zinc-800">
+                <ul className="absolute left-0 top-full pt-1 w-64 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50 bg-paper dark:bg-zinc-900 py-3 shadow-xl shadow-forest/10 rounded-2xl border border-sand dark:border-zinc-800">
                   {item.children.map((child, cidx) => (
                     <li key={cidx}>
                       <Link
-                        className="py-2 px-4 text-secondary text-sm block hover:text-primary hover:bg-slate-50 dark:hover:bg-zinc-800"
+                        className="py-2 px-4 text-secondary text-sm block hover:text-forest hover:bg-surface dark:hover:bg-zinc-800"
                         href={child.href}
                       >
                         {child.title}
@@ -113,12 +113,12 @@ const Navbar = () => {
             </label>
             <input
               id="navbar-search"
-              className="h-10 py-1 pl-3 pr-10 w-40 border border-slate-200 dark:border-zinc-600 rounded-md bg-white dark:bg-zinc-800 text-secondary focus:border-primary focus:outline-none"
+              className="h-10 py-1 pl-4 pr-11 w-44 border border-sand dark:border-zinc-600 rounded-full bg-surface dark:bg-zinc-800 text-secondary focus:border-forest focus:outline-none transition-colors"
               placeholder="Axtar..."
             />
             <button
               type="submit"
-              className="absolute right-0 top-0 h-10 w-10 flex items-center justify-center rounded-r-md bg-slate-100 dark:bg-zinc-700 text-primary"
+              className="absolute right-1 top-1 h-8 w-8 flex items-center justify-center rounded-full bg-forest text-cream hover:bg-primary-dark transition-colors"
               aria-label="Axtar"
             >
               <FaMagnifyingGlass className="text-base" />
@@ -134,14 +134,14 @@ const Navbar = () => {
             variant="primary"
             size="sm"
             className="hidden md:inline-flex"
-            label="Qəbula yazıl"
+            label="Əlaqə saxlayın"
           />
 
           {/* Mobil: yalnız menyu düyməsi — dark mode menyu içində */}
           <button
             type="button"
             onClick={() => setMenuOpen((v) => !v)}
-            className="lg:hidden w-10 h-10 flex items-center justify-center rounded-md border border-slate-200 dark:border-zinc-600 text-secondary hover:bg-slate-50 dark:hover:bg-zinc-800 transition-colors"
+            className="lg:hidden w-10 h-10 flex items-center justify-center rounded-full border border-sand dark:border-zinc-600 text-secondary hover:bg-surface hover:text-forest dark:hover:bg-zinc-800 transition-colors"
             aria-expanded={menuOpen}
             aria-label={menuOpen ? "Menyunu bağla" : "Menyunu aç"}
           >
@@ -162,16 +162,16 @@ const Navbar = () => {
           onClick={closeMenu}
         />
         <div
-          className={`absolute top-0 right-0 h-full w-full max-w-[280px] bg-white dark:bg-zinc-900 shadow-2xl flex flex-col transition-transform duration-300 ease-out ${
+          className={`absolute top-0 right-0 h-full w-full max-w-[280px] bg-paper dark:bg-zinc-900 shadow-2xl flex flex-col transition-transform duration-300 ease-out ${
             menuOpen ? "translate-x-0" : "translate-x-full"
           }`}
         >
-          <div className="flex items-center justify-between px-5 py-4 border-b border-slate-100 dark:border-zinc-800">
-            <span className="font-semibold text-secondary dark:text-primary">Menyu</span>
+          <div className="flex items-center justify-between px-5 py-4 border-b border-sand dark:border-zinc-800">
+            <span className="font-heading text-lg font-semibold text-ink dark:text-white">Menyu</span>
             <button
               type="button"
               onClick={closeMenu}
-              className="w-10 h-10 flex items-center justify-center rounded-full hover:bg-slate-100 dark:hover:bg-zinc-800 text-secondary transition-colors"
+              className="w-10 h-10 flex items-center justify-center rounded-full hover:bg-surface hover:text-forest dark:hover:bg-zinc-800 text-secondary transition-colors"
               aria-label="Bağla"
             >
               <FaTimes className="text-lg" />
@@ -179,12 +179,12 @@ const Navbar = () => {
           </div>
           <ul className="flex-1 overflow-y-auto py-2 pb-6">
             {menuItems.map((item, idx) => (
-              <li key={idx} className="border-b border-slate-50 dark:border-zinc-800/80">
+              <li key={idx} className="border-b border-sand/70 dark:border-zinc-800/80">
                 <Link
                   className={`block py-3.5 px-5 font-medium transition-colors ${
                     isActive(item.href)
-                      ? "text-primary bg-slate-50/80 dark:bg-zinc-800/60"
-                      : "text-secondary dark:text-primary hover:text-primary hover:bg-slate-50 dark:hover:bg-zinc-800/50"
+                      ? "text-forest bg-surface dark:bg-zinc-800/60"
+                      : "text-secondary dark:text-primary hover:text-forest hover:bg-surface dark:hover:bg-zinc-800/50"
                   }`}
                   href={item.href}
                   onClick={closeMenu}
@@ -196,7 +196,7 @@ const Navbar = () => {
                     {item.children.map((child, cidx) => (
                       <li key={cidx}>
                         <Link
-                          className="block py-2.5 px-5 pl-7 text-sm text-primary_bold dark:text-zinc-400 hover:text-primary hover:bg-slate-50 dark:hover:bg-zinc-800/50 transition-colors"
+                          className="block py-2.5 px-5 pl-7 text-sm text-primary_bold dark:text-zinc-400 hover:text-forest hover:bg-surface dark:hover:bg-zinc-800/50 transition-colors"
                           href={child.href}
                           onClick={closeMenu}
                         >
@@ -209,7 +209,7 @@ const Navbar = () => {
               </li>
             ))}
           </ul>
-          <div className="p-4 pb-24 border-t border-slate-200 dark:border-zinc-800 bg-slate-50/50 dark:bg-zinc-800/30">
+          <div className="p-4 pb-24 border-t border-sand dark:border-zinc-800 bg-surface dark:bg-zinc-800/30">
             <p className="text-xs font-semibold text-primary_bold dark:text-zinc-400 uppercase tracking-wider mb-3">Seçimlər</p>
             <div className="flex flex-col gap-3">
               <div className="flex items-center justify-between">

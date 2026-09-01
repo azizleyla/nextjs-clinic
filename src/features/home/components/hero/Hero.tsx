@@ -2,14 +2,10 @@
 
 import Image from "next/image";
 import { useTranslations } from "next-intl";
-import { Swiper, SwiperSlide } from "swiper/react";
-import { Autoplay, Pagination } from "swiper/modules";
-import Button from "@/shared/ui/button";
+import { Link } from "@/core/i18n/navigation";
+import { FaArrowRight } from "react-icons/fa";
+import { FaUserDoctor } from "react-icons/fa6";
 import type { HeroSlide } from "@/features/home/types";
-
-import "swiper/css";
-import "swiper/css/autoplay";
-import "swiper/css/pagination";
 
 type HeroProps = {
   slides?: HeroSlide[];
@@ -26,138 +22,85 @@ function pickLocalized(
   return value[locale] ?? value.az ?? Object.values(value)[0] ?? "";
 }
 
-/** Tək hero slaydının vizual təqdimatı (dizayn dəyişmir). */
-function HeroSlideView({
-  imageSrc,
-  title,
-  description,
-  priority,
-}: {
-  imageSrc: string;
-  title: string;
-  description: string;
-  priority?: boolean;
-}) {
+/**
+ * Clean, simple clinical hero. Strong type hierarchy, generous whitespace, one
+ * confident image with a single floating "appointment" card. Bright and calm —
+ * the opposite of the dark, busy carousels rivals use.
+ */
+export default function Hero({ slides = [], locale = "az" }: HeroProps) {
+  const t = useTranslations("HomePage");
+
+  const slide = slides[0];
+  const imageSrc = slide?.image_url?.trim() || FALLBACK_IMAGE;
+  const title = pickLocalized(slide?.title, locale) || t("hero_title1");
+  const description =
+    pickLocalized(slide?.description, locale) || t("hero_desc1");
+
   return (
-    <section className="relative isolate mt-0 overflow-hidden bg-navy">
-      <Image
-        src={imageSrc}
-        alt=""
-        fill
-        priority={priority}
-        sizes="100vw"
-        className="object-cover object-[70%_center]"
-      />
-
-      {/* Atmosphere: directional gradient so the spotlight stays visible on the right */}
-      <div className="absolute inset-0 bg-gradient-to-r from-navy via-navy/85 to-navy/30" />
-      <div className="absolute inset-0 bg-gradient-to-t from-navy via-transparent to-navy/40" />
-
-      {/* Decorative glow */}
+    <section className="relative isolate overflow-hidden bg-cream">
+      {/* One soft, calm glow — no clutter */}
       <div
         aria-hidden
-        className="absolute -left-32 top-1/4 h-80 w-80 rounded-full bg-primary/30 blur-[100px] animate-a-seven"
+        className="pointer-events-none absolute -right-32 -top-32 h-[30rem] w-[30rem] rounded-full bg-sage/35 blur-[130px]"
       />
 
-      {/* Decorative ECG pulse line along the bottom edge */}
-      <svg
-        aria-hidden
-        viewBox="0 0 400 40"
-        preserveAspectRatio="none"
-        className="absolute bottom-0 left-0 w-full h-10 text-accent/40"
-      >
-        <path
-          d="M 0 28 L 90 28 L 110 8 L 130 32 L 150 28 L 400 28"
-          fill="none"
-          stroke="currentColor"
-          strokeWidth="1.5"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          strokeDasharray="250"
-          className="animate-ecg-line"
-        />
-      </svg>
+      <div className="container relative z-10">
+        <div className="grid items-center gap-10 pt-8 pb-12 md:pt-10 md:pb-16 lg:grid-cols-2 lg:gap-14">
+          {/* ── Left: the pitch ──────────────────────────────────── */}
+          <div>
+            <div className="mb-6 inline-flex animate-fade-up items-center gap-2.5 rounded-full border border-forest/15 bg-paper py-1.5 pl-2 pr-4 shadow-sm">
+              <span className="relative flex h-2 w-2">
+                <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-accent opacity-70" />
+                <span className="relative inline-flex h-2 w-2 rounded-full bg-accent" />
+              </span>
+              <span className="text-[0.7rem] font-semibold uppercase tracking-[0.2em] text-forest">
+                Elmed Hospital · Bakı
+              </span>
+            </div>
 
-      <div className="container relative z-10 flex min-h-[560px] flex-col justify-center py-24 md:min-h-[620px] md:py-32 lg:min-h-[680px]">
-        <div className="max-w-2xl">
-          <div className="mb-5 flex items-center gap-3 animate-fade-up">
-            <span className="relative flex h-2.5 w-2.5">
-              <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-accent opacity-75" />
-              <span className="relative inline-flex h-2.5 w-2.5 rounded-full bg-accent" />
-            </span>
-            <p className="text-sm font-semibold uppercase tracking-[0.25em] text-accent">
-              Elmed Xəstəxanası
+            <h1 className="max-w-xl animate-fade-up font-heading text-[2rem] font-bold leading-[1.1] tracking-tight text-ink [animation-delay:120ms] sm:text-4xl lg:text-5xl">
+              {title}
+            </h1>
+
+            <p className="mt-5 max-w-md animate-fade-up text-base leading-relaxed text-secondary/90 [animation-delay:240ms]">
+              {description}
             </p>
+
+            <div className="mt-9 flex animate-fade-up flex-wrap items-center gap-4 [animation-delay:360ms]">
+              <Link
+                href="/contact"
+                className="group inline-flex items-center gap-2 rounded-full bg-forest px-7 py-3.5 text-base font-semibold text-cream shadow-lg shadow-forest/25 transition-all hover:bg-primary-dark hover:shadow-xl"
+              >
+                Bizimlə əlaqə saxlayın
+                <FaArrowRight className="text-sm transition-transform group-hover:translate-x-1" />
+              </Link>
+              <Link
+                href="/doctors"
+                className="inline-flex items-center gap-2 rounded-full border border-forest/25 bg-paper px-6 py-3.5 text-base font-semibold text-forest transition-colors hover:border-forest/50 hover:bg-surface"
+              >
+                <FaUserDoctor className="text-accent" />
+                Həkimi tap
+              </Link>
+            </div>
+
           </div>
 
-          <h1 className="animate-fade-up font-heading text-4xl font-semibold leading-[1.15] text-white [animation-delay:120ms] sm:text-5xl lg:text-[3.5rem]">
-            {title}
-          </h1>
-
-          <p className="mt-6 max-w-xl animate-fade-up text-base leading-relaxed text-white/80 [animation-delay:260ms] lg:text-lg">
-            {description}
-          </p>
-
-          <div className="mt-10 flex flex-wrap gap-4 animate-fade-up [animation-delay:400ms]">
-            <Button href="/contact" label="Qəbula yazıl" variant="accent" size="lg" />
-            <Button href="/doctors" label="Həkimi tap" variant="outline" size="lg" />
+          {/* ── Right: one clean image, fills the column ─────────── */}
+          <div className="relative animate-fade-up [animation-delay:200ms]">
+            <div className="relative h-[380px] w-full overflow-hidden rounded-[2.5rem] bg-sage/25 shadow-2xl shadow-forest/20 ring-1 ring-forest/10 sm:h-[460px] lg:h-[520px]">
+              <Image
+                src={imageSrc}
+                alt=""
+                fill
+                priority
+                sizes="(max-width: 1024px) 100vw, 45vw"
+                className="object-cover object-[center_20%]"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-forest/25 via-transparent to-transparent" />
+            </div>
           </div>
         </div>
       </div>
     </section>
-  );
-}
-
-export default function Hero({ slides = [], locale = "az" }: HeroProps) {
-  const t = useTranslations("HomePage");
-
-  const toView = (slide: HeroSlide, priority: boolean) => (
-    <HeroSlideView
-      imageSrc={slide.image_url?.trim() || FALLBACK_IMAGE}
-      title={pickLocalized(slide.title, locale) || t("hero_title1")}
-      description={pickLocalized(slide.description, locale) || t("hero_desc1")}
-      priority={priority}
-    />
-  );
-
-  // Slayd yoxdursa və ya backend əlçatmazdırsa — statik fallback.
-  if (slides.length === 0) {
-    return (
-      <HeroSlideView
-        imageSrc={FALLBACK_IMAGE}
-        title={t("hero_title1")}
-        description={t("hero_desc1")}
-        priority
-      />
-    );
-  }
-
-  // Tək slayd üçün carousel-a ehtiyac yoxdur.
-  if (slides.length === 1) {
-    return toView(slides[0], true);
-  }
-
-  return (
-    <Swiper
-      modules={[Autoplay, Pagination]}
-      slidesPerView={1}
-      loop
-      speed={700}
-      autoplay={{ delay: 6000, disableOnInteraction: false }}
-      pagination={{ clickable: true }}
-      className="hero-swiper"
-      style={
-        {
-          "--swiper-pagination-color": "#ffffff",
-          "--swiper-pagination-bullet-inactive-color": "#ffffff",
-          "--swiper-pagination-bullet-inactive-opacity": "0.4",
-          "--swiper-pagination-bottom": "20px",
-        } as React.CSSProperties
-      }
-    >
-      {slides.map((slide, index) => (
-        <SwiperSlide key={slide.id}>{toView(slide, index === 0)}</SwiperSlide>
-      ))}
-    </Swiper>
   );
 }

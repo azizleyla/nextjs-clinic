@@ -1,21 +1,38 @@
-// components/SectionTitle.jsx
 type SectionTitleProps = {
   title: string;
   subtitle?: string;
+  align?: "left" | "center";
+  className?: string;
 };
 
-export default function SectionTitle({ title, subtitle }: SectionTitleProps) {
+/**
+ * Bölmə başlığı — bütün sayt boyu tək mənbə.
+ * `align="center"` mərkəzləşdirir və subtitle-ın hər iki yanına xətt qoyur.
+ */
+export default function SectionTitle({
+  title,
+  subtitle,
+  align = "left",
+  className = "",
+}: SectionTitleProps) {
+  const centered = align === "center";
+
   return (
-    <div className="mb-8">
+    <div className={`mb-10 ${centered ? "text-center" : "max-w-xl"} ${className}`}>
       {subtitle && (
-        <p className="text-sm font-semibold text-primary uppercase tracking-wider mb-2">
+        <p
+          className={`mb-3 flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.22em] text-clay ${
+            centered ? "justify-center" : ""
+          }`}
+        >
+          <span aria-hidden className="h-px w-6 bg-clay" />
           {subtitle}
+          {centered && <span aria-hidden className="h-px w-6 bg-clay" />}
         </p>
       )}
-      <h2 className="text-xl md:text-2xl lg:text-[1.75rem] font-semibold text-secondary dark:text-primary">
+      <h2 className="font-heading text-2xl md:text-3xl lg:text-4xl font-semibold leading-[1.15] tracking-tight text-ink dark:text-white">
         {title}
       </h2>
-      <div className="w-12 h-[3px] bg-primary mt-3 rounded-full"></div>
     </div>
   );
 }

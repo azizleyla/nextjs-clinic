@@ -1,6 +1,10 @@
+"use client";
+
+import { useState } from "react";
 import { Link } from "@/core/i18n/navigation";
 import { generateSlug } from "@/utils/slug";
 import { FaArrowRight } from "react-icons/fa";
+import { FaUserDoctor } from "react-icons/fa6";
 import type { Doctor } from "../types";
 
 type DoctorItemProps = {
@@ -10,31 +14,57 @@ type DoctorItemProps = {
 
 export default function DoctorItem({ doctor }: DoctorItemProps) {
   const title = generateSlug(doctor?.name ?? "");
-  const imgSrc = doctor?.img_url ? `/${doctor.img_url}` : "/images/d1.jpg";
+  const imgSrc = doctor?.img_url ? `/${doctor.img_url}` : "";
+  const [imgError, setImgError] = useState(false);
+  const showImage = Boolean(imgSrc) && !imgError;
+
+  const initials = (doctor?.name ?? "")
+    .split(" ")
+    .filter(Boolean)
+    .slice(0, 2)
+    .map((w) => w[0])
+    .join("")
+    .toUpperCase();
 
   return (
     <Link href={`/doctors/${title}/${doctor?.id}`} className="block h-full group">
-      <div className="h-full flex flex-col bg-white dark:bg-zinc-900 rounded-xl overflow-hidden border border-slate-200/80 dark:border-zinc-800 transition-shadow duration-300 hover:shadow-md">
-        <div className="relative w-full aspect-[4/3] bg-slate-100 dark:bg-zinc-800 overflow-hidden shrink-0">
-          <img
-            className="absolute inset-0 w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500"
-            src={imgSrc}
-            alt={doctor.name}
-          />
+      <div className="h-full flex flex-col overflow-hidden rounded-3xl border border-sand dark:border-zinc-800 bg-paper dark:bg-zinc-900 transition-all duration-300 hover:-translate-y-1.5 hover:border-forest/20 hover:shadow-xl hover:shadow-forest/10">
+        {/* Media — always filled, never blank white */}
+        <div className="relative w-full aspect-square overflow-hidden bg-gradient-to-br from-sage/30 via-surface to-surface dark:from-zinc-800 dark:to-zinc-800">
+          {showImage ? (
+            <img
+              src={imgSrc}
+              alt={doctor.name}
+              onError={() => setImgError(true)}
+              className="absolute inset-0 h-full w-full object-cover object-center transition-transform duration-500 group-hover:scale-105"
+            />
+          ) : (
+            <div className="absolute inset-0 flex flex-col items-center justify-center gap-2">
+              <FaUserDoctor className="text-6xl text-secondary/25" />
+              {initials && (
+                <span className="font-heading text-2xl font-bold tracking-wide text-secondary/30">
+                  {initials}
+                </span>
+              )}
+            </div>
+          )}
+
+          {/* Specialty — neutral chip over the media */}
+          {doctor.specialty && (
+            <span className="absolute bottom-3 left-3 max-w-[85%] truncate rounded-full bg-paper/90 px-3 py-1 text-xs font-semibold text-secondary shadow-sm backdrop-blur dark:bg-zinc-900/80 dark:text-zinc-200">
+              {doctor.specialty}
+            </span>
+          )}
         </div>
-        <div className="flex flex-col flex-1 p-4">
-          <h3 className="text-base font-semibold text-secondary dark:text-primary group-hover:text-primary transition-colors line-clamp-1">
+
+        {/* Footer — name + subtle action */}
+        <div className="flex flex-1 items-center justify-between gap-3 p-4">
+          <h3 className="font-heading text-base font-semibold text-ink dark:text-white line-clamp-1">
             {doctor.name}
           </h3>
-          <span className="inline-flex self-start mt-2 px-2.5 py-1 rounded-md bg-primary/10 text-primary text-xs font-medium line-clamp-1">
-            {doctor.specialty}
+          <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-surface text-forest transition-colors group-hover:bg-forest group-hover:text-cream">
+            <FaArrowRight className="text-xs" />
           </span>
-          <div className="flex items-center justify-between pt-4 mt-auto">
-            <span className="flex items-center gap-2 text-sm font-semibold text-primary">
-              Profilə bax
-              <FaArrowRight className="text-xs" />
-            </span>
-          </div>
         </div>
       </div>
     </Link>

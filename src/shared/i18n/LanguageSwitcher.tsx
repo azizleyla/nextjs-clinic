@@ -45,24 +45,24 @@ export function LanguageSwitcher() {
       <button
         type="button"
         onClick={() => setOpen(!open)}
-        className="flex items-center gap-2 px-3 py-2 border border-slate-200 dark:border-zinc-600 rounded-lg bg-white dark:bg-zinc-800 hover:bg-slate-50 dark:hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-primary/30 transition-colors min-w-[72px] justify-between"
+        className="flex items-center gap-2 px-3 py-1.5 border border-sand dark:border-zinc-600 rounded-full bg-paper dark:bg-zinc-800 hover:bg-surface dark:hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-forest/30 transition-colors min-w-[72px] justify-between"
       >
         <Image
-          width={20}
-          height={20}
+          width={18}
+          height={18}
           alt=""
           src={currentLang.flag}
           className="rounded-sm shrink-0"
         />
         <span className="font-medium text-secondary dark:text-primary text-sm">{currentLang.label}</span>
         {open ? (
-          <FaChevronUp className="text-primary text-xs shrink-0" />
+          <FaChevronUp className="text-forest text-xs shrink-0" />
         ) : (
-          <FaChevronDown className="text-primary text-xs shrink-0" />
+          <FaChevronDown className="text-forest text-xs shrink-0" />
         )}
       </button>
       {open && (
-        <div className="absolute right-0 mt-2 min-w-[72px] bg-white dark:bg-zinc-800 border border-slate-200 dark:border-zinc-600 rounded-lg shadow-lg z-50 py-1">
+        <div className="absolute right-0 mt-2 min-w-[72px] bg-paper dark:bg-zinc-800 border border-sand dark:border-zinc-600 rounded-xl shadow-xl shadow-navy/20 z-[80] py-1">
           {languages
             .filter((lang) => lang.value !== currentLocale)
             .map((lang) => (
@@ -70,7 +70,7 @@ export function LanguageSwitcher() {
                 key={lang.value}
                 type="button"
                 onClick={() => changeLocale(lang.value)}
-                className="flex items-center gap-2 w-full px-3 py-2 hover:bg-slate-50 dark:hover:bg-zinc-700 text-secondary dark:text-primary text-sm"
+                className="flex items-center gap-2 w-full px-3 py-2 hover:bg-surface dark:hover:bg-zinc-700 text-secondary dark:text-primary text-sm"
               >
                 <Image alt="" height={20} width={20} src={lang.flag} className="rounded-sm" />
                 <span>{lang.label}</span>

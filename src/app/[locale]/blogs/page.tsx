@@ -1,8 +1,8 @@
-import { Banner } from "@/components";
 import { createMetadata } from "@/core/seo/metadata";
 import { DEFAULT_BLOGS_PER_PAGE } from "@/features/blogs/constants/blogs";
 import { getBlogsList } from "@/features/blogs/api";
 import BlogsList from "./BlogsList";
+import SectionTitle from "@/shared/ui/typography/SectionTitle";
 
 type PageProps = {
   params: Promise<{ locale: string }>;
@@ -28,17 +28,15 @@ export default async function Blogs({ params, searchParams }: PageProps) {
   const data = await getBlogsList(locale, DEFAULT_BLOGS_PER_PAGE, page);
   const posts = data.posts;
   return (
-    <>
-      <Banner pageKey="BlogPage" />
-      <section>
-        <div className="container">
-          <BlogsList
-            posts={posts}
-            currentPage={data?.currentPage}
-            totalPages={data?.totalPages}
-          />
-        </div>
-      </section>
-    </>
+    <section className="pt-8 md:pt-10">
+      <div className="container">
+        <SectionTitle subtitle="Sağlamlıq bloqu" title="Bloqlar" />
+        <BlogsList
+          posts={posts}
+          currentPage={data?.currentPage}
+          totalPages={data?.totalPages}
+        />
+      </div>
+    </section>
   );
 }
