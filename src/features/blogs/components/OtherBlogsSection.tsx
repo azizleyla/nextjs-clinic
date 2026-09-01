@@ -41,7 +41,7 @@ export default function OtherBlogsSection({ posts }: OtherBlogsSectionProps) {
   if (!hasPosts) return null;
 
   return (
-    <section className="py-16 md:py-20 bg-slate-50/80 dark:bg-zinc-900/50 overflow-x-hidden">
+    <section className="py-16 md:py-20 bg-surface dark:bg-zinc-900/50 overflow-x-hidden">
       <div className="container relative">
         <div className="flex flex-nowrap items-center justify-between gap-4 mb-8">
           <SectionTitle title="Digər bloqlar" />

@@ -2,7 +2,7 @@ export { default as AboutSection } from "../features/about/components/AboutSecti
 export { default as BlogsSection } from "../features/blogs/components/BlogsSection";
 export { default as BlogsSectionWrapper } from "../features/blogs/components/BlogsSectionWrapper";
 export { default as Counter } from "../features/home/components/counter/Counter";
-export { default as Hero } from "../features/home/components/hero/Hero";
+export { default as HeroSectionWrapper } from "../features/home/components/hero/HeroSectionWrapper";
 export { default as Partners } from "../features/partners/components/Partners";
 export { default as DepartmentsSection } from "../features/departments/components/DepartmentsSection";
 

@@ -1,5 +1,5 @@
 import { Banner } from "@/components";
-import { apiClient } from "@/core/api/apiClient";
+import { apiClient, type BackendListResponse } from "@/core/api/apiClient";
 import {
   FaGraduationCap,
   FaBriefcase,
@@ -16,10 +16,11 @@ type Params = { slug: string; id: string };
 
 export default async function DoctorDetail({ params }: { params: Promise<Params> }) {
   const { slug, id } = await params;
-  const doctor = (await apiClient.get(`/api/doctors/${id}`)) as Doctor;
-  const doctorsRes = (await apiClient.get(`/api/doctors?page=1&per_page=50`)) as {
-    data: Doctor[];
-  };
+  const doctorRes = await apiClient.get<{ data: Doctor }>(`/doctors/${id}`);
+  const doctor = doctorRes.data;
+  const doctorsRes = await apiClient.get<BackendListResponse<Doctor>>(
+    `/doctors?page=1&limit=50`,
+  );
   const doctors = doctorsRes?.data ?? [];
 
   const relatedDoctors = doctors.filter(

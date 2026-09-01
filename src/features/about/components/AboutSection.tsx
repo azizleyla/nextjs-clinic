@@ -35,7 +35,7 @@ export default function AboutSection() {
             <p className="text-sm font-semibold text-primary uppercase tracking-wider mb-2">
               Haqqımızda
             </p>
-            <h2 className="text-2xl md:text-3xl font-bold text-secondary dark:text-primary mb-4">
+            <h2 className="text-2xl md:text-3xl font-semibold text-secondary dark:text-primary mb-4">
               Səhiyyənizə etibar edəcəyiniz məkanda
             </h2>
             <p className="text-secondary leading-relaxed mb-6">
@@ -66,21 +66,21 @@ export default function AboutSection() {
             <div className="inline-flex w-14 h-14 rounded-xl bg-primary/10 items-center justify-center mb-3">
               <FaUserMd className="text-primary text-2xl" />
             </div>
-            <p className="text-2xl font-bold text-secondary dark:text-primary">Təcrübəli mütəxəssislər</p>
+            <p className="text-xl font-semibold text-secondary dark:text-primary">Təcrübəli mütəxəssislər</p>
             <p className="text-sm text-primary_bold mt-1">Peşəkar həkim komandamız</p>
           </div>
           <div>
             <div className="inline-flex w-14 h-14 rounded-xl bg-primary/10 items-center justify-center mb-3">
               <FaShieldAlt className="text-primary text-2xl" />
             </div>
-            <p className="text-2xl font-bold text-secondary dark:text-primary">Təhlükəsizlik</p>
+            <p className="text-xl font-semibold text-secondary dark:text-primary">Təhlükəsizlik</p>
             <p className="text-sm text-primary_bold mt-1">Beynəlxalq standartlar</p>
           </div>
           <div>
             <div className="inline-flex w-14 h-14 rounded-xl bg-primary/10 items-center justify-center mb-3">
               <FaHeartbeat className="text-primary text-2xl" />
             </div>
-            <p className="text-2xl font-bold text-secondary dark:text-primary">Səhiyyə üçün</p>
+            <p className="text-xl font-semibold text-secondary dark:text-primary">Səhiyyə üçün</p>
             <p className="text-sm text-primary_bold mt-1">Xəstə mərkəzli yanaşma</p>
           </div>
         </div>

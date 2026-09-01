@@ -20,9 +20,12 @@ module.exports = {
     extend: {
       colors: {
         primary: '#0046c0',
+        'primary-dark': '#00378f',
         secondary: '#344c5d',
         primary_bold: "#4a6f8a",
         accent: '#f0ad4e',
+        navy: '#0a2647',
+        surface: '#f4f8fc',
       },
       screens: {
         'sm-custom': '576px',
@@ -31,8 +34,9 @@ module.exports = {
         'custom-gray': '0 0 25px 0 hsla(0,0%,87%,0.749)',
       },
       fontFamily: {
-        base: ['Inter', 'sans-serif'],
-        heading: ['Poppins', 'sans-serif'],
+        sans: ['var(--font-body)', 'sans-serif'],
+        base: ['var(--font-body)', 'sans-serif'],
+        heading: ['var(--font-heading)', 'serif'],
       },
       fontSize: {
         xs: '0.75rem',
@@ -65,6 +69,10 @@ module.exports = {
           '0%': { strokeDashoffset: '250' },
           '100%': { strokeDashoffset: '0' },
         },
+        'fade-up': {
+          '0%': { opacity: '0', transform: 'translateY(28px)' },
+          '100%': { opacity: '1', transform: 'translateY(0)' },
+        },
       },
       animation: {
         'a-one': 'a-one 5s linear infinite',
@@ -72,6 +80,7 @@ module.exports = {
         'a-seven': 'a-seven 10s linear infinite',
         'heart-pulse': 'heart-pulse 1s ease-in-out infinite',
         'ecg-line': 'ecg-line 2s ease-in-out infinite',
+        'fade-up': 'fade-up 0.9s cubic-bezier(0.16, 1, 0.3, 1) both',
       },
     },
   },

@@ -17,8 +17,13 @@ async function getOtherPosts(
   locale: string,
   currentId: number,
 ): Promise<BlogPost[]> {
-  const list = await getBlogsList(locale).catch(() => []);
-  return list.filter((p) => p.id !== currentId).slice(0, RECENT_COUNT);
+  const { posts } = await getBlogsList(locale).catch(() => ({
+    posts: [] as BlogPost[],
+    totalPages: 0,
+    currentPage: 1,
+    totalElements: 0,
+  }));
+  return posts.filter((p) => p.id !== currentId).slice(0, RECENT_COUNT);
 }
 
 export async function generateMetadata({

@@ -5,7 +5,7 @@ import { Button } from "@/components";
 import { FaPhone } from "react-icons/fa";
 import { FaLocationDot } from "react-icons/fa6";
 import dynamic from "next/dynamic";
-import { apiClient } from "@/core/api/apiClient";
+import { apiClient, type BackendListResponse } from "@/core/api/apiClient";
 
 const MapContainer = dynamic(
   () => import("@/features/contact/components/GoogleMap"),
@@ -36,8 +36,8 @@ export default function Contact() {
 
   useEffect(() => {
     async function fetchBranches() {
-      const data = (await apiClient.get("/api/branches")) as Branch[];
-      setBranches(data ?? []);
+      const res = await apiClient.get<BackendListResponse<Branch>>("/branches");
+      setBranches(res.data ?? []);
     }
     fetchBranches();
   }, []);

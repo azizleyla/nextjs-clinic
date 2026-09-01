@@ -26,7 +26,7 @@ export default function DoctorsList() {
 
   const filtersLoading = depsLoading || branchesLoading;
   const doctors = data?.data ?? [];
-  const totalPages = data?.total_pages ?? 1;
+  const totalPages = data?.totalPages ?? 1;
   const safePage = Math.max(1, Math.min(filters.page, totalPages || 1));
 
   return (

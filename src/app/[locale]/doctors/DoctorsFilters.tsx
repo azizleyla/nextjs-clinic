@@ -16,6 +16,7 @@ type DoctorFiltersProps = {
   setFilter: (name: string, value: unknown) => void;
   departments: Department[];
   branches: Branch[];
+  filtersLoading?: boolean;
 };
 
 export const DoctorFilters = ({

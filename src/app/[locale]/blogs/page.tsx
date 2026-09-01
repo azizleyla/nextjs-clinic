@@ -1,7 +1,7 @@
 import { Banner } from "@/components";
 import { createMetadata } from "@/core/seo/metadata";
 import { DEFAULT_BLOGS_PER_PAGE } from "@/features/blogs/constants/blogs";
-import { getBlogs, getBlogsList } from "@/features/blogs/api";
+import { getBlogsList } from "@/features/blogs/api";
 import BlogsList from "./BlogsList";
 
 type PageProps = {
@@ -25,9 +25,8 @@ export default async function Blogs({ params, searchParams }: PageProps) {
   const { locale } = await params;
   const query = await searchParams;
   const page = Math.max(1, parseInt(query?.page || "1", 10) || 1);
-  const data = await getBlogsList(locale, 1, page);
+  const data = await getBlogsList(locale, DEFAULT_BLOGS_PER_PAGE, page);
   const posts = data.posts;
-  console.log(data);
   return (
     <>
       <Banner pageKey="BlogPage" />

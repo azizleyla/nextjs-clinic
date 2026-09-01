@@ -2,7 +2,7 @@ import {
   AboutSection,
   BlogsSectionWrapper,
   Counter,
-  Hero,
+  HeroSectionWrapper,
   Partners,
   DepartmentsSection,
 } from "@/components";
@@ -34,7 +34,13 @@ export default async function HomePage({ params }: HomePageProps) {
 
   return (
     <>
-      <Hero />
+      <Suspense
+        fallback={
+          <div className="min-h-[560px] w-full animate-pulse bg-navy md:min-h-[620px] lg:min-h-[680px]" />
+        }
+      >
+        <HeroSectionWrapper locale={locale} />
+      </Suspense>
       <Counter isHome={true} />
       <AboutSection />
       <Suspense fallback={<Loading />}>

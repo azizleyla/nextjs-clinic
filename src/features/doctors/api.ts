@@ -1,4 +1,5 @@
-import { apiClient } from "@/core/api/apiClient";
+import { apiClient, type BackendListResponse } from "@/core/api/apiClient";
+import type { Doctor } from "./types";
 
 export async function fetchAllDoctors(
   locale: string,
@@ -6,20 +7,17 @@ export async function fetchAllDoctors(
   page?: number,
 ) {
   const params = new URLSearchParams();
+  params.set("status", "active,on_leave");
+  if (page) params.set("page", String(page));
+  if (limit) params.set("limit", String(limit));
 
-  if (page) params.append("page", String(page));
-  if (limit) params.append("limit", String(limit));
-
-  const url = `/doctors?status=active,on_leave${params.toString() ? `?${params}` : ""}`;
-  console.log(url, "url");
-  const res = await apiClient.get(url, {
-    backend: true,
-  });
+  const url = `/doctors?${params.toString()}`;
+  const res = await apiClient.get<BackendListResponse<Doctor>>(url);
 
   const { totalPages, currentPage, totalElements } = res;
 
   return {
-    data: res?.data,
+    data: res.data,
     totalPages,
     currentPage,
     totalElements,

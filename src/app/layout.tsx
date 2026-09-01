@@ -1,4 +1,4 @@
-import { Geist } from "next/font/google";
+import { Lora, Source_Sans_3 } from "next/font/google";
 import "../styles/globals.css";
 import "swiper/css";
 import "swiper/css/navigation";
@@ -9,10 +9,17 @@ import { SpeedInsights } from "@vercel/speed-insights/next";
 import type { ReactNode } from "react";
 import Script from "next/script";
 
-const geist = Geist({
+const lora = Lora({
   subsets: ["latin"],
-  weight: ["400", "500", "600", "700", "800"],
+  weight: ["500", "600", "700"],
   variable: "--font-heading",
+  display: "swap",
+});
+
+const sourceSans = Source_Sans_3({
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
+  variable: "--font-body",
   display: "swap",
 });
 
@@ -28,7 +35,7 @@ export default function RootLayout({ children }: RootLayoutProps) {
     <html
       lang="en"
       suppressHydrationWarning
-      className={`${geist.className || ""} light`}
+      className={`${lora.variable} ${sourceSans.variable} ${sourceSans.className} light`}
     >
       <body>
         <ScrollToTop />

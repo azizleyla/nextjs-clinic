@@ -45,7 +45,7 @@ export default function DoctorsSection({
   const goNext = useCallback(() => swiperRef.current?.slideNext(), []);
 
   return (
-    <section className="doctors py-16 md:py-20 bg-slate-50/80 dark:bg-zinc-900/50 overflow-x-hidden">
+    <section className="doctors py-16 md:py-20 bg-surface dark:bg-zinc-900/50 overflow-x-hidden">
       <div className="container relative">
         {/* Başlıq + oxlar eyni sətirdə */}
         <div className="flex flex-nowrap items-center justify-between gap-4 mb-8">

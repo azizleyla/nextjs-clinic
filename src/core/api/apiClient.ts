@@ -2,36 +2,26 @@ import { ApiError, reportError } from "@/core/errors";
 
 type RequestOptions = RequestInit & {
   headers?: HeadersInit;
-  backend?: boolean;
+};
+
+// clinic-admin-backend AppSuccess.send() ilə qaytarılan siyahı cavabının formatı
+export type BackendListResponse<T> = {
+  success: boolean;
+  status: number;
+  data: T[];
+  message?: string;
+  totalElements?: number;
+  totalPages?: number;
+  currentPage?: number;
+  hasNextPage?: boolean;
 };
 
 const MAX_MESSAGE_LENGTH = 200;
 const LOOKS_LIKE_HTML = /^\s*<(!DOCTYPE|html|[\w-]+)/i;
 
-async function getApiBaseUrl(): Promise<string> {
-  if (process.env.NODE_ENV === "development") return "http://localhost:3000";
-  if (typeof window !== "undefined") return "";
-  try {
-    const { headers } = await import("next/headers");
-    const h = await headers();
-    const host = h.get("x-forwarded-host") || h.get("host");
-    if (host) return `https://${host}`;
-  } catch {
-    // ignore
-  }
-  return process.env.VERCEL_URL
-    ? `https://${process.env.VERCEL_URL}`
-    : (process.env.NEXT_PUBLIC_API_BASE_URL || "");
-}
-
-function getBackendBaseUrl(): string {
-  return (
-    "http://localhost:5000"
-  )
-}
-
-async function resolveBaseUrl(backend?: boolean): Promise<string> {
-  const url = backend ? getBackendBaseUrl() : await getApiBaseUrl();
+// Yeganə data mənbəyi clinic-admin-backend-dir.
+function getBaseUrl(): string {
+  const url = process.env.NEXT_PUBLIC_BACKEND_URL || "http://localhost:5000";
   return url.replace(/\/$/, "");
 }
 
@@ -60,20 +50,19 @@ export const apiClient = {
     endpoint: string,
     options: RequestOptions = {}
   ): Promise<T> {
-    const { backend, ...fetchOptions } = options;
-    const baseUrl = await resolveBaseUrl(backend);
+    const baseUrl = getBaseUrl();
     const path = endpoint.startsWith("/") ? endpoint : `/${endpoint}`;
     const url = `${baseUrl}${path}`;
 
     const defaultOptions: RequestInit = {
       headers: {
         "Content-Type": "application/json",
-        ...(fetchOptions.headers as Record<string, string>),
+        ...(options.headers as Record<string, string>),
       },
     };
 
     try {
-      const res = await fetch(url, { ...defaultOptions, ...fetchOptions });
+      const res = await fetch(url, { ...defaultOptions, ...options });
 
       if (!res.ok) {
         const message = await getErrorMessage(res);

@@ -4,18 +4,18 @@ type SectionTitleProps = {
   subtitle?: string;
 };
 
-export default function SectionTitle({ title, subtitle }:SectionTitleProps) {
+export default function SectionTitle({ title, subtitle }: SectionTitleProps) {
   return (
-    <div className=" mb-8">
+    <div className="mb-8">
       {subtitle && (
-        <p className="text-sm text-gray-500 dark:text-primary  uppercase tracking-wider">
+        <p className="text-sm font-semibold text-primary uppercase tracking-wider mb-2">
           {subtitle}
         </p>
       )}
-      <h2 className="text-md  md:text-2xl font-bold text-gray-800 dark:text-primary ">
+      <h2 className="text-xl md:text-2xl lg:text-[1.75rem] font-semibold text-secondary dark:text-primary">
         {title}
       </h2>
-      <div className="w-20 h-1 bg-primary  mt-2 rounded"></div>
+      <div className="w-12 h-[3px] bg-primary mt-3 rounded-full"></div>
     </div>
   );
 }

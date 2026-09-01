@@ -1,6 +1,6 @@
 import React from "react";
 import SectionTitle from "@/shared/ui/typography/SectionTitle";
-import { apiClient } from "@/core/api/apiClient";
+import { fetchDepartments } from "@/services/departmentService";
 import DepartmentList from "./DepartmentList";
 
 type DepartmensProps = {
@@ -10,7 +10,7 @@ type DepartmensProps = {
 export default async function Departments({
   isLoadMore = false,
 }: DepartmensProps) {
-  const departments = (await apiClient.get("/api/departments")) ?? [];
+  const departments = await fetchDepartments().catch(() => []);
 
   return (
     <section>

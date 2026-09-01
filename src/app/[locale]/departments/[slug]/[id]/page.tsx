@@ -1,6 +1,7 @@
 import { Banner } from "@/components";
 import { apiClient } from "@/core/api/apiClient";
 import { generateSlug } from "@/utils/slug";
+import { pickLocalizedText } from "@/services/departmentService";
 import { createMetadata } from "@/core/seo/metadata";
 import Image from "next/image";
 
@@ -12,13 +13,16 @@ export async function generateMetadata({
   params: Promise<Params>;
 }) {
   const { id, locale } = await params;
-  const department = (await apiClient.get(`/api/departments/${id}`)) as {
-    title: Record<string, string>;
-    description: string;
-    id: number;
-    image?: string;
-    keywords?: string[];
-  };
+  const res = await apiClient.get<{
+    data: {
+      title: Record<string, string>;
+      description: string;
+      id: number;
+      image?: string;
+      keywords?: string[];
+    };
+  }>(`/departments/${id}`);
+  const department = res.data;
   return createMetadata({
     title: department.title?.[locale] ?? "",
     description: department.description,
@@ -39,11 +43,16 @@ export default async function DepartmentDetail({
   params: Promise<Params>;
 }) {
   const { id, locale } = await params;
-  const department = (await apiClient.get(`/api/departments/${id}`)) as {
-    title: Record<string, string>;
-    content: string;
-    img_url?: string;
-  };
+  const res = await apiClient.get<{
+    data: {
+      title: Record<string, string>;
+      content: string | Record<string, string>;
+      img_url?: string;
+    };
+  }>(`/departments/${id}`);
+  const department = res.data;
+  // content text sütunudur; köhnə qeydlərdə JSON string ola bilər — helper açır.
+  const contentHtml = pickLocalizedText(department.content, locale);
   return (
     <>
       <Banner dynamicTitle={department?.title?.[locale]} />
@@ -62,11 +71,9 @@ export default async function DepartmentDetail({
                   />
                 </div>
               </div>
-              <div className="w-full lg:w-1/2 flex-none">
-                <div className="service-detail__content text-secondary dark:text-zinc-300 leading-relaxed space-y-3">
-                  <div
-                    dangerouslySetInnerHTML={{ __html: department.content }}
-                  />
+              <div className="w-full lg:w-1/2 min-w-0">
+                <div className="service-detail__content text-secondary dark:text-zinc-300 leading-relaxed space-y-3 break-words overflow-x-auto [&_img]:max-w-full [&_img]:h-auto [&_table]:w-full [&_table]:block [&_table]:overflow-x-auto">
+                  <div dangerouslySetInnerHTML={{ __html: contentHtml }} />
                 </div>
               </div>
             </div>

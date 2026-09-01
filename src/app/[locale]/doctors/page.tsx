@@ -1,11 +1,15 @@
 import { Banner } from "@/components";
 import DoctorsPageContent from "./DoctorsPageContent";
 import { createMetadata } from "@/core/seo/metadata";
-import { fetchAllDoctors } from "@/features/doctors/api";
 
 type PageProps = {
   params: Promise<{ locale: string }>;
-  searchParams: Promise<{ page?: string }>;
+  searchParams: Promise<{
+    page?: string;
+    name?: string;
+    department_id?: string;
+    branch_id?: string;
+  }>;
 };
 
 export async function generateMetadata({ params }: PageProps) {
@@ -21,15 +25,11 @@ export async function generateMetadata({ params }: PageProps) {
   });
 }
 
-export default async function DoctorsPage({ params, searchParams }: PageProps) {
-  const { locale } = await params;
-
-  const data = await fetchAllDoctors(locale, 1);
-  console.log(data, 'dd')
+export default async function DoctorsPage({ searchParams }: PageProps) {
   return (
     <>
       <Banner pageKey="DoctorPage" />
-      <DoctorsPageContent searchParams={params} />
+      <DoctorsPageContent searchParams={searchParams} />
     </>
   );
 }

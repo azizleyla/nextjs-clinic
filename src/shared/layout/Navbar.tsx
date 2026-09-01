@@ -9,6 +9,7 @@ import { usePathname } from "next/navigation";
 import DarkModeToggle from "@/core/theme/ThemeToggle";
 import { LanguageSwitcher } from "@/shared/i18n/LanguageSwitcher";
 import { Link } from "@/core/i18n/navigation";
+import Button from "@/shared/ui/button";
 
 const Navbar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -39,9 +40,27 @@ const Navbar = () => {
     setMenuOpen(false);
   }, [pathname]);
 
+  // Mobil menyu açıq olanda Tawk chat balonu "Tema" sırasının üzərinə düşür — gizlədirik
+  useEffect(() => {
+    const tawkApi = (window as Window & {
+      Tawk_API?: { hideWidget?: () => void; showWidget?: () => void };
+    }).Tawk_API;
+
+    if (menuOpen) {
+      tawkApi?.hideWidget?.();
+    } else {
+      tawkApi?.showWidget?.();
+    }
+
+    return () => {
+      tawkApi?.showWidget?.();
+    };
+  }, [menuOpen]);
+
   return (
+    <header className="bg-white dark:bg-zinc-950 border-b border-slate-100 dark:border-zinc-800 sticky top-0 z-50">
     <div className="container relative">
-      <nav className="flex items-center justify-between py-4 px-0">
+      <nav className="flex items-center justify-between py-4 px-0 gap-6">
         <Link href="/" className="shrink-0">
           <Image
             className="navbar__logo"
@@ -58,10 +77,10 @@ const Navbar = () => {
             <li className="relative py-3 group" key={idx}>
               <div className="flex items-center gap-1">
                 <Link
-                  className={`font-medium transition-colors ${
+                  className={`font-medium transition-colors border-b-2 py-1 ${
                     isActive(item.href)
-                      ? "text-primary"
-                      : "text-secondary hover:text-primary"
+                      ? "text-primary border-primary"
+                      : "text-secondary border-transparent hover:text-primary"
                   }`}
                   href={item.href}
                 >
@@ -87,18 +106,22 @@ const Navbar = () => {
           ))}
         </ul>
 
-        <div className="flex items-center gap-4 lg:gap-6">
-          <form className="hidden lg:block relative">
+        <div className="flex items-center gap-3 lg:gap-4">
+          <form className="hidden xl:block relative" role="search">
+            <label htmlFor="navbar-search" className="sr-only">
+              Axtar
+            </label>
             <input
-              className="h-10 py-1 pl-3 pr-10 w-44 border border-slate-200 dark:border-zinc-600 rounded-lg bg-white dark:bg-zinc-800 text-secondary focus:border-primary focus:outline-none"
+              id="navbar-search"
+              className="h-10 py-1 pl-3 pr-10 w-40 border border-slate-200 dark:border-zinc-600 rounded-md bg-white dark:bg-zinc-800 text-secondary focus:border-primary focus:outline-none"
               placeholder="Axtar..."
             />
             <button
               type="submit"
-              className="absolute right-0 top-0 h-10 w-10 flex items-center justify-center rounded-r-lg bg-slate-100 dark:bg-zinc-700 text-primary"
+              className="absolute right-0 top-0 h-10 w-10 flex items-center justify-center rounded-r-md bg-slate-100 dark:bg-zinc-700 text-primary"
               aria-label="Axtar"
             >
-              <FaMagnifyingGlass className="text-lg" />
+              <FaMagnifyingGlass className="text-base" />
             </button>
           </form>
 
@@ -106,11 +129,19 @@ const Navbar = () => {
             <DarkModeToggle />
           </div>
 
+          <Button
+            href="/contact"
+            variant="primary"
+            size="sm"
+            className="hidden md:inline-flex"
+            label="Qəbula yazıl"
+          />
+
           {/* Mobil: yalnız menyu düyməsi — dark mode menyu içində */}
           <button
             type="button"
             onClick={() => setMenuOpen((v) => !v)}
-            className="lg:hidden w-10 h-10 flex items-center justify-center rounded-lg border border-slate-200 dark:border-zinc-600 text-secondary hover:bg-slate-50 dark:hover:bg-zinc-800 transition-colors"
+            className="lg:hidden w-10 h-10 flex items-center justify-center rounded-md border border-slate-200 dark:border-zinc-600 text-secondary hover:bg-slate-50 dark:hover:bg-zinc-800 transition-colors"
             aria-expanded={menuOpen}
             aria-label={menuOpen ? "Menyunu bağla" : "Menyunu aç"}
           >
@@ -194,6 +225,7 @@ const Navbar = () => {
         </div>
       </div>
     </div>
+    </header>
   );
 };
 

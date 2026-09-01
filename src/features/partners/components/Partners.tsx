@@ -29,7 +29,7 @@ export default function Partners() {
           }}
         >
           <SwiperSlide>
-            <div className="border flex justify-center border-[#eee] p-4">
+            <div className="border flex justify-center border-slate-200 dark:border-zinc-700 p-4 bg-white dark:bg-zinc-900">
               <img
                 className="h-14 object-center"
                 src="/images/pasha-logo.png"
@@ -37,7 +37,7 @@ export default function Partners() {
             </div>
           </SwiperSlide>
           <SwiperSlide>
-            <div className="border flex justify-center  border-[#eee] p-4">
+            <div className="border flex justify-center border-slate-200 dark:border-zinc-700 p-4 bg-white dark:bg-zinc-900">
               <img
                 className="h-14 object-center"
                 src="/images/xalq-logo.png"
@@ -46,7 +46,7 @@ export default function Partners() {
           </SwiperSlide>
 
           <SwiperSlide>
-            <div className="border flex justify-center  border-[#eee] p-4">
+            <div className="border flex justify-center border-slate-200 dark:border-zinc-700 p-4 bg-white dark:bg-zinc-900">
               <img
                 className="h-14 object-center"
                 src="/images/senaye-sigorta-logo.png"
@@ -55,7 +55,7 @@ export default function Partners() {
           </SwiperSlide>
 
           <SwiperSlide>
-            <div className="border flex justify-center  border-[#eee] p-4">
+            <div className="border flex justify-center border-slate-200 dark:border-zinc-700 p-4 bg-white dark:bg-zinc-900">
               <img
                 className="h-14 object-center"
                 src="/images/Icbari-Tibbi-Sigorta.png"
@@ -63,7 +63,7 @@ export default function Partners() {
             </div>
           </SwiperSlide>
           <SwiperSlide>
-            <div className="border flex justify-center  border-[#eee] p-4">
+            <div className="border flex justify-center border-slate-200 dark:border-zinc-700 p-4 bg-white dark:bg-zinc-900">
               <img
                 className="h-14 object-center"
                 src="/images/ata-sigorta.png"
@@ -71,7 +71,7 @@ export default function Partners() {
             </div>
           </SwiperSlide>
           <SwiperSlide>
-            <div className="border flex justify-center border-[#eee] p-4">
+            <div className="border flex justify-center border-slate-200 dark:border-zinc-700 p-4 bg-white dark:bg-zinc-900">
               <img
                 className="h-14 object-center"
                 src="/images/mega-sigorta.png"
